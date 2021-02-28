@@ -1,16 +1,19 @@
 var express = require('express');
 var router = express.Router();
-
 const userController = require('../controllers/userController');
+const { auth } = require('../middlewares/auth');
 
 /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
+router.post('/signUp', userController.signUp);
+// router.post('/signUp', (req, res, next) => {
+//     userController.signUp
 // });
+router.post('/signIn', userController.signIn); // 로그인
+router.get('/auth', auth, userController.auth); // 회원만 접근 가능한 페이지
+router.get('/signOut', auth, userController.signOut); // 로그아웃
 
-router.post('/signUp',userController.signUp); // 회원가입
-router.post('/signIn',userController.signIn); // 로그인
-router.get('/all',userController.show_all); // 모든 회원 정보 보기
-router.delete('/delete/:user_id',userController.delete); // 계정 삭제하기 
+// router.get('/all',userController.show_all); // 모든 회원 정보 보기
+// router.delete('/delete/:user_id',userController.delete); // 계정 삭제하기 
+
 
 module.exports = router;

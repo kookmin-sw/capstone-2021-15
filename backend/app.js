@@ -4,10 +4,22 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var mongoose = require('mongoose');
+var MONGODB_URI = 'mongodb://127.0.0.1:27017/test_users';
+mongoose.connect(MONGODB_URI, {
+  useUnifiedTopology: true, 
+  useNewUrlParser:true, 
+  useCreateIndex: true, 
+  useFindAndModify: true 
+  }, function(err, db){
+  console.log('db connect');
+})
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
-var itemsRouter = require('./routes/item');
-var likeRouter = require('./routes/like');
+// var itemsRouter = require('./routes/item');
+// var likeRouter = require('./routes/like');
 
 var app = express();
 
@@ -23,9 +35,9 @@ app.use(cookieParser()); // cookie를 파싱
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.user('/items', itemsRouter);
-app.user('/like', likeRouter);
+app.use('/user/', usersRouter);
+// app.use('/items', itemsRouter);
+// app.use('/like', likeRouter);
 app.use((req, res, next) => {
   res.status(404).send('not found');
 });
