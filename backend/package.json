@@ -6,6 +6,8 @@
     "start": "set PORT=3001&&nodemon ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-mongodb-session": "^2.4.1",
     "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
