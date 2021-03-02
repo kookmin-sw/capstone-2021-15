@@ -25,6 +25,10 @@ const userSchema = new Schema({
 	},
 	token: {
 		type: String,
+	},
+	role: {
+		type: Number,
+		default: 0,
 	}
 	// createdAt: {
 	// 	type: Date,

@@ -34,10 +34,10 @@ module.exports = {
             const {nickName} =  req.body;
             const user =  await User.findOne({ nickName });
             if (user) {
-                return res.json({message:'User existed'});
+                return res.json({registerSuccess: false, message:'User existed'});
             }
             await createUserData(req.body);
-            return res.status(201).json({message: "User Created"});
+            return res.status(201).json({registerSuccess: true, message: "User Created"});
         } catch (err) {
             next(err);
         }
@@ -76,6 +76,9 @@ module.exports = {
             _id: req.user._id,
             nickName : req.user.nickName,
             personalColor : req.user.personalColor,
+            role: req.user.role,
+            isAdmin: req.user.role === 0 ? false : true,
+            isAuth: true,
         })
 
     },
