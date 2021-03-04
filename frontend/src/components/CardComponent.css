@@ -1,20 +1,17 @@
 
-div .card{
-    display: flex;
+div .card {
+    display: inline-flex;
     flex-direction: column;
-    width: 270px;
-    height: 280px;
     background-color: gray;
-    margin: 0;
 }
 
-.image{
-    width: 270px;
-    height: 180px;
+.image {
+    width: 100%;
+    height: 100%;
     background-color: cadetblue;
 }
 
-div .info{
+div .info {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -27,25 +24,23 @@ div .info{
 
 }
 
-div .info p{
+div .info p {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 250px;
     height: 90px;
-
-
 }
 
-.info h2{
+.info h2 {
     margin: 0;
     font-size: 24px;
     font-style: normal;
     font-weight: normal;
 }
 
-.info h3{
+.info h3 {
     margin: 0;
     align-items: flex-end;
     font-size: 14px;
@@ -54,7 +49,7 @@ div .info p{
     color: #393737;
 }
 
-.info p{
+.info p {
     margin: 0;
     align-items: flex-end;
     font-size: 10px;
