@@ -4,13 +4,13 @@ const userController = require('../controllers/userController');
 const { auth } = require('../middlewares/auth');
 
 /* GET users listing. */
-router.post('/signUp', userController.signUp);
+router.post('/signup', userController.signup);
 // router.post('/signUp', (req, res, next) => {
 //     userController.signUp
 // });
-router.post('/signIn', userController.signIn); // 로그인
+router.post('/signin', userController.signin); // 로그인
 router.get('/auth', auth, userController.auth); // 회원만 접근 가능한 페이지
-router.get('/signOut', auth, userController.signOut); // 로그아웃
+router.get('/signout', auth, userController.signout); // 로그아웃
 
 // router.get('/all',userController.show_all); // 모든 회원 정보 보기
 // router.delete('/delete/:user_id',userController.delete); // 계정 삭제하기 

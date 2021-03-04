@@ -1,9 +1,6 @@
 //mongoose
 const mongoose = require('mongoose'); 
 const User = require('../models/user');
-const cookieParser = require('cookie-parser');
-// const { body, validationResult } = require.apply('express-validator');
-
 
 // hashing password
 const bcrypt = require('bcrypt');
@@ -29,7 +26,7 @@ module.exports = {
     // 회원가입
     // 회원 가입 시 필요한 정보들을 client에서 가져오기
     // 그것들을 데이터베이스에 넣어준다
-    signUp : async (req, res, next) => {
+    signup : async (req, res, next) => {
         try {
             const {nickName} =  req.body;
             const user =  await User.findOne({ nickName });
@@ -42,7 +39,7 @@ module.exports = {
             next(err);
         }
     },
-    signIn: async (req, res, next) =>{
+    signin: async (req, res, next) =>{
         // 요청된 nickName이 데이터베이스에 있는지 찾음
         User.findOne({ nickName: req.body.nickName }, (err, user) => {
             if(!user){
@@ -83,7 +80,7 @@ module.exports = {
 
     },
 
-    signOut: async (req, res) => {
+    signout: async (req, res) => {
         // req: auth 미들웨어에서 받은
         // token: '' : 토큰 지우기
         User.findOneAndUpdate({_id: req.user._id}, { token : "" }, (err, user) => {
