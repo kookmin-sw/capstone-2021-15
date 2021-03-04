@@ -39,7 +39,7 @@ module.exports = {
             next(err);
         }
     },
-    signin: async (req, res, next) =>{
+    login: async (req, res, next) =>{
         // 요청된 nickName이 데이터베이스에 있는지 찾음
         User.findOne({ nickName: req.body.nickName }, (err, user) => {
             if(!user){

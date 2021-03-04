@@ -44,7 +44,7 @@ userSchema.methods.comparePassword = function(plainPassword, callback) {
 		if(err) return callback(err);
 		callback(null, isMatch); // true 리턴
 	})
-	// controllers/userController의 signIn 함수 확인
+	// controllers/userController login 함수 확인
 }
 
 userSchema.methods.generateToken = function(callback) {
