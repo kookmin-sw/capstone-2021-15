@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
-.App {
+.main {
     font-family: 'Nanum Gothic', sans-serif;
     font-family: 'Noto Sans KR', sans-serif;
     min-height: 100vh;
