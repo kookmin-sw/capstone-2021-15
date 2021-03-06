@@ -80,7 +80,7 @@ module.exports = {
 
     },
 
-    signout: async (req, res) => {
+    logout: async (req, res) => {
         // req: auth 미들웨어에서 받은
         // token: '' : 토큰 지우기
         User.findOneAndUpdate({_id: req.user._id}, { token : "" }, (err, user) => {
