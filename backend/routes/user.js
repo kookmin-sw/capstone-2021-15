@@ -5,9 +5,6 @@ const { auth } = require('../middlewares/auth');
 
 /* GET users listing. */
 router.post('/signup', userController.signup);
-// router.post('/signUp', (req, res, next) => {
-//     userController.signUp
-// });
 router.post('/login', userController.login); // 로그인
 router.get('/auth', auth, userController.auth); // 회원만 접근 가능한 페이지
 router.get('/logout', auth, userController.logout); // 로그아웃
@@ -17,3 +14,4 @@ router.get('/logout', auth, userController.logout); // 로그아웃
 
 
 module.exports = router;
+

@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var mongoose = require('mongoose');
-var MONGODB_URI = 'mongodb://127.0.0.1:27017/test_users';
+var MONGODB_URI = 'mongodb://127.0.0.1:27017/test';
 mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true, 
   useNewUrlParser:true, 
