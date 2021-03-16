@@ -28,9 +28,9 @@ class ItemCrawler:
             item['data-code'] = data_code
             self.item_list += [item]
 
-        goods_detail = self.html.select('label .color')
+        item_detail = self.html.select('label .color')
 
-        for idx, item in enumerate(goods_detail):
+        for idx, item in enumerate(item_detail):
             url = item['style'].split("url(")[1][:-2]
             self.item_list[idx]['color-url'] = url
 
