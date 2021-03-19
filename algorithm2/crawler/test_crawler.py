@@ -3,7 +3,7 @@ from pprint import pprint
 import requests
 from pymongo import MongoClient
 import json
-
+import re
 
 # mongodb
 client = MongoClient('mongodb://localhost:27017/')
@@ -32,13 +32,24 @@ for i in goods_title:
 
 # pprint(goods_title)
 # pprint(goods_detail)
-
+goods_html = html.select_one('div.goods-detail-info')
 #
+price = goods_html.select_one('div.price-inner strong').text
+print(goods_html)
+print(price)
+goods_name = goods_html.select_one("h1").text
+# print(goods_name)
 goods_detail = html.select('label .color')
-
+# pprint(goods_detail)
 for idx, item in enumerate(goods_detail):
     url = item['style'].split("url(")[1][:-2]
     data_code = item.parent.find('input', attrs={'name': 'goodsOptions'})['data-code']
     goods_list[idx]['color-url'] = url
-
-collection.insert_many(goods_list, ordered=False)
+# pprint(goods_list)
+# collection.insert_many(goods_list, ordered=False)
+price_txt = goods_html.select_one('div.price-inner strong').text
+price_frac = re.findall("\d+", price_txt)
+price_str = ''.join(price_frac)
+price = int(price_str)
+print(price_str)
+print(price)
