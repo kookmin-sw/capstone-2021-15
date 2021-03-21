@@ -5,9 +5,10 @@ from pymongo import MongoClient
 
 
 class ItemCrawler:
-    def __init__(self, req):
+    def __init__(self, req, category2):
         self.site = req
-        self.category = ''
+        self.category1 = 'makeup'
+        self.category2 = category2
         self.req = requests.get(req)
         self.raw = self.req.text
         self.html = BeautifulSoup(self.raw, "html.parser")
@@ -40,6 +41,8 @@ class ItemCrawler:
             item = {}
             item['site'] = self.site
             item['brand'] = self.brand
+            item['category1'] = self.category1
+            item['category2'] = self.category2
             item['name'] = self.name
             item['price'] = self.price
             title = i.get_text()
@@ -64,7 +67,7 @@ if __name__ == '__main__':
     db = client['test']
     collection = db['items']
     site = 'https://chicor.com/goods/0000000000537?dscatNo=71'
-    test = ItemCrawler(site)
+    test = ItemCrawler(site, 'lip')
     item_list = test.get_itemList()
     for i in item_list:
         tmp = {'$set' : i}
