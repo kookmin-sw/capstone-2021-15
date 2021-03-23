@@ -6,7 +6,7 @@ import json
 import os.path
 
 class ItemCrawler:
-    def __init__(self, req):
+    def __init__(self, req, category2):
         self.site = req
         self.category1 = 'makeup'
         self.req = requests.get(req)
@@ -15,7 +15,8 @@ class ItemCrawler:
         self.item_list = []
         self.brand = self.get_brand()
         self.price = self.get_price()
-        self.category2 = self.get_category2()
+        self.name = self.get_name()
+        self.category2 = category2
 
     def get_brand(self):
         brand_html = self.html.select_one('div.brand')
@@ -27,10 +28,10 @@ class ItemCrawler:
         self.price = price_txt.select_one('strong').text
         return self.price
 
-    def get_category2(self):
-        category2_html = self.html.select_one('div.name')
-        self.category2 = category2_html.text
-        return self.category2
+    def get_name(self):
+        name_html = self.html.select_one('div.name')
+        self.name = name_html.text
+        return self.name
 
     def get_itemList(self):
         items_div = self.html.find_all('div', {'class': 'thumbnails'})
@@ -42,6 +43,7 @@ class ItemCrawler:
             title = img['alt']
             item_img = img['src']
             item['brand'] = self.brand
+            item['name'] = self.name
             item['category1'] = self.category1
             item['category2'] = self.category2
             item['data-code'] = data_code
@@ -63,7 +65,8 @@ if __name__ == '__main__':
     # db = client['test']
     # collection = db['items']
     site = 'https://m.chicor.com/goods/0000000000537?dscatNo=71'
-    test = ItemCrawler(site)
+    category2 = 'lip'
+    test = ItemCrawler(site, category2)
     item_list = test.get_itemList()
     # print(item_list)
 
