@@ -2,7 +2,8 @@ import re
 from bs4 import BeautifulSoup
 import requests
 from pymongo import MongoClient
-
+import json
+import os.path
 
 class ItemCrawler:
     def __init__(self, req):
@@ -58,12 +59,26 @@ class ItemCrawler:
 
 if __name__ == '__main__':
     # mongodb
-    client = MongoClient('mongodb://localhost:27017/')
-    db = client['test']
-    collection = db['items']
-    site = 'https://m.chicor.com/goods/0000000001993?dscatNo=71'
+    # client = MongoClient('mongodb://localhost:27017/')
+    # db = client['test']
+    # collection = db['items']
+    site = 'https://m.chicor.com/goods/0000000000537?dscatNo=71'
     test = ItemCrawler(site)
     item_list = test.get_itemList()
-    for i in item_list:
-        tmp = {'$set' : i}
-        collection.update_one(i, tmp, upsert=True)
+    # print(item_list)
+
+
+    if os.path.isfile('./items.json'):
+        with open('items.json', 'r', encoding='utf-8') as f:
+            json_data_before = json.load(f)
+        json_data_after = json_data_before + item_list
+
+        with open('items.json', 'w', encoding='utf-8') as make_file:
+            json.dump(json_data_after, make_file, ensure_ascii=False, indent='\t')
+    else:
+        with open('items.json', 'w', encoding='utf-8') as make_file:
+            json.dump(item_list, make_file, ensure_ascii=False, indent='\t')
+    # for i in item_list:
+        # tmp = {'$set' : i}
+        # collection.update_one(i, tmp, upsert=True)
+
