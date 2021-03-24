@@ -25,7 +25,9 @@ class ItemCrawler:
 
     def get_price(self): #31.000
         price_txt = self.html.select_one('div.price')
-        self.price = price_txt.select_one('strong').text
+        self.price_txt = price_txt.select_one('strong').text
+        self.price_str = re.findall('\d+', self.price_txt)
+        self.price = int(''.join(self.price_str))
         return self.price
 
     def get_name(self):
@@ -84,4 +86,6 @@ if __name__ == '__main__':
     # for i in item_list:
         # tmp = {'$set' : i}
         # collection.update_one(i, tmp, upsert=True)
+
+
 
