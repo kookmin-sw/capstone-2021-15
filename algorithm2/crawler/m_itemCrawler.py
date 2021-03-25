@@ -74,14 +74,14 @@ if __name__ == '__main__':
 
 
     if os.path.isfile('./items.json'):
-        with open('items.json', 'r', encoding='utf-8') as f:
+        with open('../images/items.json', 'r', encoding='utf-8') as f:
             json_data_before = json.load(f)
         json_data_after = json_data_before + item_list
 
-        with open('items.json', 'w', encoding='utf-8') as make_file:
+        with open('../images/items.json', 'w', encoding='utf-8') as make_file:
             json.dump(json_data_after, make_file, ensure_ascii=False, indent='\t')
     else:
-        with open('items.json', 'w', encoding='utf-8') as make_file:
+        with open('../images/items.json', 'w', encoding='utf-8') as make_file:
             json.dump(item_list, make_file, ensure_ascii=False, indent='\t')
     # for i in item_list:
         # tmp = {'$set' : i}
