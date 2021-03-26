@@ -4,6 +4,7 @@ import requests
 from pymongo import MongoClient
 import json
 import os
+import time
 
 
 class ItemCrawler:
@@ -67,81 +68,80 @@ if __name__ == '__main__':
     # client = MongoClient('mongodb://localhost:27017/')
     # db = client['test']
     # collection = db['items']
-    site_format = 'https://m.chicor.com/goods/'
     site_list = [
         # 2-5페이지
-	"https://m.chicor.com/goods/0000000030358?dscatNo=71",
-	"https://m.chicor.com/goods/0000000022260?dscatNo=71",
-	"https://m.chicor.com/goods/0000000028625?dscatNo=71",
-	"https://m.chicor.com/goods/0000000000852?dscatNo=71",
-	"https://m.chicor.com/goods/0000000035565?dscatNo=71",
-	"https://m.chicor.com/goods/0000000031407?dscatNo=71",
-	"https://m.chicor.com/goods/0000000032841?dscatNo=71",
-	"https://m.chicor.com/goods/0000000034623?dscatNo=71",
-	"https://m.chicor.com/goods/0000000021013?dscatNo=71",
-	"https://m.chicor.com/goods/0000000001929?dscatNo=71",
-	"https://m.chicor.com/goods/0000000004030?dscatNo=71",
-	"https://m.chicor.com/goods/0000000021484?dscatNo=71",
-	"https://m.chicor.com/goods/0000000002638?dscatNo=71",
-	"https://m.chicor.com/goods/0000000034405?dscatNo=71",
-	"https://m.chicor.com/goods/0000000004490?dscatNo=71",
-	"https://m.chicor.com/goods/0000000004310?dscatNo=71",
-	"https://m.chicor.com/goods/0000000004994?dscatNo=71",
-	"https://m.chicor.com/goods/0000000000519?dscatNo=71",
-	"https://m.chicor.com/goods/0000000001740?dscatNo=71",
-	"https://m.chicor.com/goods/0000000033824?dscatNo=71",
-	"https://m.chicor.com/goods/0000000002672?dscatNo=71",
-	"https://m.chicor.com/goods/0000000028624?dscatNo=71",
-	"https://m.chicor.com/goods/0000000033825?dscatNo=71",
-	"https://m.chicor.com/goods/0000000008970?dscatNo=71",
-	"https://m.chicor.com/goods/0000000034030?dscatNo=71",
-	"https://m.chicor.com/goods/0000000021485?dscatNo=71",
-	"https://m.chicor.com/goods/0000000006536?dscatNo=71",
-	"https://m.chicor.com/goods/0000000031414?dscatNo=71",
-	"https://m.chicor.com/goods/0000000021441?dscatNo=71",
-	"https://m.chicor.com/goods/0000000008432?dscatNo=71",
-	"https://m.chicor.com/goods/0000000028000?dscatNo=71",
-	"https://m.chicor.com/goods/0000000020296?dscatNo=71",
-	"https://m.chicor.com/goods/0000000002761?dscatNo=71",
-	"https://m.chicor.com/goods/0000000000544?dscatNo=71",
-	"https://m.chicor.com/goods/0000000002623?dscatNo=71",
-	"https://m.chicor.com/goods/0000000026331?dscatNo=71",
-	"https://m.chicor.com/goods/0000000002789?dscatNo=71",
-	"https://m.chicor.com/goods/0000000003711?dscatNo=71",
-	"https://m.chicor.com/goods/0000000025117?dscatNo=71",
-	"https://m.chicor.com/goods/0000000021008?dscatNo=71",
-	"https://m.chicor.com/goods/0000000021901?dscatNo=71",
-	"https://m.chicor.com/goods/0000000005671?dscatNo=71",
-	"https://m.chicor.com/goods/0000000001801?dscatNo=71",
-	"https://m.chicor.com/goods/0000000035464?dscatNo=71",
-	"https://m.chicor.com/goods/0000000026334?dscatNo=71",
-	"https://m.chicor.com/goods/0000000025119?dscatNo=71",
-	"https://m.chicor.com/goods/0000000001713?dscatNo=71",
-	"https://m.chicor.com/goods/0000000008281?dscatNo=71",
-	"https://m.chicor.com/goods/0000000005926?dscatNo=71",
-	"https://m.chicor.com/goods/0000000033826?dscatNo=71",
-	"https://m.chicor.com/goods/0000000025118?dscatNo=71",
-	"https://m.chicor.com/goods/0000000002121?dscatNo=71",
-	"https://m.chicor.com/goods/0000000034784?dscatNo=71",
-	"https://m.chicor.com/goods/0000000000539?dscatNo=71",
-	"https://m.chicor.com/goods/0000000000210?dscatNo=71",
-	"https://m.chicor.com/goods/0000000005686?dscatNo=71",
-	"https://m.chicor.com/goods/0000000000330?dscatNo=71",
-	"https://m.chicor.com/goods/0000000007644?dscatNo=71",
-	"https://m.chicor.com/goods/0000000000671?dscatNo=71",
-	"https://m.chicor.com/goods/0000000001420?dscatNo=71"
+        "https://m.chicor.com/goods/0000000030358?dscatNo=71",
+        "https://m.chicor.com/goods/0000000022260?dscatNo=71",
+        "https://m.chicor.com/goods/0000000028625?dscatNo=71",
+        "https://m.chicor.com/goods/0000000000852?dscatNo=71",
+        "https://m.chicor.com/goods/0000000035565?dscatNo=71",
+        "https://m.chicor.com/goods/0000000031407?dscatNo=71",
+        "https://m.chicor.com/goods/0000000032841?dscatNo=71",
+        "https://m.chicor.com/goods/0000000034623?dscatNo=71",
+        "https://m.chicor.com/goods/0000000021013?dscatNo=71",
+        "https://m.chicor.com/goods/0000000001929?dscatNo=71",
+        "https://m.chicor.com/goods/0000000004030?dscatNo=71",
+        "https://m.chicor.com/goods/0000000021484?dscatNo=71",
+        "https://m.chicor.com/goods/0000000002638?dscatNo=71",
+        "https://m.chicor.com/goods/0000000034405?dscatNo=71",
+        "https://m.chicor.com/goods/0000000004490?dscatNo=71",
+        "https://m.chicor.com/goods/0000000004310?dscatNo=71",
+        "https://m.chicor.com/goods/0000000004994?dscatNo=71",
+        "https://m.chicor.com/goods/0000000000519?dscatNo=71",
+        "https://m.chicor.com/goods/0000000001740?dscatNo=71",
+        "https://m.chicor.com/goods/0000000033824?dscatNo=71",
+        "https://m.chicor.com/goods/0000000002672?dscatNo=71",
+        "https://m.chicor.com/goods/0000000028624?dscatNo=71",
+        "https://m.chicor.com/goods/0000000033825?dscatNo=71",
+        "https://m.chicor.com/goods/0000000008970?dscatNo=71",
+        "https://m.chicor.com/goods/0000000034030?dscatNo=71",
+        "https://m.chicor.com/goods/0000000021485?dscatNo=71",
+        "https://m.chicor.com/goods/0000000006536?dscatNo=71",
+        "https://m.chicor.com/goods/0000000031414?dscatNo=71",
+        "https://m.chicor.com/goods/0000000021441?dscatNo=71",
+        "https://m.chicor.com/goods/0000000008432?dscatNo=71",
+        "https://m.chicor.com/goods/0000000028000?dscatNo=71",
+        "https://m.chicor.com/goods/0000000020296?dscatNo=71",
+        "https://m.chicor.com/goods/0000000002761?dscatNo=71",
+        "https://m.chicor.com/goods/0000000000544?dscatNo=71",
+        "https://m.chicor.com/goods/0000000002623?dscatNo=71",
+        "https://m.chicor.com/goods/0000000026331?dscatNo=71",
+        "https://m.chicor.com/goods/0000000002789?dscatNo=71",
+        "https://m.chicor.com/goods/0000000003711?dscatNo=71",
+        "https://m.chicor.com/goods/0000000025117?dscatNo=71",
+        "https://m.chicor.com/goods/0000000021008?dscatNo=71",
+        "https://m.chicor.com/goods/0000000021901?dscatNo=71",
+        "https://m.chicor.com/goods/0000000005671?dscatNo=71",
+        "https://m.chicor.com/goods/0000000001801?dscatNo=71",
+        "https://m.chicor.com/goods/0000000035464?dscatNo=71",
+        "https://m.chicor.com/goods/0000000026334?dscatNo=71",
+        "https://m.chicor.com/goods/0000000025119?dscatNo=71",
+        "https://m.chicor.com/goods/0000000001713?dscatNo=71",
+        "https://m.chicor.com/goods/0000000008281?dscatNo=71",
+        "https://m.chicor.com/goods/0000000005926?dscatNo=71",
+        "https://m.chicor.com/goods/0000000033826?dscatNo=71",
+        "https://m.chicor.com/goods/0000000025118?dscatNo=71",
+        "https://m.chicor.com/goods/0000000002121?dscatNo=71",
+        "https://m.chicor.com/goods/0000000034784?dscatNo=71",
+        "https://m.chicor.com/goods/0000000000539?dscatNo=71",
+        "https://m.chicor.com/goods/0000000000210?dscatNo=71",
+        "https://m.chicor.com/goods/0000000005686?dscatNo=71",
+        "https://m.chicor.com/goods/0000000000330?dscatNo=71",
+        "https://m.chicor.com/goods/0000000007644?dscatNo=71",
+        "https://m.chicor.com/goods/0000000000671?dscatNo=71",
+        "https://m.chicor.com/goods/0000000001420?dscatNo=71"
 
     ]
     json_path = '../images/items.json'
     json_data = []
+    start = time.time()
     if os.path.isfile(json_path):
         f = open('../images/items.json', 'r+', encoding='utf-8')
         json_data = json.load(f)
         f.close()
         os.remove(json_path)
 
-    for item in site_list:
-        site = site_format + item
+    for site in site_list:
         category2 = 'lip'
         test = ItemCrawler(site, category2)
         item_list = test.get_itemList()
@@ -155,3 +155,5 @@ if __name__ == '__main__':
     json.dump(json_data, f, ensure_ascii=False, indent='\t')
 
     f.close()
+
+    print('총 걸린 시간', time.time() - start)

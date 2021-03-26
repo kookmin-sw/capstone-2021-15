@@ -4,13 +4,15 @@ from matplotlib import pyplot as plt
 import os
 import json
 import requests
+import time
 
+start = time.time()
 with open('./images/items.json') as f:
     json_data = json.load(f)
-for idx in range(len(json_data)):
-# idx = 2
-    image_url = json_data[idx]["img-url"]
-    data_code = json_data[idx]["data-code"]
+for data in json_data:
+    # idx = 2
+    image_url = data["img-url"]
+    data_code = data["data-code"]
     image_nparray = np.asarray(bytearray(requests.get(image_url).content), dtype=np.uint8)
     img = cv2.imdecode(image_nparray, cv2.IMREAD_COLOR)
 
@@ -21,7 +23,7 @@ for idx in range(len(json_data)):
     ipt = '0'
 
     if ipt != '1':
-        #lip (200, 100, 300, 200)
+        # lip (200, 100, 300, 200)
         rect = (200, 100, 300, 200)  # (x, y, width, height)
         cv2.grabCut(img, mask, rect, bgdModel, fgdModel, 1, cv2.GC_INIT_WITH_RECT)
 
@@ -29,7 +31,10 @@ for idx in range(len(json_data)):
         img = img * mask2[:, :, np.newaxis]
 
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-    plt.imshow(img), plt.colorbar(), plt.show()
+    # if show
+    # plt.imshow(img), plt.colorbar(), plt.show()
 
     cv2.imwrite('./results_image/' + data_code + '.jpg', cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    print(data["data-code"] + ' 진행 중...')
+
+print('총 걸린 시간: ', time.time() - start)
