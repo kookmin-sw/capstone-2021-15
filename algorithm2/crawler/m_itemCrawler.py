@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import requests
 from pymongo import MongoClient
 import json
-import os.path
+import os
+
 
 class ItemCrawler:
     def __init__(self, req, category2):
@@ -23,7 +24,7 @@ class ItemCrawler:
         self.brand = str(brand_html).split('<')[1].split('>')[-1]
         return self.brand
 
-    def get_price(self): #31.000
+    def get_price(self):  # 31.000
         price_txt = self.html.select_one('div.price')
         self.price_txt = price_txt.select_one('strong').text
         self.price_str = re.findall('\d+', self.price_txt)
@@ -66,26 +67,45 @@ if __name__ == '__main__':
     # client = MongoClient('mongodb://localhost:27017/')
     # db = client['test']
     # collection = db['items']
-    site = 'https://m.chicor.com/goods/0000000000537?dscatNo=71'
-    category2 = 'lip'
-    test = ItemCrawler(site, category2)
-    item_list = test.get_itemList()
-    # print(item_list)
+    site_format = 'https://m.chicor.com/goods/'
+    site_list = [
+        # 1페이지
+        '0000000000537?dscatNo=71',
+        '0000000002355?dscatNo=71',
+        '0000000033043?dscatNo=71',
+        '0000000001802?dscatNo=71',
+        '0000000003312?dscatNo=71',
+        '0000000030726?dscatNo=71',
+        '0000000001803?dscatNo=71',
+        '0000000001993?dscatNo=71',
+        '0000000031630?dscatNo=71',
+        '0000000021329?dscatNo=71',
+        '0000000000100?dscatNo=71',
+        '0000000004754?dscatNo=71',
+        '0000000031382?dscatNo=71',
+        '0000000003712?dscatNo=71',
+        '0000000034441?dscatNo=71',
+    ]
+    json_path = '../images/items.json'
+    json_data = []
+    if os.path.isfile(json_path):
+        f = open('../images/items.json', 'r+', encoding='utf-8')
+        json_data = json.load(f)
+        f.close()
+        os.remove(json_path)
 
+    for item in site_list:
+        site = site_format + item
+        category2 = 'lip'
+        test = ItemCrawler(site, category2)
+        item_list = test.get_itemList()
+        # print(item_list)
+        json_data += item_list
 
-    if os.path.isfile('./items.json'):
-        with open('../images/items.json', 'r', encoding='utf-8') as f:
-            json_data_before = json.load(f)
-        json_data_after = json_data_before + item_list
-
-        with open('../images/items.json', 'w', encoding='utf-8') as make_file:
-            json.dump(json_data_after, make_file, ensure_ascii=False, indent='\t')
-    else:
-        with open('../images/items.json', 'w', encoding='utf-8') as make_file:
-            json.dump(item_list, make_file, ensure_ascii=False, indent='\t')
-    # for i in item_list:
+        # # for i in item_list:
         # tmp = {'$set' : i}
         # collection.update_one(i, tmp, upsert=True)
+    f = open('../images/items.json', 'w+', encoding='utf-8')
+    json.dump(json_data, f, ensure_ascii=False, indent='\t')
 
-
-
+    f.close()
