@@ -17,8 +17,8 @@ mongoose.connect(MONGODB_URI, {
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/user');
-// var itemsRouter = require('./routes/item');
+var userRouter = require('./routes/user');
+var itemsRouter = require('./routes/item');
 // var likeRouter = require('./routes/like');
 
 var app = express();
@@ -35,8 +35,8 @@ app.use(cookieParser()); // cookie를 파싱
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/user/', usersRouter);
-// app.use('/items', itemsRouter);
+app.use('/api/user/', userRouter);
+app.use('/api/item/', itemsRouter);
 // app.use('/like', likeRouter);
 app.use((req, res, next) => {
   res.status(404).send('not found');
