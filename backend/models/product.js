@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const { Types: { ObjectId } } = Schema; // 이게 없으면 mongoose.Schema.Types.ObjectId 라고 써야함
-const ItemSchema = new Schema({
+const ProductSchema = new Schema({
 	name: {
 		type: String,
 		required: true
@@ -14,31 +14,34 @@ const ItemSchema = new Schema({
 	link: {
 		type: String
 	},
-	img_url: { // 이미지
+	'img-url': { // 이미지
 		type: String,
 	},
-	color_url:{
+	'color-url':{
 		type: String
 	},
 	price: {
+		type: Number
+	},
+	'data-code': {
 		type: String
 	},
-	data_code: {
-		type: String
-	},
-	brand: { // 브랜드
+	brand: { 
 		type: String, 
 	},
-	category1: { // 패션잡화
+	category1: {
 		type: String,
 	},
-	category2: { // 여행용가방/소품
+	category2: { 
 		type: String,
 	},
-	personal_color: {
+	season: {
 		type: String,
-		// required: true,
 	},
+	tone: {
+		type: String,
+	},
+	// 상품 가져올 때 클릭 로그가 높은 순으로 가져오는 것을 고려할 것
 	click_log: {
 		type: Number,
 		default: 0,
@@ -51,4 +54,4 @@ const ItemSchema = new Schema({
 	}],
 });
 
-module.exports = mongoose.model('Item', ItemSchema);
+module.exports = mongoose.model('Product', ProductSchema);

@@ -1,27 +1,37 @@
 import React from 'react';
-import './Header.css';
+import axios from 'axios'
+import { withRouter } from 'react-router-dom';
+import { Menu } from 'antd';
 
 function Header(props) {
+    const user = props.user;
+        
+    const logoutHandler = () => {
+        axios.get('/api/user/logout')
+            .then(response => {
+                if(response.data.success ) {
+                    props.history.push('/login')
+                } else{
+                    alert('Failed to Log Out')
+                }
+            })
+    }
     return (
         <div>
-            <div className="header">
-                <img src="/logo192.png" alt="logo_image"></img>
-                <div className="utility">
-                    <div className="myPage">
-                        <a href="#none">
-                            <strong>MY PAGE</strong>
-                        </a>
-                    </div>
-                    <div className="logout">
-                        <a href="#none">
-                            <strong>LOGOUT</strong>
-                        </a>
-                    </div>
-                </div>
+            <div>
+                <img/>
+                <Menu mode="vertical">
+                    <Menu.Item key="mypage">
+                        <a>MY PAGE</a>
+                    </Menu.Item>
+                    <Menu.Item key="logout" onClick={logoutHandler}>
+                            LOGOUT
+                    </Menu.Item>
+                </Menu>
             </div>
         </div>
     );
 }
 
 
-export default Header;
+export default withRouter(Header);

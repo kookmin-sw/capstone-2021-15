@@ -1,7 +1,7 @@
 import React from "react";
 import './Recommand.css';
 import CardComponent from "./CardComponent";
-import CardCarousel from "./CardCarousel";
+// import CardCarousel from "./CardCarousel";
 
 function Recommand(props) {
     return (
@@ -14,7 +14,7 @@ function Recommand(props) {
                 </div>
             </div>
             <div className="inner-container">
-                <CardCarousel></CardCarousel>
+                {/* <CardCarousel></CardCarousel> */}
             </div>
         </div>
     )

@@ -19,10 +19,9 @@ const userSchema = new Schema({
 		type: Number,
 		required: true,
 	},
-	personalColor: {
-		type: String,
-		required: true,
-	},
+	// personal_color: {
+	// 	type: String,
+	// },
 	token: {
 		type: String,
 	},

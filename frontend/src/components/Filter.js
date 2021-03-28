@@ -26,4 +26,3 @@ const Filter = ( { togglefilter, filter } ) =>  {
 }
 
 export default Filter;
-
