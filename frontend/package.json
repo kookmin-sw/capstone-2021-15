@@ -16,8 +16,8 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "NODE_PATH=public react-scripts start",
-    "build": "NODE_PATH=public react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
