@@ -1,7 +1,5 @@
 import cv2
 from sklearn.cluster import KMeans
-import colorsys
-import urllib
 import numpy as np
 
 
@@ -43,9 +41,8 @@ class DominantColors:
 
 
 
-
 # img = url_to_image('https://cdn.chicor.com/images/product/20200813155626047.jpg')
-# clusters = 1  # 클러스터의 크기 = 이미지에서 추출할 색상 갯수 (단일 색상의 경우 1, 색이 다양할 경우 3~5로 하여 중간값으로 해야할 것 ㅏㄱㅌ음)
+# clusters = 1  # 클러스터의 크기 = 이미지에서 추출할 색상 갯수 (단일 색상의 경우 1, 색이 다양할 경우 3~5로 하여 중간값으로 해야할 것 같음)
 # dc = DominantColors(img, clusters)
 # colors = dc.dominantColors()
 # hsv = colorsys.rgb_to_hsv(colors[0][0] / 255, colors[0][1] / 255, colors[0][2] / 255)
