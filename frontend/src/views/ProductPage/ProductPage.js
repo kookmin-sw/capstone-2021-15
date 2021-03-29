@@ -1,5 +1,6 @@
 import React , { useState } from 'react';
-import { Button, Row, Col, Container } from 'react-bootstrap';
+import { Button, Row, Col } from 'antd';
+import { HeartOutlined } from '@ant-design/icons';
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import CardComponent from "../../components/CardComponent";
@@ -10,7 +11,7 @@ import likeBtn_img from "../../likeBtn_img.png";
 
 
 
-const Product = ( props ) => {
+const ProductPage = ( props ) => {
 
 
     const sampleData = [{
@@ -20,7 +21,6 @@ const Product = ( props ) => {
         "product_color" : "#791B2D",
         "product_color_name" : "누아르 루즈",
         "personal_color" : "#2F2F2F",
-        "personal_color_name_ko" : "겨울 쿨 딥",
         "personal_color_name_en" : "Winter Cool Deep",
         "price" : "31000",
         "like" : "28",
@@ -45,26 +45,25 @@ const Product = ( props ) => {
                 </div>
                 <div className="product_under" style={{backgroundColor: data.personal_color}}>
                     <div className="product_info">
-                            <div className="product_personal_color">{data.personal_color_name_ko}<br/>
-                                ( {data.personal_color_name_en} )</div>
+                            <div className="product_personal_color">
+                                {data.personal_color_name_en}</div>
                             <div className="product_like">
                                 <span>찜하기</span>
-                                <Button>
-                                    <img className="likebtn_img" src={likeBtn_img}/>
+                                <Button type="circle" ghost="true">
+                                    <HeartOutlined />
                                 </Button>
                                 <span>{data.like}</span>
                             </div>
                             <div className="liveRanking"># 실시간 순위 {data.rank}위</div>
                             <Row className="product_detail">
-                                <Col className="left">
+                                <Col className="left" lg={12} md={12} xs={12}>
                                     <div style={{fontSize: "30px", marginBottom: "15px"}}>색상</div>
                                     <div style={{height:"150px", width: "150px", backgroundColor:"#791B2D", marginBottom: "10px"}}></div>
-                                    <div style={{fontSize: "24px"}}>{data.product_color_name}</div>
                                 </Col>
-                                <Col className="right">
+                                <Col className="right" lg={12} md={12} xs={12}>
                                     <div style={{fontSize: "30px", marginBottom: "15px"}}>가격</div>
                                     <div style={{fontSize: "24px"}}>{data.price}원</div>
-                                    <Button>구매하러 가기 &gt;</Button>
+                                    <Button className="buyBtn" type="link">구매하러 가기 &gt;</Button>
                                 </Col>
                             </Row>
                             <div className="other_contents">
@@ -81,4 +80,4 @@ const Product = ( props ) => {
     )
 };
 
-export default Product;
+export default ProductPage;
