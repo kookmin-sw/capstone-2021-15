@@ -5,7 +5,7 @@ import Navigation from "./components/Navigation";
 import CardComponent from "./components/CardComponent";
 import Footer from "./components/Footer";
 import './Product.css';
-import product_img from "./product_img.jpg";
+import product_img from "./tshirt.jpg";
 import likeBtn_img from "./likeBtn_img.png";
 
 
