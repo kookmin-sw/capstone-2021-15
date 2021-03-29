@@ -1,11 +1,8 @@
 import cv2
 from sklearn.cluster import KMeans
 import colorsys
-import urllib.request
+import urllib
 import numpy as np
-import ssl
-
-context = ssl._create_unverified_context()
 
 
 class DominantColors:
@@ -14,7 +11,7 @@ class DominantColors:
     COLORS = None
     LABELS = None
 
-    def __init__(self, image, clusters=3):
+    def __init__(self, image, clusters=1):
         self.CLUSTERS = clusters
         self.IMAGE = image
 
@@ -45,25 +42,12 @@ class DominantColors:
         return self.COLORS.astype(int)
 
 
-def url_to_image(url):
-    # download the image, convert it to a NumPy array, and then read
-    # it into OpenCV format
-    resp = urllib.request.urlopen(url, context=context)
-    image = np.asarray(bytearray(resp.read()), dtype="uint8")
-    image = cv2.imdecode(image, cv2.IMREAD_COLOR)
-    # return the image
-    return image
 
 
-img = url_to_image('https://cdn.chicor.com/images/product/20200813155626047.jpg')
-
-clusters = 1  # 클러스터의 크기 = 이미지에서 추출할 색상 갯수 (단일 색상의 경우 1, 색이 다양할 경우 3~5로 하여 중간값으로 해야할 것 ㅏㄱㅌ음)
-dc = DominantColors(img, clusters)
-colors = dc.dominantColors()
-print(colors)
-r = colors[0][0]
-g = colors[0][1]
-b = colors[0][2]
-hsv = colorsys.rgb_to_hsv(r / 255, g / 255, b / 255)
-
-print(hsv)
+# img = url_to_image('https://cdn.chicor.com/images/product/20200813155626047.jpg')
+# clusters = 1  # 클러스터의 크기 = 이미지에서 추출할 색상 갯수 (단일 색상의 경우 1, 색이 다양할 경우 3~5로 하여 중간값으로 해야할 것 ㅏㄱㅌ음)
+# dc = DominantColors(img, clusters)
+# colors = dc.dominantColors()
+# hsv = colorsys.rgb_to_hsv(colors[0][0] / 255, colors[0][1] / 255, colors[0][2] / 255)
+# s = hsv[1]*100
+# v = hsv[2]*100
