@@ -13,25 +13,25 @@ const Navigation = ( props ) =>  {
 
     return (
         <>
-            <Nav className="navigation_inner justify-content-center">
+            <Nav className="navigation_inner">
                 <Nav  className="m-2 ">
                     <Nav.Link href="">HAIR</Nav.Link>
-                    {/* <Nav.Link href="">BASE</Nav.Link> */}
+                    <Nav.Link href="">BASE</Nav.Link>
+                    <Nav.Link href="">LENS</Nav.Link>
                     <Nav.Link href="">LIP</Nav.Link>
-                    <Nav.Link href="">EYE</Nav.Link>
-                    <Nav.Link href="">CHEEK</Nav.Link>
-                    {/* <Nav.Link href="">TOP</Nav.Link> */}
-                    <Button onClick={togglefilter}>
+                    <Nav.Link href="">TOP</Nav.Link>
+                    <Nav.Link href="">ACC</Nav.Link>
+                    {/* <Button onClick={togglefilter}>
                         <img className="filter_img" src={filterimg}></img>
                         tone
-                    </Button>
+                    </Button> */}
                 </Nav>
             </Nav>
-            <Row className="row justify-content-center bg-transparent">
+            {/* <Row className="row justify-content-center">
                 <Col className="col-sm-6">
                     <Filter togglefilter={togglefilter} filter={filter}></Filter>
                 </Col>
-            </Row>
+            </Row> */}
         </>
     )
 }
