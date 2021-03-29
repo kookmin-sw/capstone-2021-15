@@ -13,8 +13,8 @@ const Navigation = ( props ) =>  {
 
     return (
         <>
-            <Nav className="justify-content-center">
-                <Nav className="m-2 ">
+            <Nav className="navigation_inner justify-content-center">
+                <Nav  className="m-2 ">
                     <Nav.Link href="">HAIR</Nav.Link>
                     {/* <Nav.Link href="">BASE</Nav.Link> */}
                     <Nav.Link href="">LIP</Nav.Link>
