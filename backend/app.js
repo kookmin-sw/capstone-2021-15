@@ -4,8 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const config = require("./config/key");
+
 var mongoose = require('mongoose');
-var MONGODB_URI = 'mongodb://127.0.0.1:27017/test';
+var MONGODB_URI = config.mongoURI;
 mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true, 
   useNewUrlParser:true, 
@@ -16,17 +18,12 @@ mongoose.connect(MONGODB_URI, {
 })
 
 
-var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
-var itemsRouter = require('./routes/item');
+var productRouter = require('./routes/product');
 // var likeRouter = require('./routes/like');
 
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
 app.use(logger('dev')); // 개발 시는 dev
 // app.user(logger('combined'));
 app.use(express.json()); // body-parser가 express에 속함 -> req.body.name
@@ -34,17 +31,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser()); // cookie를 파싱
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/api/user/', userRouter);
-app.use('/api/item/', itemsRouter);
+app.use('/api/product/', productRouter);
 // app.use('/like', likeRouter);
 app.use((req, res, next) => {
   res.status(404).send('not found');
 });
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
-})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -59,7 +51,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json('error');
 });
 
 module.exports = app;

@@ -1,12 +1,12 @@
 import React , { useState } from 'react';
 import { Button, Row, Col, Container } from 'react-bootstrap';
-import Header from "./components/Header";
-import Navigation from "./components/Navigation";
-import CardComponent from "./components/CardComponent";
-import Footer from "./components/Footer";
-import './Product.css';
-import product_img from "./tshirt.jpg";
-import likeBtn_img from "./likeBtn_img.png";
+import Header from "../../components/Header";
+import Navigation from "../../components/Navigation";
+import CardComponent from "../../components/CardComponent";
+import Footer from "../../components/Footer";
+import './ProductPage.css';
+import product_img from "../../tshirt.jpg";
+import likeBtn_img from "../../likeBtn_img.png";
 
 
 

@@ -3,10 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "set PORT=3001&&nodemon ./bin/www"
+    "start": "set PORT=5000&&nodemon ./bin/www",
+    "backend": "nodemon ./bin/www",
+    "frontend": "npm run start --prefix ../frontend",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix ../frontend\""
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "concurrently": "^6.0.0",
     "connect-mongodb-session": "^2.4.1",
     "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
