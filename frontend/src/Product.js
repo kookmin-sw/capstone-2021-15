@@ -36,7 +36,7 @@ const Product = ( props ) => {
         <div>
             <div className="product_inner">
                 <div className="product_top">
-                    <div className="top_inner">
+                    <div className="product_title">
                         <img className="product_img" src={data.product_img}></img>
                         <div className="product_name">
                             <div>[ {data.brand} ] {data.name}</div>
