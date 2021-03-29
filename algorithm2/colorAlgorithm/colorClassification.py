@@ -4,8 +4,8 @@ import cv2
 import colorsys
 from colormath.color_objects import LabColor, sRGBColor
 from colormath.color_conversions import convert_color
+#import rgb2lab
 from colorExtraction import DominantColors
-import rgb2lab
 import json
 import urllib.request
 import ssl
@@ -97,7 +97,7 @@ def url_to_image(url):
 f = open('../images/items.json', 'r+', encoding='utf-8')
 json_data = json.load(f)
 f.close()
-img = url_to_image(json_data[300]["color-url"])   # data for문으로
+img = url_to_image(json_data[0]["color-url"])   # data for문으로
 dc = DominantColors(img)
 color = dc.dominantColors()
 print(color)
