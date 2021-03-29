@@ -16,11 +16,11 @@ const Navigation = ( props ) =>  {
             <Nav className="navigation_inner justify-content-center">
                 <Nav  className="m-2 ">
                     <Nav.Link href="">HAIR</Nav.Link>
-                    <Nav.Link href="">BASE</Nav.Link>
+                    {/* <Nav.Link href="">BASE</Nav.Link> */}
                     <Nav.Link href="">LIP</Nav.Link>
                     <Nav.Link href="">EYE</Nav.Link>
                     <Nav.Link href="">CHEEK</Nav.Link>
-                    <Nav.Link href="">TOP</Nav.Link>
+                    {/* <Nav.Link href="">TOP</Nav.Link> */}
                     <Button onClick={togglefilter}>
                         <img className="filter_img" src={filterimg}></img>
                         tone
