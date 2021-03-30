@@ -33,7 +33,7 @@
     bottom: 0px;
 }
 
-.product_under {
+.product_bottom {
     background-color: #2F2F2F;
 }
 
@@ -77,10 +77,16 @@
     height: 16px;
 } */
 
-.ant-btn-background-ghost {
+.likeBtn {
     border-color: transparent !important;
     color: white;
 }
+/* 
+.likeBtn:hover, .likeBtn:focus, .likeBtn:active,
+.likeBtn:active:focus:not(:disabled):not(.disabled),
+.likeBtn:focus, .likeBtn:active, .likeBtn:hover {
+    color: red;
+} */
 
 
 .liveRanking {

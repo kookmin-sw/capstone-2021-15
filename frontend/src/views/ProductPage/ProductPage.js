@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import { Button, Row, Col } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
 import Header from "../../components/Header";
@@ -6,26 +6,38 @@ import Navigation from "../../components/Navigation";
 import CardComponent from "../../components/CardComponent";
 import Footer from "../../components/Footer";
 import './ProductPage.css';
-import product_img from "../../tshirt.jpg";
-import likeBtn_img from "../../likeBtn_img.png";
+import axios from 'axios'
 
 
 
-const ProductPage = ( props ) => {
-
+const ProductPage = ({match}) => {
 
     const sampleData = [{
-        "brand" : "컬러하울",
-        "name" : "루즈핏 무지 여자 반팔 티셔츠",
-        "product_img" : product_img,
-        "product_color" : "#791B2D",
-        "product_color_name" : "누아르 루즈",
-        "personal_color" : "#2F2F2F",
-        "personal_color_name_en" : "Winter Cool Deep",
         "price" : "31000",
         "like" : "28",
         "rank" : "5",
     },];
+
+    const [ product, setProduct ] = useState([])
+    const { id } = match.params;
+
+    console.log(id);
+
+    useEffect(() => {
+        axios.post('/api/product/products')
+            .then(response => {
+                if(response.data.success) {
+                    response.data.productInfo.map((product, index) => {
+                        if (product.['data-code'] == id) {
+                            setProduct(response.data.productInfo[index])
+                            console.log(response.data.productInfo[index])
+                        }
+                    })
+                } else {
+                    alert('상품을 가져오는데 실패했습니다')
+                }
+            })
+    }, [])
 
     var data = sampleData[0];
 
@@ -34,46 +46,49 @@ const ProductPage = ( props ) => {
         <Header></Header>
         <Navigation></Navigation>
         <div>
-            <div className="product_inner">
-                <div className="product_top">
-                    <div className="product_title">
-                        <img className="product_img" src={data.product_img}></img>
-                        <div className="product_name">
-                            <div>[ {data.brand} ] {data.name}</div>
+            {
+                product ? (
+                    <div className="product_inner">
+                        <div className="product_top">
+                            <div className="product_title">
+                                <img className="product_img" src={product['img-url']}></img>
+                                <div className="product_name">
+                                    <div>[ {product.brand} ] {product.title}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="product_bottom" style={{backgroundColor: "#2F2F2F"}}>
+                            <div className="product_info">
+                                <div className="product_personal_color">
+                                    {product.season} {product.tone}</div>
+                                <div className="product_like">
+                                    <span>찜하기</span>
+                                    <Button className="likeBtn" type="circle" ghost="true">
+                                        <HeartOutlined />
+                                    </Button>
+                                    <span>{data.like}</span>
+                                </div>
+                                <div className="liveRanking"># 실시간 순위 {data.rank}위</div>
+                                <Row className="product_detail">
+                                    <Col className="left" lg={12} md={12} xs={12}>
+                                        <div style={{fontSize: "30px", marginBottom: "15px"}}>색상</div>
+                                        <img src={product['color-url']} style={{height:"150px", width: "150px", marginBottom: "10px"}}></img>
+                                    </Col>
+                                    <Col className="right" lg={12} md={12} xs={12}>
+                                        <div style={{fontSize: "30px", marginBottom: "15px"}}>가격</div>
+                                        <div style={{fontSize: "24px"}}>{data.price}원</div>
+                                        <Button className="buyBtn" type="link" onClick={() => window.open(product.site, '_blank')}>구매하러 가기 &gt;</Button>
+                                    </Col>
+                                </Row>
+                                <div className="other_contents">
+                                    추천 컨텐츠
+                                    <hr style={{border: "solid 1px white", marginLeft: "-30px"}}></hr>                                
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="product_under" style={{backgroundColor: data.personal_color}}>
-                    <div className="product_info">
-                            <div className="product_personal_color">
-                                {data.personal_color_name_en}</div>
-                            <div className="product_like">
-                                <span>찜하기</span>
-                                <Button type="circle" ghost="true">
-                                    <HeartOutlined />
-                                </Button>
-                                <span>{data.like}</span>
-                            </div>
-                            <div className="liveRanking"># 실시간 순위 {data.rank}위</div>
-                            <Row className="product_detail">
-                                <Col className="left" lg={12} md={12} xs={12}>
-                                    <div style={{fontSize: "30px", marginBottom: "15px"}}>색상</div>
-                                    <div style={{height:"150px", width: "150px", backgroundColor:"#791B2D", marginBottom: "10px"}}></div>
-                                </Col>
-                                <Col className="right" lg={12} md={12} xs={12}>
-                                    <div style={{fontSize: "30px", marginBottom: "15px"}}>가격</div>
-                                    <div style={{fontSize: "24px"}}>{data.price}원</div>
-                                    <Button className="buyBtn" type="link">구매하러 가기 &gt;</Button>
-                                </Col>
-                            </Row>
-                            <div className="other_contents">
-                                추천 컨텐츠
-                                <hr style={{border: "solid 1px white", marginLeft: "-30px"}}></hr>                                
-                            </div>
-                    </div>
-                    
-                </div>
-            </div>
+                ) : ''
+            }
         </div>
         <Footer/>
         </>

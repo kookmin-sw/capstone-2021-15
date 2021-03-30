@@ -1,11 +1,13 @@
-// import './MainPage.css';
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import Recommand from "../../components/Recommand";
-import { Col, Row, Card} from 'antd';
+import { Col, Row, Card, Button } from 'antd';
+import { ReloadOutlined } from '@ant-design/icons';
 import axios from 'axios'
+import './MainPage.css';
 
 const { Meta } = Card;
 
@@ -36,18 +38,21 @@ function MainPage() {
             .then(response => {
                 if(response.data.success) {
                     if(body.loadMore){
-                        setProducts([...Products, ...response.data.productInfo])
+                        setProducts([...response.data.productInfo])
 
                     } else{
                         console.log(response.data.productInfo)
                         setProducts(response.data.productInfo)
                     }
                     setPostSize(response.data.postSize)
+                    // console.log(response.data.productInfo)
+                    // setProducts(response.data.productInfo)
                 } else {
                     alert('상품을 가져오는데 실패했습니다')
                 }
             })
     }
+
     const loadMoreHandler = () => {
         let skip = Skip + Limit;
         let body = {
@@ -58,47 +63,71 @@ function MainPage() {
         getProducts(body);
         setSkip(skip);
     }
+
     const renderCards = Products.map((product, index) => {
-    // const renderCards = (() => {
         // 반응형 -> 전체 크기 화면 24 / 8 = 3 카드
         // 중간 화면 -> 24 / 12 = 2 카드
         // 작은 화면 -> 24 / 24 =1 카드
-        return <Col lg={8} md={12} xs={24} key={index} >
-            <Card
-                size="small"
-                hoverable
-                cover={ <img src={product['img-url']} style={{width:'300px'}} />}
-            >
-                <Meta 
-                    title={product.title}
-                    description={product.season}
-                />
-            </Card>
+        return <Col lg={6} md={12} xs={24} key={index} >
+            <Link to={`/product/${product['data-code']}`}>
+                <Card
+                    size="small"
+                    hoverable
+                    cover={ <img src={product['img-url']} />}
+                >
+                    <Meta 
+                        title={product.title}
+                        description={product.season+" "+product.tone}
+                    />
+                </Card>
+            </Link>
         </Col>
     })
-    // })
+
     return (
-        <div className="main">
-            <div style = {{width:'75%', margin: '3rem auto'}}>
-                <div style={{textAlign: 'center'}}>
-                    <h2>메인 페이지</h2>
-                </div>
-            <Header/>
-            <Navigation/>
-                {/* {cards} */}
-                <Row type="flex" gutter={[16, 16]} >
-                    {renderCards}
-                </Row>
-                <br/>
-            
-            { PostSize >= Limit && 
-                    <div style={{display: 'flex', justifyContent:'center'}}>
-                        <button onClick={loadMoreHandler}>더보기</button>
+        <>
+        <Header/>
+        <Navigation/>
+        <div className="main_inner">
+            <div className="main_top">
+                <div className="profile">
+                    <div style={{fontSize:"24px"}}>
+                        <span style={{color:"#F0D1D1"}}>(닉네임)</span>
+                        <span>님을 위한 맞춤 추천</span>
                     </div>
-                }
-            <Footer/>
+                    <div style={{fontSize:"16px"}}>#personal_color</div>
+                </div>
             </div>
+            <div className="main_bottom">
+                <div className="interest_category">
+                    <Row>
+                        <Col lg={12} md={12} xs={12}>
+                            (카테고리 이름)
+                            <Button className="reloadBtn" type="circle" ghost="true" onClick={loadMoreHandler}>
+                                <ReloadOutlined />
+                            </Button>
+                        </Col>
+                        <Col lg={12} md={12} xs={12} style={{textAlign: "right"}}> 
+                            <Button className="moreBtn" type="link">더 보기</Button>
+                        </Col>
+                        
+                    </Row>
+                    <Row type="flex" gutter={[30, 30]} >
+                        {renderCards}
+                    </Row>
+                
+                {/* { PostSize >= Limit && 
+                        <div style={{display: 'flex', justifyContent:'center'}}>
+                            <button onClick={loadMoreHandler}>더보기</button>
+                        </div>
+                    } */}
+                
+                </div>
+            </div>
+            
         </div>
+        <Footer/>
+        </>
     );
 }
 

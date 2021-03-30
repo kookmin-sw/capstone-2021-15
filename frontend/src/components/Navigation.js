@@ -21,17 +21,17 @@ const Navigation = ( props ) =>  {
                     <Nav.Link href="">LIP</Nav.Link>
                     <Nav.Link href="">TOP</Nav.Link>
                     <Nav.Link href="">ACC</Nav.Link>
-                    {/* <Button onClick={togglefilter}>
+                    <Button onClick={togglefilter}>
                         <img className="filter_img" src={filterimg}></img>
                         tone
-                    </Button> */}
+                    </Button>
                 </Nav>
             </Nav>
-            {/* <Row className="row justify-content-center">
-                <Col className="col-sm-6">
+            <Row className="row justify-content-center">
+                <Col>
                     <Filter togglefilter={togglefilter} filter={filter}></Filter>
                 </Col>
-            </Row> */}
+            </Row>
         </>
     )
 }
