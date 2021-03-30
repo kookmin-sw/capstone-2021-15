@@ -4,7 +4,7 @@ import cv2
 import colorsys
 from colormath.color_objects import LabColor, sRGBColor
 from colormath.color_conversions import convert_color
-#import rgb2lab
+import rgb2lab
 from colorExtraction import DominantColors
 import json
 import urllib.request
@@ -34,8 +34,8 @@ def findNeighbors(rgbColor):
     v = hsv[2] * 100  # 채도
     # rgb -> lab 변환 후 b값 가져오기
     #lab = convert_color(rgb, LabColor, through_rgb_type=sRGBColor)
-    #b = rgb2lab.rgb2LAB_b(rgbColor[0])
-    b = -1
+    b = rgb2lab.rgb2lab(rgbColor[0])[2]
+    print(b)
     inputColor = [v,s]
     print(inputColor)
     inputTone = get_neighbors(pccsToneDataset,inputColor)
@@ -67,7 +67,7 @@ def toneDataLabeling(b,v,s,tone):
 # row = [v, s, tone]
 def euclidean_distance(row1, row2):
     distance = 0.0
-    for i in range(len(row1) - 1):
+    for i in range(len(row1)):
         distance += (row1[i] - row2[i]) ** 2
     return sqrt(distance)
 
@@ -97,10 +97,11 @@ def url_to_image(url):
 f = open('../images/items.json', 'r+', encoding='utf-8')
 json_data = json.load(f)
 f.close()
-img = url_to_image(json_data[0]["color-url"])   # data for문으로
+
+img = url_to_image(json_data[122]["color-url"])   # data for문으로
 dc = DominantColors(img)
 color = dc.dominantColors()
 print(color)
 findNeighbors(color)
-print(json_data[0])
+print(json_data[122])
 
