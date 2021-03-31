@@ -21,6 +21,15 @@ const userSchema = new Schema({
 	// personal_color: {
 	// 	type: String,
 	// },
+	season: {
+		type: String,
+	},
+	tone: {
+		type: String,
+	},
+	pccs:{
+		type: String,
+	},
 	token: {
 		type: String,
 	},

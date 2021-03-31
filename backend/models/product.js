@@ -41,11 +41,13 @@ const ProductSchema = new Schema({
 	tone: {
 		type: String,
 	},
+	pccs:{
+		type: String,
+	},
 	// 상품 가져올 때 클릭 로그가 높은 순으로 가져오는 것을 고려할 것
 	click_log: {
 		type: Number,
 		default: 0,
-		required: true
 	},
 	// 좋아요 누른 사람
 	likes: [{
