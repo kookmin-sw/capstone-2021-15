@@ -15,11 +15,12 @@ context = ssl._create_unverified_context()
 
 # PCCS tone dataset [v(명도), s(채도), PCCS tone]
 pccsToneDataset = [
-    [6.25,22.22222222,'p'],[6.25,55.55555555,'lt'],[12.5,88.88888888,'b'],
-[31.25,22.22222222,'ltg'],[31.25,55.55555555,'sf'],[50,88.88888888,'s'],[50,100,'v'],
-[62.5,22.22222222,'g'],[62.5,55.55555555,'d'],[81.25,88.88888888,'dp'],
-[87.5,22.22222222,'dkg'],[87.5,55.55555555,'d']
+    [93.75,22.22222222,'p'],[93.75,55.55555555,'lt'],[87.5,88.88888888,'b'],
+[68.75,22.22222222,'ltg'],[68.75,55.55555555,'sf'],[50,88.88888888,'s'],[50,100,'v'],
+[37.5,22.22222222,'g'],[37.5,55.55555555,'d'],[18.75,88.88888888,'dp'],
+[12.5,22.22222222,'dkg'],[12.5,55.55555555,'d']
 ]
+
 
 # season
 spring = ['p','lt','b','v']
@@ -47,14 +48,14 @@ def toneDataLabeling(b,v,s,tone):
     json_data[0]["v"] = v
     json_data[0]["s"] = s
     json_data[0]["tone"] = tone
-    if b > 0:
+    if b > 17:
         if tone in spring:
             print("봄 웜")
             json_data[0]["season"] = "spring"
         else:
             print("가을 웜")
             json_data[0]["season"] = "fall"
-    elif b < 0:
+    elif b < 17:
         if tone in summer:
             print("여름 쿨")
             json_data[0]["season"] = "summer"
@@ -98,10 +99,10 @@ f = open('../images/items.json', 'r+', encoding='utf-8')
 json_data = json.load(f)
 f.close()
 
-img = url_to_image(json_data[122]["color-url"])   # data for문으로
+img = url_to_image("https://cdn.chicor.com/images/product/20200521072025691.jpg")   # data for문으로
 dc = DominantColors(img)
 color = dc.dominantColors()
 print(color)
 findNeighbors(color)
-print(json_data[122])
+print(json_data[288])
 
