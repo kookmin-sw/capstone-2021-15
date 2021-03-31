@@ -1,5 +1,11 @@
 .footer {
     background-color: white;
-    margin: 20px;
+    text-align: center;
+}
+
+.footer_inner {
+    width: 1024px;
+    margin: 30px;
     text-align: left;
+    display: inline-block;
 }

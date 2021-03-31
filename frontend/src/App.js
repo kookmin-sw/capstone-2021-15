@@ -8,7 +8,9 @@ import Category from "./Category";
 import LoginPage from './views/LoginPage/LoginPage'
 import SignUpPage from './views/SignUpPage/SignUpPage'
 import WelcomePage from './views/WelcomePage/WelcomePage'
+import ProductPage from './views/ProductPage/ProductPage'
 import { Route, BrowserRouter as Router} from "react-router-dom"
+import "antd/dist/antd.css"
 
 function App() {
     // const cardMargin = {
@@ -18,14 +20,14 @@ function App() {
     return (
         <Router>
             <div className="App" style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
-                
-                {/*<Route path="/product" component={Product}/>*/}
                 {/*<Route path="/mypage" component={Mypage}/>*/}
                 <Route exact path="/category" component={Category}/>
                 <Route exact path="/" component={Auth(WelcomePage, null)}/>
                 <Route exact path="/login" component={Auth(LoginPage, false)}/>
                 <Route exact path="/signup" component={Auth(SignUpPage, false)}/>
                 <Route exact path="/main" component={Auth(MainPage, true)}/>
+                <Route exact path="/product" component={ProductPage}/>
+                <Route exact path="/product/:id" component={ProductPage}/>
             </div>
         </Router>
     );
