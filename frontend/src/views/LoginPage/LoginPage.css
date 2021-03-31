@@ -20,25 +20,31 @@
     border-radius: 10px;
 
 }
-.signup-form{
+.login-form{
     width: 400px;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-#confirmPassword {
+#nickName{
     font-size:1rem;
     width: 250px;
     height: 30px;
     margin: 10px;
-    margin-left: -10px;
+    padding-left: 10px;
+}
+#password{
+    font-size:1rem;
+    width: 250px;
+    height: 30px;
+    margin: 10px;
     padding-left: 10px;
 
 }
-.signup-form-button{
+.login-form-button{
     font-size: 1rem;
-    width: 100%;
+    width: 230px;
     height: 30px;
     background-color:black;
     color: white;
