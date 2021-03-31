@@ -4,6 +4,7 @@ import { Icon, Form, Input, Button, Typography} from 'antd';
 import * as Yup from 'yup'
 import { Formik} from 'formik';
 import axios from 'axios';
+import './LoginPage.css'
 const { Title } = Typography;
 
 
@@ -11,6 +12,7 @@ function LoginPage(props) {
     const [formErrorMessage, setFormErrorMessage] = useState('')
 
     return (
+        <div className="box">
         <Formik 
             initialValues={{
                 nickName: '',
@@ -58,18 +60,18 @@ function LoginPage(props) {
                         handleReset,
                     } = props;
                     return (
-                        <div className="app" style={{display:'flex',flexDirection:'column', justifyContent:'center' , alignItems:'center'}}>
+                        <div className="app">
                         <br/>
                         <br/>
                         <br/>
-                        <Title level={2}>Log In</Title>
-                        <br/>
+                        <Title level={1}>Log In</Title>
                         <br/>
                         <br/>
                         <form onSubmit={handleSubmit}
-                        style={{ width: '400px'}}>
+                        className="login-form" >
                             <Form.Item required>
                             <Input
+                                
                                 id="nickName"
                                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 placeholder="Enter your NickName"
@@ -85,7 +87,6 @@ function LoginPage(props) {
                                 <div className="input-feedback">{errors.email}</div>
                             )}
                         </Form.Item>
-                        <br/>
                         <Form.Item required>
                             <Input
                                 id="password"
@@ -111,19 +112,19 @@ function LoginPage(props) {
                         <Form.Item>
                             <div>
                             <Button type="primary" htmlType="submit" className="login-form-button"
-                            style={{ minWidth: '40%' }} disabled={isSubmitting} onSubmit={handleSubmit}>
+                            disabled={isSubmitting} onSubmit={handleSubmit}>
                                 Log in
                             </Button>
                             </div>
                             <br/>
-                            Or <a href="/signup">sign up!</a>
+                            Or <a href="/signup" style={{color: '#50C2FF'}}>sign up!</a>
                         </Form.Item>
                         </form>
                     </div>
                     );
                 }}
                 </Formik>
-                    
+        </div>   
     )
 }
 
