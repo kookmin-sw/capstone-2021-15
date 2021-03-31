@@ -28,7 +28,7 @@ const ProductPage = ({match}) => {
             .then(response => {
                 if(response.data.success) {
                     response.data.productInfo.map((product, index) => {
-                        if (product.['data-code'] == id) {
+                        if (product['data-code'] == id) {
                             setProduct(response.data.productInfo[index])
                             console.log(response.data.productInfo[index])
                         }
