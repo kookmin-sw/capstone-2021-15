@@ -17,7 +17,6 @@ const userSchema = new Schema({
 	},
 	age: {
 		type: Number,
-		required: true,
 	},
 	// personal_color: {
 	// 	type: String,
