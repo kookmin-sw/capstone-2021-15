@@ -21,7 +21,7 @@ const ProductSchema = new Schema({
 		type: String
 	},
 	price: {
-		type: Number
+		type: String
 	},
 	'data-code': {
 		type: String

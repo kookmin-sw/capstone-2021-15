@@ -76,7 +76,7 @@ const ProductPage = ({match}) => {
                                     </Col>
                                     <Col className="right" lg={12} md={12} xs={12}>
                                         <div style={{fontSize: "30px", marginBottom: "15px"}}>가격</div>
-                                        <div style={{fontSize: "24px"}}>{data.price}원</div>
+                                        <div style={{fontSize: "24px"}}>{product.price}원</div>
                                         <Button className="buyBtn" type="link" onClick={() => window.open(product.site, '_blank')}>구매하러 가기 &gt;</Button>
                                     </Col>
                                 </Row>
