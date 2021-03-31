@@ -1,9 +1,10 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {Form, Input, Button} from 'antd';
+import {Form, Input, Button, Typography} from 'antd';
+import './SignUpPage.css'
+const { Title } = Typography;
 
 function SignUpPage(props) {
     const formItemLayout = {
@@ -24,16 +25,18 @@ function SignUpPage(props) {
     };
 
     return (
+        <div className="box">
+
         <Formik
             initialValues={{
                 nickName: '',
-                age: '',
+                // age: '',
                 password: '',
                 confirmPassword: ''
             }}
             validationSchema={Yup.object().shape({
-                age: Yup.string()
-                    .required('Age is required'),
+                // age: Yup.string()
+                //     .required('Age is required'),
                 nickName: Yup.string()
                     .required('NickName is required'),
                 password: Yup.string()
@@ -48,7 +51,7 @@ function SignUpPage(props) {
                 let dataToSubmit = {
                     nickName: values.nickName,
                     password: values.password,
-                    age: values.age
+                    // age: values.age
                 };
         
                 axios.post('/api/user/signup', dataToSubmit)
@@ -75,8 +78,8 @@ function SignUpPage(props) {
                 } = props;
                 return (
                     <div className="app">
-                    <h2>Sign up</h2>
-                    <Form style={{ minWidth: '400px' }} {...formItemLayout} onSubmit={handleSubmit} >
+                    <Title level={1}>Sign Up</Title>
+                    <Form style={{ minWidth: '400px' }} className="signup-form" {...formItemLayout} onSubmit={handleSubmit} >
                     <Form.Item required label="NickName" hasFeedback validateStatus={errors.nickName && touched.nickName ? "error" : 'success'}>
                         <Input
                             id="nickName"
@@ -94,7 +97,7 @@ function SignUpPage(props) {
                         )}
                     </Form.Item>
 
-                    <Form.Item required label="Age">
+                    {/* <Form.Item required label="Age">
                         <Input
                             id="age"
                             placeholder="Enter your Age"
@@ -109,7 +112,7 @@ function SignUpPage(props) {
                         {errors.age && touched.age && (
                         <div className="input-feedback">{errors.age}</div>
                     )}
-                    </Form.Item>
+                    </Form.Item> */}
                     
                     <Form.Item required label="Password" hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
                         <Input
@@ -128,7 +131,7 @@ function SignUpPage(props) {
                         )}
                     </Form.Item>
 
-                    <Form.Item required label="Confirm" hasFeedback>
+                    <Form.Item required label="Confirm Password" hasFeedback>
                         <Input
                             id="confirmPassword"
                             placeholder="Enter your confirmPassword"
@@ -146,15 +149,22 @@ function SignUpPage(props) {
                     </Form.Item>
                     <br/>
                     <Form.Item {...tailFormItemLayout}>
-                        <Button onClick={handleSubmit} type="primary" disabled={isSubmitting}>
+                        <Button onClick={handleSubmit} className="signup-form-button" type="primary" disabled={isSubmitting}>
                             Submit
                         </Button>
+                        <br/>
+                        <br/>
+                        <div>
+                            Already have an account? 
+                            <a href="/login" style={{color: '#50C2FF', textDecoration:'none'}}>  Login!</a>
+                        </div>
                     </Form.Item>
                     </Form>
                 </div>
                 );
             }}
             </Formik>
+        </div>
     )
 }
 export default SignUpPage

@@ -29,14 +29,14 @@
 }
 #nickName{
     font-size:1rem;
-    width: 200px;
+    width: 250px;
     height: 30px;
     margin: 10px;
     padding-left: 10px;
 }
 #password{
     font-size:1rem;
-    width: 200px;
+    width: 250px;
     height: 30px;
     margin: 10px;
     padding-left: 10px;
@@ -44,9 +44,14 @@
 }
 .login-form-button{
     font-size: 1rem;
-    width: 100%;
+    width: 230px;
     height: 30px;
     background-color:black;
     color: white;
     border-radius: 5px;
+}
+.form-button{
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }

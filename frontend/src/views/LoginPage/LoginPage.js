@@ -57,7 +57,6 @@ function LoginPage(props) {
                         handleChange,
                         handleBlur,
                         handleSubmit,
-                        handleReset,
                     } = props;
                     return (
                         <div className="app">
@@ -109,7 +108,7 @@ function LoginPage(props) {
                             <label ><p style={{ color: '#ff0000bf', fontSize: '0.7rem', border: '1px solid', padding: '1rem', borderRadius: '10px' }}>{formErrorMessage}</p></label>
                         )}
                         <br/>
-                        <Form.Item>
+                        <Form.Item> 
                             <div>
                             <Button type="primary" htmlType="submit" className="login-form-button"
                             disabled={isSubmitting} onSubmit={handleSubmit}>
@@ -117,7 +116,9 @@ function LoginPage(props) {
                             </Button>
                             </div>
                             <br/>
-                            Or <a href="/signup" style={{color: '#50C2FF'}}>sign up!</a>
+                            <div className="form-button">
+                                <a href="/signup" style={{color: '#50C2FF', textDecoration:'none'}}> sign up!</a>
+                            </div>
                         </Form.Item>
                         </form>
                     </div>
