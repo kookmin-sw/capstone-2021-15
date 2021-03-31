@@ -17,8 +17,10 @@ function MainPage() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     // 처음에 3개의 아이템만 가져옴
-    const [Limit, setLimit] = useState(4)
+    const [Limit, setLimit] = useState(3)
     const [PostSize, setPostSize] = useState(0)
+
+    const Categories = ['립스틱'];
 
     useEffect(() => {
         let mounted = true;
@@ -68,7 +70,7 @@ function MainPage() {
         // 반응형 -> 전체 크기 화면 24 / 8 = 3 카드
         // 중간 화면 -> 24 / 12 = 2 카드
         // 작은 화면 -> 24 / 24 =1 카드
-        return <Col lg={6} md={12} xs={24} key={index} >
+        return <Col lg={8} md={12} xs={24} key={index} >
             <Link to={`/product/${product['data-code']}`}>
                 <Card
                     size="small"
@@ -108,7 +110,9 @@ function MainPage() {
                             </Button>
                         </Col>
                         <Col lg={12} md={12} xs={12} style={{textAlign: "right"}}> 
-                            <Button className="moreBtn" type="link">더 보기</Button>
+                            <Link to={`/category`}>
+                                <Button className="moreBtn" type="link" href="">더 보기</Button>
+                            </Link>
                         </Col>
                         
                     </Row>

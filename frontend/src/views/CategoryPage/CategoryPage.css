@@ -1,0 +1,9 @@
+.main-container {
+    text-align: center;
+}
+
+.category_inner {
+    margin-top: 30px;
+    width: 1024px;
+    display: inline-block !important;
+}

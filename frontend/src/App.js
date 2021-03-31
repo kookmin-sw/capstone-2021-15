@@ -4,7 +4,7 @@ import React from "react";
 // import Recommand from "./components/Recommand";
 import Auth from './hoc/auth'
 import MainPage from "./views/MainPage/MainPage"
-import Category from "./Category";
+import CategoryPage from "./views/CategoryPage/CategoryPage";
 import LoginPage from './views/LoginPage/LoginPage'
 import SignUpPage from './views/SignUpPage/SignUpPage'
 import WelcomePage from './views/WelcomePage/WelcomePage'
@@ -21,11 +21,12 @@ function App() {
         <Router>
             <div className="App" style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
                 {/*<Route path="/mypage" component={Mypage}/>*/}
-                <Route exact path="/category" component={Category}/>
                 <Route exact path="/" component={Auth(WelcomePage, null)}/>
                 <Route exact path="/login" component={Auth(LoginPage, false)}/>
                 <Route exact path="/signup" component={Auth(SignUpPage, false)}/>
                 <Route exact path="/main" component={Auth(MainPage, true)}/>
+                <Route exact path="/category" component={CategoryPage}/>
+                <Route exact path="/category/:id" component={CategoryPage}/>
                 <Route exact path="/product" component={ProductPage}/>
                 <Route exact path="/product/:id" component={ProductPage}/>
             </div>
