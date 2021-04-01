@@ -30,11 +30,8 @@
 #confirmPassword {
     font-size:1rem;
     width: 250px;
-    height: 30px;
+    height: 40px;
     margin: 10px;
-    margin-left: -10px;
-    padding-left: 10px;
-
 }
 .signup-form-button{
     font-size: 1rem;
@@ -48,4 +45,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
+}
+.signin-comment-box {
+    width: 400px
 }
