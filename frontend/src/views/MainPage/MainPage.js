@@ -1,6 +1,7 @@
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
+import CardComponent from "../../components/CardComponent";
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import Recommand from "../../components/Recommand";
@@ -17,10 +18,10 @@ function MainPage() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     // 처음에 3개의 아이템만 가져옴
-    const [Limit, setLimit] = useState(3)
+    const [Limit, setLimit] = useState(4)
     const [PostSize, setPostSize] = useState(0)
 
-    const Categories = ['립스틱'];
+    const [ interestCategory, setInterestCategory ] = useState(['lip', 'hair'])
 
     useEffect(() => {
         let mounted = true;
@@ -55,7 +56,7 @@ function MainPage() {
             })
     }
 
-    const loadMoreHandler = () => {
+    const reloadHandler = () => {
         let skip = Skip + Limit;
         let body = {
             skip: skip,
@@ -70,20 +71,35 @@ function MainPage() {
         // 반응형 -> 전체 크기 화면 24 / 8 = 3 카드
         // 중간 화면 -> 24 / 12 = 2 카드
         // 작은 화면 -> 24 / 24 =1 카드
-        return <Col lg={8} md={12} xs={24} key={index} >
-            <Link to={`/product/${product['data-code']}`}>
-                <Card
-                    size="small"
-                    hoverable
-                    cover={ <img src={product['img-url']} />}
-                >
-                    <Meta 
-                        title={product.title}
-                        description={product.season+" "+product.tone}
-                    />
-                </Card>
-            </Link>
-        </Col>
+        return (
+            <Col lg={6} md={12} xs={24} key={index} >
+                <CardComponent title={product.title} season={product.season} tone={product.tone} img-url={product['img-url']} data-code={product['data-code']}></CardComponent>
+            </Col>
+        )
+    })
+
+    const categoryHandler = interestCategory.map((category, index) => {
+        let categoryName = category.toUpperCase();
+        return (
+            <Row key={index}>
+                <Row>
+                    <Col lg={12} md={12} xs={12}>
+                        {categoryName}
+                        <Button className="reloadBtn" type="circle" ghost="true" onClick={reloadHandler}>
+                            <ReloadOutlined />
+                        </Button>
+                    </Col>
+                    <Col lg={12} md={12} xs={12} style={{textAlign: "right"}}> 
+                        <Link to={`/category/${category}`}>
+                            <Button className="moreBtn" type="link">더 보기</Button>
+                        </Link>
+                    </Col>
+                </Row>
+                <Row type="flex" gutter={[30, 30]} >
+                    {renderCards}
+                </Row>
+            </Row>
+        )
     })
 
     return (
@@ -102,30 +118,12 @@ function MainPage() {
             </div>
             <div className="main_bottom">
                 <div className="interest_category">
-                    <Row>
-                        <Col lg={12} md={12} xs={12}>
-                            (카테고리 이름)
-                            <Button className="reloadBtn" type="circle" ghost="true" onClick={loadMoreHandler}>
-                                <ReloadOutlined />
-                            </Button>
-                        </Col>
-                        <Col lg={12} md={12} xs={12} style={{textAlign: "right"}}> 
-                            <Link to={`/category`}>
-                                <Button className="moreBtn" type="link" href="">더 보기</Button>
-                            </Link>
-                        </Col>
-                        
-                    </Row>
-                    <Row type="flex" gutter={[30, 30]} >
-                        {renderCards}
-                    </Row>
-                
+                    {categoryHandler}
                 {/* { PostSize >= Limit && 
                         <div style={{display: 'flex', justifyContent:'center'}}>
-                            <button onClick={loadMoreHandler}>더보기</button>
+                            <button onClick={reloadHandler}>더보기</button>
                         </div>
                     } */}
-                
                 </div>
             </div>
             
