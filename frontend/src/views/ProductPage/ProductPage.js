@@ -13,15 +13,12 @@ import axios from 'axios'
 const ProductPage = ({match}) => {
 
     const sampleData = [{
-        "price" : "31000",
         "like" : "28",
         "rank" : "5",
     },];
 
     const [ product, setProduct ] = useState([])
     const { id } = match.params;
-
-    console.log(id);
 
     useEffect(() => {
         axios.post('/api/product/products')
