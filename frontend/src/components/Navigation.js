@@ -43,12 +43,8 @@ const Navigation = ( props ) =>  {
                 <Nav.Link href="/category/lip">LIP</Nav.Link>
                 <Nav.Link href="/category/top">TOP</Nav.Link>
                 <Nav.Link href="/category/acc">ACC</Nav.Link>
-                <Button onClick={togglefilter}>
-                    <img className="filter_img" src={filterimg}></img>
-                    Personal Color
-                </Button>
+                
             </Nav>
-            <Filter togglefilter={togglefilter} filter={filter}></Filter>
         </div>
         </>
     )
