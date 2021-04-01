@@ -30,22 +30,18 @@
 #nickName{
     font-size:1rem;
     width: 250px;
-    height: 30px;
-    margin: 10px;
-    padding-left: 10px;
+    height: 40px;
 }
 #password{
     font-size:1rem;
     width: 250px;
-    height: 30px;
-    margin: 10px;
-    padding-left: 10px;
+    height: 40px;
 
 }
 .login-form-button{
     font-size: 1rem;
     width: 230px;
-    height: 30px;
+    height: 40px;
     background-color:black;
     color: white;
     border-radius: 5px;

@@ -79,6 +79,7 @@ function SignUpPage(props) {
                 return (
                     <div className="app">
                     <Title level={1}>Sign Up</Title>
+                    <br/>
                     <Form style={{ minWidth: '400px' }} className="signup-form" {...formItemLayout} onSubmit={handleSubmit} >
                     <Form.Item required label="NickName" hasFeedback validateStatus={errors.nickName && touched.nickName ? "error" : 'success'}>
                         <Input
@@ -154,8 +155,8 @@ function SignUpPage(props) {
                         </Button>
                         <br/>
                         <br/>
-                        <div>
-                            Already have an account? 
+                        <div className="signin-comment-box">
+                            If you already have an account? 
                             <a href="/login" style={{color: '#50C2FF', textDecoration:'none'}}>  Login!</a>
                         </div>
                     </Form.Item>
