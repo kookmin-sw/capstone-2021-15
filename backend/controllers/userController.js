@@ -41,7 +41,7 @@ module.exports = {
     },
     login: async (req, res, next) =>{
         // 요청된 nickName이 데이터베이스에 있는지 찾음
-        User.findOne({ nickName: req.body.nickName }, (err, user) => {
+        await User.findOne({ nickName: req.body.nickName }, (err, user) => {
             if(!user){
                 return res.json({
                     loginSuccess: false,
@@ -82,7 +82,7 @@ module.exports = {
     logout: async (req, res) => {
         // req: auth 미들웨어에서 받은
         // token: '' : 토큰 지우기
-        User.findOneAndUpdate({_id: req.user._id}, { token : "" }, (err, user) => {
+        await User.findOneAndUpdate({_id: req.user._id}, { token : "" }, (err, user) => {
             if(err) return res.json({ success: false, err});
             return res.status(200).send({ success : true });
         })
