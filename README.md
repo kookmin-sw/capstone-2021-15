@@ -1,77 +1,56 @@
-[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=351352&assignment_repo_type=GroupAssignmentRepo)
-# Welcome to GitHub
+# Personal Color Recommend System : PCRS
 
-캡스톤 팀 생성을 축하합니다.
+팀페이지 주소 : [https://github.com/kookmin-sw/capstone-2021-15/](https://github.com/kookmin-sw/capstone-2021-15/tree/feedback)
 
-## 팀소개 및 페이지를 꾸며주세요.
+### 1. 프로젝트 소개
 
-- 프로젝트 소개
-  - 프로젝트 설치방법 및 데모, 사용방법, 프리뷰등을 readme.md에 작성.
-  - Api나 사용방법등 내용이 많을경우 wiki에 꾸미고 링크 추가.
+  퍼스널 컬러란 사람의 피부톤과 가장 어울리는 색상,명도,채도를 찾는 색채학 이론이다. 최근 몇 년간 스타일링에많은 도움이 되는 퍼스널 컬러가 유행하면서 온/오프라인으로 퍼스널 컬러 진단을 받는 사용자가 많아졌다. 우리는 기존의 온/오프라인 퍼스널컬러진단의 부족한 점을 파악하여 이를 보완한 방법으로 서비스를 제공하고자 한다. 기존의 온라인 퍼스널 컬러진단보다 상세한 점수제도를 도입한 퍼스널컬러 진단을 진행하고 진단 결과를 통해, 혹은 이미 진단 받은 결과를 이용하여 오프라인보다 다양한 카테고리의 상품을 추천해준다. 사용자와 같은 톤을 갖은 사람들의 클릭데이터를 이용한 추천시스템을 구현함으로써 추천의 정확도를 높이며 사용자의 새로운 상품 구매시 시간/비용의 효율성을 높이고자 한다. 
 
-- 팀페이지 꾸미기
-  - 프로젝트 소개 및 팀원 소개
-  - index.md 예시보고 수정.
+**P**ersonal **C**olor **R**ecommend **S**ystem , PCRS ㅍㅋㅊㅅ 는 사용자에 맞는 퍼스널 컬러를 진단해주고 상품추천까지 연결되는 웹 서비스이다. 
 
-- GitHub Pages 리파지토리 Settings > Options > GitHub Pages 
-  - Source를 marster branch
-  - Theme Chooser에서 태마선택
-  - 수정후 팀페이지 확인하여 점검.
+1. 다양한 사이트에서 상품의 정보 분류 및 저장 
+    - 상품을 퍼스널 컬러기준에 따라 분류
+2. 사용자의 퍼스널 컬러 진단 
+    - 상세한 퍼스널 컬러 진단를 위해 점수제도 도입
+        - 퍼스널 컬러 진단의 결과 확률로 시각화 worst / best
+        - 색상,채도,명도 중 어느 부분에 영향을 많이 받는지에 대한 결과 확률로 시각화
+3. 사용자의 퍼스널 컬러와 관심 카테고리에 맞는 상품을 추천 
+    - 사용자와 같은 톤을 가지고 있는 다른 사용자들의 click log 를 기반으로 상품추천
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
+### 2. Abstract
 
-**예시)** 2020년 0조  https://kookmin-sw.github.io/capstone-2020-0/
+  Personal color is a theory of colorology that finds the hue, brightness, and saturation that best match a person's skin tone. In recent years, as personal colors, which are very helpful in styling, have become popular in recent years, more users receive personal color diagnosis online/offline. We identify the shortcomings of the existing on/offline personal color diagnosis and try to provide services in a way that complements them. It conducts personal color diagnosis, which introduces a more detailed score system than the existing online personal color diagnosis, and recommends products in a variety of categories than offline, through diagnosis results or by using results that have already been diagnosed. By implementing a recommendation system using click data of people who have the same tone as the user, the accuracy of recommendation is improved, and the efficiency of time/cost when purchasing a new product by the user is to be improved.
 
+Personal Color Recommend System, PCRS ㅍㅋㅊㅅ is a web service that diagnoses personal colors suitable for users and connects to product recommendations.
 
-## 내용에 아래와 같은 내용들을 추가하세요.
+1. Classify and store product information on various sites
+    - Classify products according to personal color standards
+2. User's personal color diagnosis
+    - Introduced a score system for detailed personal color diagnosis
+    - Visualization worst / best with probability of personal color diagnosis
+    - Visualize with the probability of the result of which part of hue, saturation, and brightness is most affected
 
-### 1. 프로잭트 소개
+3. Recommend products that fit the user's personal color and interest category
+    - Product recommendation based on the click log of other users who have the same tone as the user
 
-프로젝트
+### 3. 15Team
 
-### 2. 소개 영상
+- 최재강 : **Product Classification**  , Backend , Frontend
 
-프로젝트 소개하는 영상을 추가하세요
+    ![Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__2.56.59.png](Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__2.56.59.png)
 
-### 3. 팀 소개
+- 박수빈 : **Recommendation** **system** , Personal color diagnosis
 
-팀을 소개하세요.
+    ![Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__2.57.33.png](Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__2.57.33.png)
 
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
+- 박민정 : **Backend** , Frontend
 
-### 4. 사용법
+    ![Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__3.00.51.png](Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__3.00.51.png)
 
-소스코드제출시 설치법이나 사용법을 작성하세요.
+- 임이현 : **Product Classification ,** Frontend
 
-### 5. 기타
+    ![Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__2.53.09.png](Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__2.53.09.png)
 
-추가적인 내용은 자유롭게 작성하세요.
+- 박지영 : **Frontend** , Recommendation system
 
-
-## Markdown을 사용하여 내용꾸미기
-
-Markdown은 작문을 스타일링하기위한 가볍고 사용하기 쉬운 구문입니다. 여기에는 다음을위한 규칙이 포함됩니다.
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Support or Contact
-
-readme 파일 생성에 추가적인 도움이 필요하면 [도움말](https://help.github.com/articles/about-readmes/) 이나 [contact support](https://github.com/contact) 을 이용하세요.
+    ![Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__3.20.46.png](Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__3.20.46.png)
