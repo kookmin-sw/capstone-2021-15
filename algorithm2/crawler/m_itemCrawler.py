@@ -46,7 +46,7 @@ class ItemCrawler:
             img = goods_li[0].find('img')
             title = img['alt']
             item_img = img['src']
-	    item['site'] = self.site
+            item['site'] = self.site
             item['brand'] = self.brand
             item['name'] = self.name
             item['category1'] = self.category1
