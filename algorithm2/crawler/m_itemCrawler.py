@@ -143,15 +143,19 @@ if __name__ == '__main__':
         os.remove(json_path)
 
     for site in site_list:
-        category2 = 'lip'
-        test = ItemCrawler(site, category2)
-        item_list = test.get_itemList()
-        # print(item_list)
-        json_data += item_list
+        try:
+            category2 = 'lip'
 
-        # # for i in item_list:
-        # tmp = {'$set' : i}
-        # collection.update_one(i, tmp, upsert=True)
+            test = ItemCrawler(site, category2)
+            item_list = test.get_itemList()
+            # print(item_list)
+            json_data += item_list
+
+            # # for i in item_list:
+            # tmp = {'$set' : i}
+            # collection.update_one(i, tmp, upsert=True)
+        except:
+            pass
     f = open('../images/items.json', 'w+', encoding='utf-8')
     json.dump(json_data, f, ensure_ascii=False, indent='\t')
 

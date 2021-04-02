@@ -14,9 +14,10 @@ class DominantColors:
         self.IMAGE = image
 
     def dominantColors(self):
-        # read image
-        img = self.IMAGE
-
+        # 웹 이미지 read
+        # img = self.IMAGE
+        # 로컬 이미지 read
+        img = cv2.imread(self.IMAGE)
         # convert to rgb from bgr
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
