@@ -21,6 +21,7 @@ function MainPage() {
     const [Limit, setLimit] = useState(4)
     const [PostSize, setPostSize] = useState(0)
 
+    const [personalColor, setPersonalColor] = useState('spring')
     const [ interestCategory, setInterestCategory ] = useState(['lip', 'hair'])
 
     useEffect(() => {
@@ -37,7 +38,7 @@ function MainPage() {
     }, [])
     // const personalColors = [{'_id':1, 'name':'Cool'},{'_id':2, 'name':'Warm' } ];
     const getProducts = (body) => {
-        axios.post('/api/product/products', body)
+        axios.post(`/api/product/season/${personalColor}`, body)
             .then(response => {
                 if(response.data.success) {
                     if(body.loadMore){

@@ -6,18 +6,18 @@ import './Filter.css';
 
 const Filter = ( { togglefilter, filter } ) =>  {
 
-    const [tone, setTone] = useState('warm spring');
+    const [season, setSeason] = useState('spring');
 
-    const tones =[
-        'warm spring',
-        'cool summer',
-        'warm fall',
-        'cool winter'
+    const seasons =[
+        'spring',
+        'summer',
+        'fall',
+        'winter'
     ];
 
     const changetoneHandler = e => {
         console.log('changed tone', e.target.value)
-        setTone(e.target.value);
+        setSeason(e.target.value);
     }
 
     
@@ -37,7 +37,7 @@ const Filter = ( { togglefilter, filter } ) =>  {
                         
                     </div>
                 </Toast.Header> */}
-                <Radio.Group options={tones} onChange={changetoneHandler} value={tone} />
+                <Radio.Group options={seasons} onChange={changetoneHandler} value={season} />
             </Toast>
         </>
     )
