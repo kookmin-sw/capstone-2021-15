@@ -36,10 +36,11 @@ Personal Color Recommend System, PCRS ㅍㅋㅊㅅ is a web service that diagnos
 ### 3. 15Team
 
 - 최재강 : **Product Classification**  , Backend , Frontend
-  <img align="left" width="15%" height="15%" src="https://github.com/kookmin-sw/capstone-2021-15/15team/최재강.jpg">
+ <img width="500" alt="최재강" src="https://user-images.githubusercontent.com/39542978/113392650-69a78900-93d0-11eb-93a4-1b4ac2ed19aa.png">
+
 
 - 박수빈 : **Recommendation** **system** , Personal color diagnosis
-  <img align="left" width="15%" height="15%" src="https://github.com/kookmin-sw/capstone-2021-15/15team/박수빈.jpg">
+ <img width="500" alt="박수빈" src="https://user-images.githubusercontent.com/39542978/113392707-8217a380-93d0-11eb-8018-f21f0a7615c0.png">
 
 - 박민정 : **Backend** , Frontend
 
