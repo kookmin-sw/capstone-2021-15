@@ -36,21 +36,20 @@ Personal Color Recommend System, PCRS ㅍㅋㅊㅅ is a web service that diagnos
 ### 3. 15Team
 
 - 최재강 : **Product Classification**  , Backend , Frontend
-
-    ![Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__2.56.59.png =100x100](15team/최재강.png)
+    ![15team/최재강.png =100x100](15team/최재강.png)
 
 - 박수빈 : **Recommendation** **system** , Personal color diagnosis
 
-    ![Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__2.57.33.png =100x100](15team/박수빈.png)
+    ![15team/박수빈.png =100x100](15team/박수빈.png)
 
 - 박민정 : **Backend** , Frontend
 
-    ![Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__3.00.51.png =100x100](15team/박민정.png)
+    ![15team/박민정.png =100x100](15team/박민정.png)
 
 - 임이현 : **Product Classification ,** Frontend
 
-    ![Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__2.53.09.png =100x100](15team/임이현.png)
+    ![15team/임이현.png =100x100](15team/임이현.png)
 
 - 박지영 : **Frontend** , Recommendation system
 
-    ![Personal%20Color%20Recommend%20System%20PCRS%2001dcead73b3e4d5180d4d9dabb3697de/_2021-04-02__3.20.46.png =100x100](15team/박지영.png)
+    ![15team/박지영.png =100x100](15team/박지영.png)
