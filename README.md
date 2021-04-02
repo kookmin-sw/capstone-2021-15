@@ -21,7 +21,7 @@
 
   Personal color is a theory of colorology that finds the hue, brightness, and saturation that best match a person's skin tone. In recent years, as personal colors, which are very helpful in styling, have become popular in recent years, more users receive personal color diagnosis online/offline. We identify the shortcomings of the existing on/offline personal color diagnosis and try to provide services in a way that complements them. It conducts personal color diagnosis, which introduces a more detailed score system than the existing online personal color diagnosis, and recommends products in a variety of categories than offline, through diagnosis results or by using results that have already been diagnosed. By implementing a recommendation system using click data of people who have the same tone as the user, the accuracy of recommendation is improved, and the efficiency of time/cost when purchasing a new product by the user is to be improved.
 
-Personal Color Recommend System, PCRS ㅍㅋㅊㅅ is a web service that diagnoses personal colors suitable for users and connects to product recommendations.
+**UtoPR**,  **P**ersonal color **R**ecommend **to** yo**u** is a web service that diagnoses personal colors suitable for users and connects to product recommendations.
 
 1. Classify and store product information on various sites
     - Classify products according to personal color standards
