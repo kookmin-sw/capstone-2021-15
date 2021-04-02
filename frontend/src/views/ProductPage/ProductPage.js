@@ -20,10 +20,27 @@ const ProductPage = ({match}) => {
     const [ product, setProduct ] = useState([])
     const { id } = match.params;
 
+    const pccs = {
+        'p': 'pale',
+        'lt': 'light',
+        'b' : 'bright',
+        'v' : 'vivid',
+        'ltg' :  'light grayish',
+        'sf' : 'soft',
+        'g' : 'grayish',
+        'd' : 'dull',
+        's' : 'strong',
+        'dp' : 'deep',
+        'dkg' : 'dark grayish',
+        'dk' : 'dark'
+    }
+
+    console.log(id);
     useEffect(() => {
         axios.post('/api/product/products')
             .then(response => {
                 if(response.data.success) {
+                    console.log(response.data.productInfo)
                     response.data.productInfo.map((product, index) => {
                         if (product['data-code'] == id) {
                             setProduct(response.data.productInfo[index])
@@ -50,14 +67,14 @@ const ProductPage = ({match}) => {
                             <div className="product_title">
                                 <img className="product_img" src={product['img-url']}></img>
                                 <div className="product_name">
-                                    <div>[ {product.brand} ] {product.title}</div>
+                                    <div>[ {product.brand} ] {product.name} {product.title}</div>
                                 </div>
                             </div>
                         </div>
                         <div className="product_bottom" style={{backgroundColor: "#2F2F2F"}}>
                             <div className="product_info">
                                 <div className="product_personal_color">
-                                    {product.season} {product.tone}</div>
+                                    {product.season} {pccs[product.pccs]}</div>
                                 <div className="product_like">
                                     <span>찜하기</span>
                                     <Button className="likeBtn" type="circle" ghost="true">

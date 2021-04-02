@@ -5,7 +5,7 @@ const qs = require('querystring')
 module.exports = {
     // 모든 상품을 가져오되 3개씩 가져올 것
     read_products: (req, res) => {
-        let limit = req.body.limit ? parseInt(req.body.limit) :50;
+        let limit = req.body.limit ? parseInt(req.body.limit) :1000;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
 
         Product.find()

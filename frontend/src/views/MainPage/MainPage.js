@@ -18,11 +18,12 @@ function MainPage() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     // 처음에 3개의 아이템만 가져옴
-    const [Limit, setLimit] = useState(4)
+    const [Limit, setLimit] = useState(3)
     const [PostSize, setPostSize] = useState(0)
 
-    const [personalColor, setPersonalColor] = useState('spring')
+    const [personalColor, setPersonalColor] = useState('summer')
     const [ interestCategory, setInterestCategory ] = useState(['lip', 'hair'])
+    const [userPrice, setUserPrice] = useState([20000, 35000]);
 
     useEffect(() => {
         let mounted = true;
@@ -68,16 +69,7 @@ function MainPage() {
         setSkip(skip);
     }
 
-    const renderCards = Products.map((product, index) => {
-        // 반응형 -> 전체 크기 화면 24 / 8 = 3 카드
-        // 중간 화면 -> 24 / 12 = 2 카드
-        // 작은 화면 -> 24 / 24 =1 카드
-        return (
-            <Col lg={6} md={12} xs={24} key={index} >
-                <CardComponent title={product.title} season={product.season} tone={product.tone} img-url={product['img-url']} data-code={product['data-code']}></CardComponent>
-            </Col>
-        )
-    })
+
 
     const categoryHandler = interestCategory.map((category, index) => {
         let categoryName = category.toUpperCase();
@@ -97,7 +89,20 @@ function MainPage() {
                     </Col>
                 </Row>
                 <Row type="flex" gutter={[30, 30]} >
-                    {renderCards}
+                    {    
+                        Products ? Products.map((product, index) => {
+                            // 반응형 -> 전체 크기 화면 24 / 8 = 3 카드
+                            // 중간 화면 -> 24 / 12 = 2 카드
+                            // 작은 화면 -> 24 / 24 =1 카드
+                            if (product.category2 == category && product.price >= userPrice[0] && product.price <= userPrice[1]) {
+                                return (
+                                    <Col lg={8} md={12} xs={24} key={index} >
+                                        <CardComponent brand={product.brand} name={product.name} title={product.title} pccs={product.pccs} season={product.season} img-url={product['img-url']} data-code={product['data-code']} price={product.price}></CardComponent>
+                                    </Col>
+                                )
+                            }
+                        }) : ''
+                    }
                 </Row>
             </Row>
         )

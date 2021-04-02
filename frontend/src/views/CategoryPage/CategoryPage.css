@@ -31,4 +31,9 @@
 .ant-card-body .ant-btn:active:focus:not(:disabled):not(.disabled),
 .ant-card-body .ant-btn:focus, .ant-card-body .ant-btn:active, .ant-card-body .ant-btn:hover{
     background-color: transparent;
+    margin-right: 30px;
+}
+
+.ant-card-body .toast {
+    margin-top: 15px;
 }
