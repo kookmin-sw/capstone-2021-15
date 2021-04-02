@@ -40,16 +40,16 @@ Personal Color Recommend System, PCRS ㅍㅋㅊㅅ is a web service that diagnos
 
 - 박수빈 : **Recommendation** **system** , Personal color diagnosis
 
-    ![15team/박수빈.png](15team/박수빈.png=250x250)
+    ![15team/박수빈.png](15team/박수빈.png){:width="100" height="100"}
 
 - 박민정 : **Backend** , Frontend
 
-    ![15team/박민정.png](15team/박민정.png=250x250)
+    ![15team/박민정.png](15team/박민정.png){:width="100" height="100"}
 
 - 임이현 : **Product Classification ,** Frontend
 
-    ![15team/임이현.png](15team/임이현.png=250x250)
+    ![15team/임이현.png](15team/임이현.png){:width="100" height="100"}
 
 - 박지영 : **Frontend** , Recommendation system
 
-    ![15team/박지영.png](15team/박지영.png=250x250)
+    ![15team/박지영.png](15team/박지영.png){:width="100" height="100"}
