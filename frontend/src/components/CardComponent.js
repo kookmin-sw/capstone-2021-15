@@ -7,6 +7,21 @@ function CardComponent(props) {
 
     const { Meta } = Card;
 
+    const pccs = {
+        'p': 'pale',
+        'lt': 'light',
+        'b' : 'bright',
+        'v' : 'vivid',
+        'ltg' :  'light grayish',
+        'sf' : 'soft',
+        'g' : 'grayish',
+        'd' : 'dull',
+        's' : 'strong',
+        'dp' : 'deep',
+        'dkg' : 'dark grayish',
+        'dk' : 'dark'
+    }
+
     return (
         // <div className="card">
         //     <div className="image">
@@ -27,8 +42,17 @@ function CardComponent(props) {
                     cover={ <img src={props['img-url']} />}
                 >
                     <Meta 
-                        title={props.title}
-                        description={props.season+" "+props.tone}
+                        title={props.name+" "+props.title}
+                        description={
+                            <div>
+                                [ {props.brand} ]
+                                <br/>
+                                {props.season} {pccs[props.pccs]}
+                                <br/>
+                                {props.price}원
+                            </div>
+                            
+                            }
                     />
                 </Card>
             </Link>
