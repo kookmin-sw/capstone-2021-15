@@ -36,7 +36,7 @@ Personal Color Recommend System, PCRS ㅍㅋㅊㅅ is a web service that diagnos
 ### 3. 15Team
 
 - 최재강 : **Product Classification**  , Backend , Frontend
-    ![15team/최재강.png](15team/최재강.png|width=100)
+    ![15team/최재강.png](15team/최재강.png){:width="100" height="100"}
 
 - 박수빈 : **Recommendation** **system** , Personal color diagnosis
 
