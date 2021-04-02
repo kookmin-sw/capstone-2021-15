@@ -11,7 +11,7 @@ const ProductSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	link: {
+	site: {
 		type: String
 	},
 	'img-url': { // 이미지
@@ -21,7 +21,7 @@ const ProductSchema = new Schema({
 		type: String
 	},
 	price: {
-		type: String
+		type: Number
 	},
 	'data-code': {
 		type: String
@@ -38,8 +38,14 @@ const ProductSchema = new Schema({
 	season: {
 		type: String,
 	},
-	tone: {
-		type: String,
+	// tone: {
+	// 	type: String,
+	// },
+	saturation: {
+		type: Number
+	},
+	value: {
+		type: Number
 	},
 	pccs:{
 		type: String,
