@@ -7,7 +7,7 @@ import requests
 import time
 
 start = time.time()
-with open('images/lips.json') as f:
+with open('images/hair_colors.json') as f:
     json_data = json.load(f)
 for data in json_data:
     # idx = 2
@@ -31,16 +31,16 @@ for data in json_data:
         # lip (200, 100, 300, 200)
         rect = (200, 300, 200, 200)  # (x, y, width, height)
         cv2.grabCut(img, mask, rect, bgdModel, fgdModel, 1, cv2.GC_INIT_WITH_RECT)
+        mask2 = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
+        img = img * mask2[:, :, np.newaxis]
     except:
         # rect = (40, 40, 30, 30)  # (x, y, width, height)
         # cv2.grabCut(img, mask, rect, bgdModel, fgdModel, 1, cv2.GC_INIT_WITH_RECT)
         pass
-    mask2 = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
-    img = img * mask2[:, :, np.newaxis]
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     # if show
-    plt.imshow(img), plt.colorbar(), plt.show()
+    # plt.imshow(img), plt.colorbar(), plt.show()
 
-    cv2.imwrite('./results_image/color_url/' + data_code + '.jpg', cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    cv2.imwrite('./results_images/hair_color_url/' + data_code + '.jpg', cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 
 print('총 걸린 시간: ', time.time() - start)

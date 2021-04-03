@@ -5,7 +5,7 @@ import colorsys
 from colormath.color_objects import LabColor, sRGBColor
 from colormath.color_conversions import convert_color
 import rgb2lab
-from color_extraction import DominantColors
+from extraction import DominantColors
 import json
 import urllib.request
 import ssl
@@ -93,15 +93,15 @@ json_path = '../images/hair_colors.json'
 json_data = []
 
 if os.path.isfile(json_path):
-    f = open('../images/lips.json', 'r+', encoding='utf-8')
+    f = open('../images/hair_colors.json', 'r+', encoding='utf-8')
     json_data = json.load(f)
     f.close()
-image_list = os.listdir('../results_image/color_url')
+image_list = os.listdir('../results_images/hair_color_url')
 
 tone_dict = {}
 for img in image_list:
     data_code = img.split('.')[0]
-    img = '../results_image/color_url/' + img
+    img = '../results_images/hair_color_url/' + img
     dc = DominantColors(img)
     color = dc.dominantColors()
     saturation, value, pccs, season = findNeighbors(color)
