@@ -90,10 +90,10 @@ module.exports = {
     },
     // category2: lip 이렇게
     read_category2_products : (req, res) => {
-        let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+        let limit = req.body.limit ? parseInt(req.body.limit) : 50;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
 
-        Product.find({category2: decodeURIComponent(req.query.category2)}) 
+        Product.find({category2:req.params.category2}) 
             .limit(limit)
             .skip(skip)
             .exec((err, productInfo) => {
