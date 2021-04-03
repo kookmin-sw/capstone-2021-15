@@ -11,7 +11,7 @@ router.get('/season/:season/:product_id', productController.read_season_product_
 // router.post(':season&:tone', productController.read_season_tone);
 // category2: lip/eye_shadow/cheek 
 router.post('/category1/:category1', productController.read_category1_products); // 
-router.post('/category2:category2', productController.read_category2_products); // 
+router.post('/category2/:category2', productController.read_category2_products); // 
 
 
 
