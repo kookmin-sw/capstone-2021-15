@@ -7,7 +7,7 @@ import requests
 import time
 
 start = time.time()
-with open('./images/items.json') as f:
+with open('images/lips.json') as f:
     json_data = json.load(f)
 for data in json_data:
     # idx = 2

@@ -89,11 +89,11 @@ def url_to_image(url):
     return image
 
 
-json_path = '../images/items.json'
+json_path = '../images/hair_colors.json'
 json_data = []
 
 if os.path.isfile(json_path):
-    f = open('../images/items.json', 'r+', encoding='utf-8')
+    f = open('../images/lips.json', 'r+', encoding='utf-8')
     json_data = json.load(f)
     f.close()
 image_list = os.listdir('../results_image/color_url')
@@ -115,7 +115,7 @@ for img in image_list:
     print(img)
 os.remove(json_path)
 
-f = open('../images/items.json', 'w+', encoding='utf-8')
+f = open(json_path, 'w+', encoding='utf-8')
 json.dump(json_data, f, ensure_ascii=False, indent='\t')
 
 f.close()

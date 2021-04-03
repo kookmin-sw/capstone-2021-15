@@ -133,11 +133,11 @@ if __name__ == '__main__':
         "https://m.chicor.com/goods/0000000001420?dscatNo=71"
 
     ]
-    json_path = '../images/items.json'
+    json_path = '../images/lips.json'
     json_data = []
     start = time.time()
     if os.path.isfile(json_path):
-        f = open('../images/items.json', 'r+', encoding='utf-8')
+        f = open('../images/lips.json', 'r+', encoding='utf-8')
         json_data = json.load(f)
         f.close()
         os.remove(json_path)
@@ -156,7 +156,7 @@ if __name__ == '__main__':
             # collection.update_one(i, tmp, upsert=True)
         except:
             pass
-    f = open('../images/items.json', 'w+', encoding='utf-8')
+    f = open('../images/lips.json', 'w+', encoding='utf-8')
     json.dump(json_data, f, ensure_ascii=False, indent='\t')
 
     f.close()

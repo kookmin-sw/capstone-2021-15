@@ -119,16 +119,16 @@ if __name__ == '__main__':
     # test = ItemCrawler_olive(site, 'hair-color')
     # item_list = test.get_itemList()
     # pprint(item_list)
-    json_path = './items.json'
+    json_path = '../images/hair_colors.json'
     json_data = []
     if os.path.isfile(json_path):
-        f = open('./items.json', 'r+', encoding='utf-8')
+        f = open('../images/hair_colors.json', 'r+', encoding='utf-8')
         json_data = json.load(f)
         f.close()
         os.remove(json_path)
 
     for site in site_list:
-        f = open('./items.json', 'w+', encoding='utf-8')
+        f = open('../images/hair_colors.json', 'w+', encoding='utf-8')
         json.dump(json_data, f, ensure_ascii=False, indent='\t')
         category2 = 'hair-color'
         test = ItemCrawler_olive(site, category2)
@@ -136,7 +136,7 @@ if __name__ == '__main__':
         pprint(item_list)
         json_data += [item_list]
 
-    f = open('./items.json', 'w+', encoding='utf-8')
+    f = open('../images/hair_colors.json', 'w+', encoding='utf-8')
     json.dump(json_data, f, ensure_ascii=False, indent='\t')
 
     f.close()
