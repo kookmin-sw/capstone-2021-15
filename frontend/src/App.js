@@ -9,6 +9,7 @@ import LoginPage from './views/LoginPage/LoginPage'
 import SignUpPage from './views/SignUpPage/SignUpPage'
 import WelcomePage from './views/WelcomePage/WelcomePage'
 import ProductPage from './views/ProductPage/ProductPage'
+import TestPage from './views/TestPage/TestPage'
 import { Route, BrowserRouter as Router} from "react-router-dom"
 import "antd/dist/antd.css"
 
@@ -29,6 +30,7 @@ function App() {
                 <Route exact path="/category/:id" component={CategoryPage}/>
                 <Route exact path="/product" component={ProductPage}/>
                 <Route exact path="/product/:id" component={ProductPage}/>
+                <Route exact path="/test" component={TestPage}/>
             </div>
         </Router>
     );
