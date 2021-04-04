@@ -2,14 +2,19 @@ import React , { useState } from 'react';
 import {  } from 'react-bootstrap';
 import { Row, Col, Card, Button } from 'antd';
 import './Question.css';
+//import img1 from '../orange.png'
 
-const Question = (props) =>  {
+const Question = props =>  {
     const [value, setValue] = useState('a');
     const [a, setA] = useState('default');
     const [b, setB] = useState('default');
     const [c, setC] = useState('default');
     const [d, setD] = useState('default');
     const [e, setE] = useState('default');
+    
+    //const img1 = `../${props.img1}`;
+    const img1 = props.img1;
+    const img2 = props.img2;
 
     const radioHandler = e => {
 
@@ -33,9 +38,20 @@ const Question = (props) =>  {
 
     return (
         <>
-        <Card title={props.title} bodyStyle={{backgroundColor:"white"}} style={{marginBottom:"30px"}}>
+        <Card title={props.title} bodyStyle={{backgroundColor:"white"}} style={{textAlign:"center",marginBottom:"30px"}}>
+            {/* <Row style={{display:"inline-block", alignItems: "center"}}>
+                <Col span={12}><img src={img1} style={{height:"300px", marginRight:"30px"}}/></Col>
+                <Col span={12}><img src={img2} style={{height:"300px"}}/></Col>
+            </Row>
+            <Row type="flex" style={{alignItems: "center", justifyContent:"center", marginTop:"30px"}}>
+                <Button onClick={radioHandler} value="a" type={a} shape="circle" size="large"></Button>
+                <Button onClick={radioHandler} value="b" type={b} shape="circle"></Button>
+                <Button onClick={radioHandler} value="c" type={c} shape="circle" size="small"></Button>
+                <Button onClick={radioHandler} value="d" type={d} shape="circle"></Button>
+                <Button onClick={radioHandler} value="e" type={e} shape="circle"size="large"></Button>
+            </Row> */}
             <Row type="flex" style={{alignItems: "center"}}>
-                <Col span={8}>{props.text1}</Col>
+                <Col span={8}><img src={img1} style={{height:"200px", marginRight:"30px"}}/></Col>
                 <Col span={8} style={{display:"flex", alignItems:"center"}}>
                     <Button onClick={radioHandler} value="a" type={a} shape="circle" size="large"></Button>
                     <Button onClick={radioHandler} value="b" type={b} shape="circle"></Button>
@@ -43,7 +59,7 @@ const Question = (props) =>  {
                     <Button onClick={radioHandler} value="d" type={d} shape="circle"></Button>
                     <Button onClick={radioHandler} value="e" type={e} shape="circle"size="large"></Button>
                 </Col>
-                <Col span={8}>{props.text2}</Col>
+                <Col span={8}><img src={img2} style={{height:"200px"}}/></Col>
             </Row>
         </Card>
         </>
