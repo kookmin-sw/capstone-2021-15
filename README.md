@@ -1,6 +1,6 @@
 # UtoPR : 유토피아
 
-팀페이지 주소 : [https://github.com/kookmin-sw/capstone-2021-15/](https://github.com/kookmin-sw/capstone-2021-15/tree/feedback)
+팀페이지 주소 : [https://kookmin-sw.github.io/capstone-2021-15/](https://kookmin-sw.github.io/capstone-2021-15/)
 
 ### 1. 프로젝트 소개
 
@@ -35,18 +35,18 @@
 
 ### 3. 15Team
 
-- 최재강 : **Product Classification**  , Backend , Frontend
+- 최재강 : **Product Classification**  , Backend , Frontend <hr/>
  <img width="250" alt="최재강" src="https://user-images.githubusercontent.com/39542978/113392650-69a78900-93d0-11eb-93a4-1b4ac2ed19aa.png">
 
 
-- 박수빈 : **Recommendation** **system** , Personal color diagnosis
+- 박수빈 : **Recommendation** **system** , Personal color diagnosis <hr/>
  <img width="250" alt="박수빈" src="https://user-images.githubusercontent.com/39542978/113392707-8217a380-93d0-11eb-8018-f21f0a7615c0.png">
 
-- 박민정 : **Backend** , Frontend
+- 박민정 : **Backend** , Frontend <hr/>
 <img width="250" alt="박민정" src="https://user-images.githubusercontent.com/39542978/113392782-9d82ae80-93d0-11eb-9c23-1720615e3290.png">
 
-- 임이현 : **Product Classification ,** Frontend
+- 임이현 : **Product Classification ,** Frontend <hr/>
 <img width="250" alt="임이현" src="https://user-images.githubusercontent.com/39542978/113392834-ae332480-93d0-11eb-978c-418976a73da6.png">
 
-- 박지영 : **Frontend** , Recommendation system
+- 박지영 : **Frontend** , Recommendation system <hr/>
 <img width="250" alt="박지영" src="https://user-images.githubusercontent.com/39542978/113392866-c0ad5e00-93d0-11eb-9041-5df3dbfa6ffe.png">
