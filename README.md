@@ -35,18 +35,18 @@
 
 ### 3. 15Team
 
-- 최재강 : **Product Classification**  , Backend , Frontend <hr/>
+- 최재강 : **Product Classification**  , Backend , Frontend <br/>
  <img width="250" alt="최재강" src="https://user-images.githubusercontent.com/39542978/113392650-69a78900-93d0-11eb-93a4-1b4ac2ed19aa.png">
 
 
-- 박수빈 : **Recommendation** **system** , Personal color diagnosis <hr/>
+- 박수빈 : **Recommendation** **system** , Personal color diagnosis <br/>
  <img width="250" alt="박수빈" src="https://user-images.githubusercontent.com/39542978/113392707-8217a380-93d0-11eb-8018-f21f0a7615c0.png">
 
-- 박민정 : **Backend** , Frontend <hr/>
+- 박민정 : **Backend** , Frontend <br/>
 <img width="250" alt="박민정" src="https://user-images.githubusercontent.com/39542978/113392782-9d82ae80-93d0-11eb-9c23-1720615e3290.png">
 
-- 임이현 : **Product Classification ,** Frontend <hr/>
+- 임이현 : **Product Classification ,** Frontend <br/>
 <img width="250" alt="임이현" src="https://user-images.githubusercontent.com/39542978/113392834-ae332480-93d0-11eb-978c-418976a73da6.png">
 
-- 박지영 : **Frontend** , Recommendation system <hr/>
+- 박지영 : **Frontend** , Recommendation system <br/>
 <img width="250" alt="박지영" src="https://user-images.githubusercontent.com/39542978/113392866-c0ad5e00-93d0-11eb-9041-5df3dbfa6ffe.png">
