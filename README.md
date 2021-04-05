@@ -45,8 +45,8 @@
 - 박민정 : **Backend** , Frontend <br/>
 <img width="250" alt="박민정" src="https://user-images.githubusercontent.com/39542978/113392782-9d82ae80-93d0-11eb-9c23-1720615e3290.png">
 
-- 임이현 : **Product Classification ,** Frontend <br/>
-<img width="250" alt="임이현" src="https://user-images.githubusercontent.com/39542978/113392834-ae332480-93d0-11eb-978c-418976a73da6.png">
+- 임이현 : **Product Classification**, Frontend <br/>
+<img width="250" alt="임이현" src="https://user-images.githubusercontent.com/34808817/113581710-793e0080-9662-11eb-8026-3b5374ae5ede.jpg">
 
 - 박지영 : **Frontend** , Recommendation system <br/>
 <img width="250" alt="박지영" src="https://user-images.githubusercontent.com/39542978/113392866-c0ad5e00-93d0-11eb-9041-5df3dbfa6ffe.png">
