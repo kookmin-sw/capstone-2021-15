@@ -1,6 +1,7 @@
 # UtoPR : 유토피아
 
 팀페이지 주소 : [https://kookmin-sw.github.io/capstone-2021-15/](https://kookmin-sw.github.io/capstone-2021-15/)
+중간발표 영상 : [https://youtu.be/BLwbohQmAq4](https://youtu.be/BLwbohQmAq4)
 
 ### 1. 프로젝트 소개
 
