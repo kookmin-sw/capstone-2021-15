@@ -7,6 +7,7 @@ import { Toast } from 'react-bootstrap';
 import { Row, Col, Card, Button, Radio, Checkbox, Slider } from 'antd';
 import axios from 'axios'
 import './CategoryPage.css'
+import SearchFeature from './SearchFeature'
 // import Carousel from "./components/CardCarousel";
 
 function CategoryPage({match}) {
@@ -15,12 +16,16 @@ function CategoryPage({match}) {
     const [Limit, setLimit] = useState(20)
     const [filterPC, setFilterPC] = useState(false);
     const [filterPrice, setFilterPrice] = useState(false);
+    // 검색 단어
+    const [filterSearch, setFilterSearch] = useState(false);
+    const [SearchTerm, setSearchTerm] = useState("")
 
     const { category2 } = match.params;
 
-    const togglePC = () => {setFilterPC(!filterPC); setFilterPrice(false);}
-    const togglePrice = () => {setFilterPrice(!filterPrice); setFilterPC(false);}
-
+    
+    const togglePC = () => {setFilterPC(!filterPC); setFilterPrice(false); setFilterSearch(false);}
+    const togglePrice = () => {setFilterPrice(!filterPrice); setFilterPC(false);setFilterSearch(false);}
+    const toggleSearch = () => {setFilterSearch(!filterSearch);setFilterPrice(false); setFilterPC(false);}
     const seasons =[
         'spring',
         'summer',
@@ -50,7 +55,13 @@ function CategoryPage({match}) {
     const changeUserPriceHandler = () => {
         setUserPrice(price);
     }
-
+    const updateSearchTerm = (newSearchTerm) => {
+        let body = {
+            searchTerm: newSearchTerm
+        }
+        setSearchTerm(newSearchTerm);
+        getProducts(body);
+    }
     const [personalColor, setPersonalColor] = useState('spring')
     const [price, setPrice] = useState([10, 30]); // slider에서 실시간으로 바뀌는 가격대
     const [userPrice, setUserPrice] = useState([30, 60]); // user data로 받아올 선호 가격대가 15000~30000 이라면 500으로 나눈 값
@@ -75,15 +86,16 @@ function CategoryPage({match}) {
         return () => mounted = false;
     }, [])
 
-    const getProducts = () => {
+    const getProducts = (body) => {
         // axios.post(`/api/product/category2/${category2}`)
-        axios.post('/api/product/products')
+        axios.post('/api/product/products', body)
             .then(response => {
                 if(response.data.success) {
                     console.log(response.data.productInfo)
                     setProducts(response.data.productInfo)
                 } else {
-                    alert('상품을 가져오는데 실패했습니다')
+                    if(response.data.message === "no products") { }
+                    else alert('상품을 가져오는데 실패했습니다')
                 }
             })
     }
@@ -101,12 +113,20 @@ function CategoryPage({match}) {
                         <Button onClick={togglePrice}>
                             Price
                         </Button>
+                        <Button onClick={toggleSearch}>
+                            Search
+                        </Button>
                         <Toast onClose={togglePC} show={filterPC}>
                             <Radio.Group options={seasons} onChange={changePCHandler} value={personalColor} />
                         </Toast>
                         <Toast onClose={togglePrice} show={filterPrice} style={{textAlign: "center"}}>
                             <Slider range marks={marks} defaultValue={userPrice} onChange={changePriceHandler}/>
                             <Button onClick={changeUserPriceHandler}>적용</Button>
+                        </Toast>
+                        <Toast onClose={toggleSearch} show={filterSearch} style={{textAlign: "left"}}>
+                            {/* {search box} */}
+                            
+                            <SearchFeature refreshFunction={updateSearchTerm}/>
                         </Toast>
                     </Card>
                     <Row type="flex" gutter={[30, 30]}>
@@ -120,8 +140,6 @@ function CategoryPage({match}) {
                                         </Col>
                                     )
                                 }
-                                
-                            
                             }
                         }) : ''
                     }
