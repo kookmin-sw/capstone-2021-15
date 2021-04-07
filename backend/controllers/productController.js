@@ -7,17 +7,35 @@ module.exports = {
     read_products: (req, res) => {
         let limit = req.body.limit ? parseInt(req.body.limit) :1000;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
-
-        Product.find()
-        .skip(skip)
-        .limit(limit)
-        .exec((err, productInfo) => {
-            if(err) return res.status(400).json({ success: false, err });
-            else{
-                if (productInfo.length === 0) return res.send({message: "no products"}) // 아예 아이템이 존재하지 않을 때. (!products) 는 빈 배열[] 을 리턴함
-                return res.status(200).json({ success: true, productInfo, postSize:productInfo.length});
-            }
-        })                    
+        // 검색창에 들어오는 단어 처리
+        let term = req.body.searchTerm;
+        console.log(req.body)
+        if(term){
+            console.log(term);
+            Product.find()
+            .find({$text: {$search:term}})
+            .skip(skip)
+            .limit(limit)
+            .exec((err, productInfo) => {
+                if(err) return res.status(400).json({ success: false, err });
+                else{
+                    if (productInfo.length === 0) return res.send({message: "no products"}) // 아예 아이템이 존재하지 않을 때. (!products) 는 빈 배열[] 을 리턴함
+                    return res.status(200).json({ success: true, productInfo, postSize:productInfo.length});
+                }
+            }) 
+        } else{
+            console.log('else');
+            Product.find()
+            .skip(skip)
+            .limit(limit)
+            .exec((err, productInfo) => {
+                if(err) return res.status(400).json({ success: false, err });
+                else{
+                    if (productInfo.length === 0) return res.send({message: "no products"}) // 아예 아이템이 존재하지 않을 때. (!products) 는 빈 배열[] 을 리턴함
+                    return res.status(200).json({ success: true, productInfo, postSize:productInfo.length});
+                }
+            })                    
+        }
     },
     // id로 검색 (1개) 
     read_product_one: async(req, res) => {
