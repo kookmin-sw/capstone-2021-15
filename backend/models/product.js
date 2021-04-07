@@ -61,5 +61,16 @@ const ProductSchema = new Schema({
 		ref: 'User',
 	}],
 });
+ProductSchema.index({
+	title:'text',
+	name:'text',
+	brand:'text'
+}, {
+	weights:{
+		name: 2,// title 보다 2배 더
+		brand: 2, 
+		title: 1
+	}
+})
 
 module.exports = mongoose.model('Product', ProductSchema);
