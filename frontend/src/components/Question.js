@@ -5,35 +5,21 @@ import './Question.css';
 //import img1 from '../orange.png'
 
 const Question = props =>  {
-    const [value, setValue] = useState('a');
-    const [a, setA] = useState('default');
-    const [b, setB] = useState('default');
-    const [c, setC] = useState('default');
-    const [d, setD] = useState('default');
-    const [e, setE] = useState('default');
+    const [value, setValue] = useState('');
+    const [a, setA] = useState('gray');
+    const [b, setB] = useState('gray');
+    const [c, setC] = useState('gray');
+    const [d, setD] = useState('gray');
+    const [e, setE] = useState('gray');
+    const [f, setF] = useState('gray');
+    const [g, setG] = useState('gray');
     
     //const img1 = `../${props.img1}`;
     const img1 = props.img1;
     const img2 = props.img2;
 
     const radioHandler = e => {
-
-        //oldValue의 테두리 하이라이트 제거
-        if (value == "a") setA('default');
-        else if (value == "b") setB('default');
-        else if (value == "c") setC('default');
-        else if (value == "d") setD('default');
-        else if (value == "e") setE('default');
-
-        //newValue <- oldValue
-        setValue(e.target.value);
-
-        //newValue의 테두리 하이라이트
-        if (e.target.value == "a") setA('primary');
-        else if (e.target.value == "b") setB('primary');
-        else if (e.target.value == "c") setC('primary');
-        else if (e.target.value == "d") setD('primary');
-        else if (e.target.value == "e") setE('primary');
+        setValue(e.target.id);
     };
 
     return (
@@ -52,12 +38,14 @@ const Question = props =>  {
             </Row> */}
             <Row type="flex" style={{alignItems: "center"}}>
                 <Col span={8}><img src={img1} style={{height:"200px", marginRight:"30px"}}/></Col>
-                <Col span={8} style={{display:"flex", alignItems:"center"}}>
-                    <Button onClick={radioHandler} value="a" type={a} shape="circle" size="large"></Button>
-                    <Button onClick={radioHandler} value="b" type={b} shape="circle"></Button>
-                    <Button onClick={radioHandler} value="c" type={c} shape="circle" size="small"></Button>
-                    <Button onClick={radioHandler} value="d" type={d} shape="circle"></Button>
-                    <Button onClick={radioHandler} value="e" type={e} shape="circle"size="large"></Button>
+                <Col span={8} style={{display:"flex", alignItems:"center", justifyContent: "space-between"}}>
+                    <button className={`btn-circle btn-xl ${value === 'a'? 'active':''}`} onClick={radioHandler} id="a" />
+                    <button className={`btn-circle btn-lg ${value === 'b'? 'active':''}`} onClick={radioHandler} id="b" />
+                    <button className={`btn-circle btn-md ${value === 'c'? 'active':''}`} onClick={radioHandler} id="c" />
+                    <button className={`btn-circle btn-sm ${value === 'd'? 'active':''}`} onClick={radioHandler} id="d" />
+                    <button className={`btn-circle btn-md ${value === 'e'? 'active':''}`} onClick={radioHandler} id="e" />
+                    <button className={`btn-circle btn-lg ${value === 'f'? 'active':''}`} onClick={radioHandler} id="f" />
+                    <button className={`btn-circle btn-xl ${value === 'g'? 'active':''}`} onClick={radioHandler} id="g" />
                 </Col>
                 <Col span={8}><img src={img2} style={{height:"200px"}}/></Col>
             </Row>
