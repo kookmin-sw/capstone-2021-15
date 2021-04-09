@@ -6,13 +6,13 @@ import './Question.css';
 
 const Question = props =>  {
     const [value, setValue] = useState('');
-    const [a, setA] = useState('gray');
-    const [b, setB] = useState('gray');
-    const [c, setC] = useState('gray');
-    const [d, setD] = useState('gray');
-    const [e, setE] = useState('gray');
-    const [f, setF] = useState('gray');
-    const [g, setG] = useState('gray');
+    // const [a, setA] = useState('gray');
+    // const [b, setB] = useState('gray');
+    // const [c, setC] = useState('gray');
+    // const [d, setD] = useState('gray');
+    // const [e, setE] = useState('gray');
+    // const [f, setF] = useState('gray');
+    // const [g, setG] = useState('gray');
     
     //const img1 = `../${props.img1}`;
     const img1 = props.img1;
