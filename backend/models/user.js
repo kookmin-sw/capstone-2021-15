@@ -36,6 +36,14 @@ const userSchema = new Schema({
 	role: {
 		type: Number,
 		default: 0,
+	},
+	interestCategory:{
+		type: Array,
+		default: []
+	},
+	like: {
+		type: Array,
+		default: []
 	}
 	// createdAt: {
 	// 	type: Date,
