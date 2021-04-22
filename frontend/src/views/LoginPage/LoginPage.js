@@ -3,12 +3,15 @@ import { withRouter } from 'react-router-dom';
 import { Icon, Form, Input, Button, Typography} from 'antd';
 import * as Yup from 'yup'
 import { Formik} from 'formik';
-import axios from 'axios';
+import { loginUser } from '../../_actions/user_actions';
+import { useDispatch } from 'react-redux'
 import './LoginPage.css'
+
 const { Title } = Typography;
 
 
 function LoginPage(props) {
+    const dispatch = useDispatch();
     const [formErrorMessage, setFormErrorMessage] = useState('')
 
     return (
@@ -28,23 +31,25 @@ function LoginPage(props) {
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(()=> {
                     let dataToSubmit = {
-                        nickName:values.nickName,
+                        nickName: values.nickName,
                         password: values.password
                     }
-                    axios.post('/api/user/login', dataToSubmit)
+
+                    dispatch(loginUser(dataToSubmit))
                         .then(response => {
-                            if(response.data.loginSuccess ) {
-                                    props.history.push('/main'); 
-                                } else {
-                                    setFormErrorMessage('Check out your Account or Password again')
-                                }
-                            }) .catch(err => {
+                            console.log(response)
+                            if( response.payload.loginSuccess ) {
+                                props.history.push('/main'); 
+                            } else {
                                 setFormErrorMessage('Check out your Account or Password again')
-                                    setTimeout(() => {
-                                        setFormErrorMessage("")
-                                    }, 3000);
-                                });
-                                setSubmitting(false);
+                            }
+                        }) .catch(err => {
+                            setFormErrorMessage('Check out your Account or Password again')
+                                setTimeout(() => {
+                                    setFormErrorMessage("")
+                                }, 3000);
+                            });
+                        setSubmitting(false);
                 }, 500)
             }}
             >

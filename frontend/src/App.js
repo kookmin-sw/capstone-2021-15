@@ -26,9 +26,9 @@ function App() {
                 <Route exact path="/login" component={Auth(LoginPage, false)}/>
                 <Route exact path="/signup" component={Auth(SignUpPage, false)}/>
                 <Route exact path="/main" component={Auth(MainPage, true)}/>
-                <Route exact path="/category" component={CategoryPage}/>
-                <Route exact path="/category/:id" component={CategoryPage}/>
-                <Route exact path="/product" component={ProductPage}/>
+                <Route exact path="/category" component={Auth(CategoryPage, true)}/>
+                <Route exact path="/category/:id" component={Auth(CategoryPage,true)}/>
+                <Route exact path="/product" component={Auth(ProductPage, true)}/>
                 <Route exact path="/product/:id" component={ProductPage}/>
                 <Route exact path="/test" component={TestPage}/>
             </div>

@@ -3,10 +3,14 @@ import axios from 'axios';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {Form, Input, Button, Typography} from 'antd';
+import { useDispatch } from 'react-redux';
+import { signupUser } from '../../_actions/user_actions'
 import './SignUpPage.css'
+
 const { Title } = Typography;
 
 function SignUpPage(props) {
+    const dispatch = useDispatch();
     const formItemLayout = {
         labelCol: {
             xs: { span: 24 },
@@ -54,12 +58,12 @@ function SignUpPage(props) {
                     // age: values.age
                 };
         
-                axios.post('/api/user/signup', dataToSubmit)
+                dispatch(signupUser(dataToSubmit))
                     .then(response => {
-                        if (response.data.success) {
+                        if (response.payload.success) {
                             props.history.push("/login");
                         } else {
-                            alert(response.data.err)
+                            alert(response.payload.err)
                         }
                     })
                 setSubmitting(false);
