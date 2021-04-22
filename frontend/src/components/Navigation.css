@@ -1,0 +1,36 @@
+.justify-content-center {
+    background-color: #979797;
+    background-clip: padding-box;
+}
+
+.m-2 .nav-link {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.filter_img {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.m-2 .btn,
+.m-2 .btn:hover,.m-2 .btn:focus,.m-2 .btn:active, 
+.m-2 .btn:active:focus:not(:disabled):not(.disabled),
+.m-2 .btn:focus, .m-2 .btn:active, .m-2 .btn:hover{
+    box-shadow: none!important;
+    outline: none;
+    background-color: transparent;
+    color: black;
+    border: 0px; 
+}
+
+.row .col-sm-6 {
+    text-align: center;
+}
+
+.row .col-sm-6 .fade{
+    display: inline-block;
+}
+
