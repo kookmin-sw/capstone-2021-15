@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { auth } from '../_actions/user_actions';
 import axios from 'axios';
 
 export default function (SpecificComponent, option, adminRoute = null) {
@@ -11,10 +13,11 @@ export default function (SpecificComponent, option, adminRoute = null) {
     
 
     function AuthenticationCheck(props) {
-        let user = props.user;
+        const user = useSelector(state => state.user)
+        const dispatch = useDispatch();
         useEffect(() => {
-            axios.get('/api/user/auth').then(response => {
-                if( !response.data.isAuth) {
+            dispatch(auth()).then(response => {
+                if( !response.payload.isAuth) {
                     if( option) {
                         props.history.push('/login');
                     }
@@ -22,12 +25,15 @@ export default function (SpecificComponent, option, adminRoute = null) {
                     // 로그인한 상태
                     if(adminRoute && !response.payload.isAuth) { // 로그인은 헀지만 관리자는 아님
                         props.history.push('/main'); 
+                        
+
                     } else { // 로그인 했는데 회원가입, 로그인 페이지로 접근하려고 할 때
-                        props.history.push('/main');
+                        if(option===false){
+                            props.history.push('/main');
+                        }
                     }
                 }
             })
-
         }, [])
 
         return (

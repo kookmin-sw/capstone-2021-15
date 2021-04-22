@@ -16,8 +16,6 @@ const userWithEncodedPassword = async ({nickName, password, age}) => {
     const user = new User({
         nickName,
         password: hashedPassword,
-        age,
-        
     });
     return user;
 }
@@ -75,8 +73,13 @@ module.exports = {
             role: req.user.role,
             isAdmin: req.user.role === 0 ? false : true,
             isAuth: true,
-        })
+            like: req.user.like,
+            season: req.user.season,
+            tone: req.user.tone,
+            pccs: req.user.pccs,
+            interestCategory: req.user.interestCategory,
 
+        })
     },
 
     logout: async (req, res) => {

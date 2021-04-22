@@ -6,6 +6,7 @@ const productController = require('../controllers/productController');
 router.post('/products', productController.read_products); // /api/product/products
 router.get('/:product_id', productController.read_product_one); // /api/product/:product_id
 router.post('/season/:season', productController.read_season_products); // 
+router.post('/season',productController.read_products)
 // router.post('/season/:season/tone/', productController.read_season_tone); //
 router.get('/season/:season/:product_id', productController.read_season_product_one); //
 // router.post(':season&:tone', productController.read_season_tone);

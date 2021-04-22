@@ -1,15 +1,19 @@
 // model
 const Product = require('../models/product');
-const qs = require('querystring')
 
 module.exports = {
     // 모든 상품을 가져오되 3개씩 가져올 것
     read_products: (req, res) => {
-        let limit = req.body.limit ? parseInt(req.body.limit) :1000;
+        let limit = req.body.limit ? parseInt(req.body.limit) :100;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
+
+        let season = req.body.season ? req.body.season : '';
+        // let price = '' ? req.body.season : '';
         // 검색창에 들어오는 단어 처리
         let term = req.body.searchTerm;
         console.log(req.body)
+
+
         if(term){
             console.log(term);
             Product.find()
@@ -24,8 +28,9 @@ module.exports = {
                 }
             }) 
         } else{
-            console.log('else');
-            Product.find()
+            Product.find({
+                'season':season
+            })
             .skip(skip)
             .limit(limit)
             .exec((err, productInfo) => {

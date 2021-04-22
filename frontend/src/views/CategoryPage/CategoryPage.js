@@ -10,19 +10,24 @@ import './CategoryPage.css'
 import SearchFeature from './SearchFeature'
 // import Carousel from "./components/CardCarousel";
 
-function CategoryPage({match}) {
-
+function CategoryPage(props) {
     const [Products, setProducts] = useState([])
-    const [Limit, setLimit] = useState(20)
+    const [Limit, setLimit] = useState(100)
+    const [Skip, setSkip] = useState(0)
+    const [PostSize, setPostSize] = useState(0)
     const [filterPC, setFilterPC] = useState(false);
     const [filterPrice, setFilterPrice] = useState(false);
     // 검색 단어
     const [filterSearch, setFilterSearch] = useState(false);
     const [SearchTerm, setSearchTerm] = useState("")
 
-    const { category2 } = match.params;
+    const [PersonalColor, setPersonalColor] = useState('spring')
+    const [Price, setPrice] = useState([10, 30]); // slider에서 실시간으로 바뀌는 가격대
+    const [UserPrice, setUserPrice] = useState([0, 100]); // user data로 받아올 선호 가격대가 15000~30000 이라면 500으로 나눈 값
 
-    
+    const [User, setUser] = useState({})
+    const [IsMount, setIsMount] = useState(true)
+
     const togglePC = () => {setFilterPC(!filterPC); setFilterPrice(false); setFilterSearch(false);}
     const togglePrice = () => {setFilterPrice(!filterPrice); setFilterPC(false);setFilterSearch(false);}
     const toggleSearch = () => {setFilterSearch(!filterSearch);setFilterPrice(false); setFilterPC(false);}
@@ -44,6 +49,29 @@ function CategoryPage({match}) {
         100:'5만원'
     }
 
+    useEffect(()=>{
+        let body = {
+            skip:Skip,
+            limit:Limit,
+            season: PersonalColor,
+            price: Price
+        }
+        getProducts(body);
+        
+    }, [PersonalColor])   
+    
+
+    const loadMoreHandler = () => {
+        let skip = Skip + Limit;
+        let body = {
+            skip: skip,
+            limit: Limit,
+            loadMore: true,
+        }
+        getProducts(body);
+        setSkip(skip);
+    }
+
     const changePCHandler = e => {
         setPersonalColor(e.target.value);
     }
@@ -53,7 +81,7 @@ function CategoryPage({match}) {
     }
 
     const changeUserPriceHandler = () => {
-        setUserPrice(price);
+        setUserPrice(Price);
     }
     const updateSearchTerm = (newSearchTerm) => {
         let body = {
@@ -62,9 +90,6 @@ function CategoryPage({match}) {
         setSearchTerm(newSearchTerm);
         getProducts(body);
     }
-    const [personalColor, setPersonalColor] = useState('spring')
-    const [price, setPrice] = useState([10, 30]); // slider에서 실시간으로 바뀌는 가격대
-    const [userPrice, setUserPrice] = useState([30, 60]); // user data로 받아올 선호 가격대가 15000~30000 이라면 500으로 나눈 값
 
     // const [currentPage, SetCurrentPage] = useState(1)
     // const [productPerPage, setProductPerPage] = useState(20)
@@ -76,15 +101,15 @@ function CategoryPage({match}) {
 
     // const paginate = (pageNumber: number) => SetCurrentPage(pageNumber);
 
-    useEffect(() => {
-        let mounted = true;
+    // useEffect(() => {
+    //     let mounted = true;
 
-        if (mounted) {
-            getProducts();
-        }
+    //     if (mounted) {
+    //         getProducts();
+    //     }
         
-        return () => mounted = false;
-    }, [])
+    //     return () => mounted = false;
+    // }, [])
 
     const getProducts = (body) => {
         // axios.post(`/api/product/category2/${category2}`)
@@ -117,10 +142,10 @@ function CategoryPage({match}) {
                             Search
                         </Button>
                         <Toast onClose={togglePC} show={filterPC}>
-                            <Radio.Group options={seasons} onChange={changePCHandler} value={personalColor} />
+                            <Radio.Group options={seasons} onChange={changePCHandler} value={PersonalColor} />
                         </Toast>
                         <Toast onClose={togglePrice} show={filterPrice} style={{textAlign: "center"}}>
-                            <Slider range marks={marks} defaultValue={userPrice} onChange={changePriceHandler}/>
+                            <Slider range marks={marks} defaultValue={UserPrice} onChange={changePriceHandler}/>
                             <Button onClick={changeUserPriceHandler}>적용</Button>
                         </Toast>
                         <Toast onClose={toggleSearch} show={filterSearch} style={{textAlign: "left"}}>
@@ -132,15 +157,25 @@ function CategoryPage({match}) {
                     <Row type="flex" gutter={[30, 30]}>
                     {
                         Products ? Products.map((product, index) => {
-                            if (product.season == personalColor) {
-                                if (product.price >= userPrice[0]*500 && product.price <= userPrice[1]*500) {
+                            // if (product.season === PersonalColor) {
+
+                                if (product.price >= UserPrice[0]*500 && product.price <= UserPrice[1]*500) {
                                     return (
-                                        <Col lg={6} md={12} xs={24} >
-                                            <CardComponent brand={product.brand} name={product.name} title={product.title} pccs={product.pccs} season={product.season} img-url={product['img-url']} data-code={product['data-code']} price={product.price}></CardComponent>
+                                        <Col  key={index} lg={6} md={12} xs={24} >
+                                            <CardComponent 
+                                                brand={product.brand} 
+                                                name={product.name} 
+                                                title={product.title} 
+                                                pccs={product.pccs} 
+                                                season={product.season} 
+                                                img-url={product['img-url']} 
+                                                data-code={product['data-code']} 
+                                                price={product.price}>
+                                            </CardComponent>
                                         </Col>
                                     )
                                 }
-                            }
+                            // }
                         }) : ''
                     }
                     </Row>
