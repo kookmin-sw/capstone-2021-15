@@ -74,10 +74,11 @@ module.exports = {
             isAdmin: req.user.role === 0 ? false : true,
             isAuth: true,
             like: req.user.like,
-            season: req.user.seaseon,
+            season: req.user.season,
             tone: req.user.tone,
             pccs: req.user.pccs,
             interestCategory: req.user.interestCategory,
+
         })
     },
 
