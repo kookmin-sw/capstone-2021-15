@@ -3,17 +3,17 @@ var router = express.Router();
 var auth = require('../middlewares/auth')
 const productController = require('../controllers/productController');
 
+router.post('/products', productController.read_products); // /api/product/products
+router.get('/:product_id', productController.read_product_one); // /api/product/:product_id
+router.post('/season/:season', productController.read_season_products); // 
+router.post('/season',productController.read_products)
+// router.post('/season/:season/tone/', productController.read_season_tone); //
+router.get('/season/:season/:product_id', productController.read_season_product_one); //
+// router.post(':season&:tone', productController.read_season_tone);
+// category2: lip/eye_shadow/cheek 
+router.post('/category1/:category1', productController.read_category1_products); // 
+router.post('/category2/:category2', productController.read_category2_products); // 
 
-router.post('/products', productController.products); // /api/product/products
-router.get('/:product_id', productController.read_one); // /api/product/:product_id
-router.get('/:season', productController.season_all); // /api/product/season
-router.get('/:season/:product_id', productController.season_one); // /api/product/season
-// category2: lip/eye_shadow/cheek 이런 식으로
-router.get('/:category2', productController.read_category2); // /api/product/:category2
-
-// router.get('/product/', auth, productController.all);
-// router.get('/product/:product_id', auth, productController.read_one);
-// router.get('/product/:season', auth, productController.read_one_pcrs);
 
 
 

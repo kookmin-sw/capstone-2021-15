@@ -1,12 +1,15 @@
 .product_inner {
-    position: relative;
+    text-align: center;
 }
 
-.product_inner .product_top {
+.product_top {
     max-height: 600px;
-    position: relative;
-    display: inline-block;
     width: 1024px;
+    display: inline-block;
+}
+
+.product_title {
+    position: relative; 
     border-left: 1px solid black;
     border-right: 1px solid black;
 }
@@ -14,18 +17,24 @@
 .product_img {
     height:600px;
     width: auto;
+    vertical-align: top;
 }
 
 .product_name {
     height: 200px;
     width: 100%;
     text-align: left;
+    box-sizing: border-box;
     padding: 30px;
     font-size: 42px;
     color: white;
-    background-color: rgba( 57, 55, 55, 0.3);
+    background-color: rgba(57, 55, 55, 0.3);
     position: absolute;
     bottom: 0px;
+}
+
+.product_bottom {
+    background-color: #2F2F2F;
 }
 
 .product_personal_color {
@@ -33,7 +42,7 @@
     color: white;
     padding: 30px;
     position: absolute;
-    top: -54px;
+    top: -38px;
     left: 30px;
     font-size: 16px;
 }
@@ -52,10 +61,10 @@
     font-size: 16px;
 }
 
-.product_like .btn,
-.product_like .btn:hover,.product_like .btn:focus,.product_like .btn:active, 
-.product_like .btn:active:focus:not(:disabled):not(.disabled),
-.product_like .btn:focus, .product_like .btn:active, .product_like .btn:hover {
+/* .ant-btn,
+.ant-btn:hover,.ant-btn:focus,.ant-btn:active, 
+.ant-btn:active:focus:not(:disabled):not(.disabled),
+.ant-btn:focus, .ant-btn:active, .ant-btn:hover {
     box-shadow: none!important;
     outline: none;
     background-color: transparent;
@@ -66,13 +75,26 @@
 .likebtn_img {
     width: 16px;
     height: 16px;
+} */
+
+.likeBtn {
+    border-color: transparent !important;
+    color: white;
 }
+/* 
+.likeBtn:hover, .likeBtn:focus, .likeBtn:active,
+.likeBtn:active:focus:not(:disabled):not(.disabled),
+.likeBtn:focus, .likeBtn:active, .likeBtn:hover {
+    color: red;
+} */
+
 
 .liveRanking {
     color: #C644B9;
     font-size: 24px;
     text-align: left;
     padding-left: 30px;
+    padding-top: 30px;
 }
 
 .product_detail {
@@ -88,7 +110,7 @@
     text-align: left;
 }
 
-.right .btn,
+/* .right .btn,
 .right .btn:hover,.right .btn:focus,.right .btn:active, 
 .right .btn:active:focus:not(:disabled):not(.disabled),
 .right .btn:focus, .right .btn:active, .right .btn:hover {
@@ -97,12 +119,18 @@
     background-color: transparent;
     color: white;
     border: 0px; 
-}
+} */
 
-.right .btn {
+/* .right .btn {
     margin-top: 100px;
     font-size: 30px;
     color: #C4C4C4
+} */
+.buyBtn {
+    color: white !important;
+    font-size: 30px !important;
+    margin-top: 60px;
+    padding-left: 0px !important;
 }
 
 .other_contents {

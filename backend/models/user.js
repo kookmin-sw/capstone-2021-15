@@ -17,17 +17,33 @@ const userSchema = new Schema({
 	},
 	age: {
 		type: Number,
-		required: true,
 	},
 	// personal_color: {
 	// 	type: String,
 	// },
+	season: {
+		type: String,
+	},
+	tone: {
+		type: String,
+	},
+	pccs:{
+		type: String,
+	},
 	token: {
 		type: String,
 	},
 	role: {
 		type: Number,
 		default: 0,
+	},
+	interestCategory:{
+		type: Array,
+		default: []
+	},
+	like: {
+		type: Array,
+		default: []
 	}
 	// createdAt: {
 	// 	type: Date,
