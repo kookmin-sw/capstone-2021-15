@@ -2,9 +2,8 @@
 const Product = require('../models/product');
 
 module.exports = {
-    // 모든 상품을 가져오되 3개씩 가져올 것
-    read_products: (req, res) => {
-        let limit = req.body.limit ? parseInt(req.body.limit) :100;
+    read_products: async (req, res) => {
+        let limit = req.body.limit ? parseInt(req.body.limit) :30;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
 
         let season = req.body.season ? req.body.season : '';
@@ -13,10 +12,9 @@ module.exports = {
         let term = req.body.searchTerm;
         console.log(req.body)
 
-
         if(term){
             console.log(term);
-            Product.find()
+            await Product.find()
             .find({$text: {$search:term}})
             .skip(skip)
             .limit(limit)
@@ -28,7 +26,7 @@ module.exports = {
                 }
             }) 
         } else{
-            Product.find({
+            await Product.find({
                 'season':season
             })
             .skip(skip)
@@ -43,18 +41,19 @@ module.exports = {
         }
     },
     // id로 검색 (1개) 
-    read_product_one: async(req, res) => {
-        await Product.findOne({_id: req.params.product_id},
+    read_product_by_datacode: async(req, res) => {
+        // console.log(req.query)
+        await Product.find({'data-code': req.query.datacode},
             function(err, productInfo) {
                 if(err) return res.status(500).json({ success: false, err });
-                if(!product) return res.status(404).json({ success: false, message: 'product not found'});
+                if(!productInfo) return res.status(404).json({ success: false, message: 'product not found'});
                 return res.json({productInfo, success: true
             });
         })
     },
     // 해당 계절 다 읽어오기
     read_season_products:(req, res) => {
-        let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+        let limit = req.body.limit ? parseInt(req.body.limit) : 30;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
 
         Product.find({season:req.params.season}) 
@@ -68,9 +67,6 @@ module.exports = {
             }
         })
     },
-
-
-    // 이거 어떻게 줄건지 정하기 200331
     read_season_product_one : async(req, res) => {
         await Product.findOne({
             season: req.params.season}, function(err, productInfo){
@@ -113,7 +109,7 @@ module.exports = {
     },
     // category2: lip 이렇게
     read_category2_products : (req, res) => {
-        let limit = req.body.limit ? parseInt(req.body.limit) : 50;
+        let limit = req.body.limit ? parseInt(req.body.limit) : 30;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
 
         Product.find({category2:req.params.category2}) 

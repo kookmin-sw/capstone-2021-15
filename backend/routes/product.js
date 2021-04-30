@@ -4,7 +4,7 @@ var auth = require('../middlewares/auth')
 const productController = require('../controllers/productController');
 
 router.post('/products', productController.read_products); // /api/product/products
-router.get('/:product_id', productController.read_product_one); // /api/product/:product_id
+router.post('/product_by_datacode', productController.read_product_by_datacode); // /api/product/product_by_id
 router.post('/season/:season', productController.read_season_products); // 
 router.post('/season',productController.read_products)
 // router.post('/season/:season/tone/', productController.read_season_tone); //
