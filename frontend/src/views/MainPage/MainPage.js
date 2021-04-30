@@ -1,17 +1,14 @@
+import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import axios from 'axios'
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import CardComponent from "../../components/CardComponent";
-import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
-import Recommand from "../../components/Recommand";
 import { Col, Row, Card, Button } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
-import axios from 'axios'
 import './MainPage.css';
-
 const { Meta } = Card;
-
 
 function MainPage(props) {
     // 이건 backend에서 가져와야댐
@@ -20,13 +17,12 @@ function MainPage(props) {
     // 처음에 3개의 아이템만 가져옴
     const [Limit, setLimit] = useState(3)
     const [PostSize, setPostSize] = useState(0)
-    
-    const [PersonalColor, setPersonalColor] = useState('spring')
-    const [InterestCategory, setInterestCategory ] = useState(['lip', 'hair'])
+    const [PersonalColor, setPersonalColor] = useState('')
+    const [InterestCategory, setInterestCategory ] = useState([])
     const [userPrice, setUserPrice] = useState([20000, 35000]);
-    // console.log('ㅠㅠ', props)
-
+    const [UserInfo, setUserInfo] = useState({})
     const [IsMount, setIsMount] = useState(true)
+    // console.log('props', props)
     useEffect(() => {
         // 처음 렌더링 시 props에 user데이터가 없음
         // 처음 렌더링은 제외 
@@ -37,18 +33,19 @@ function MainPage(props) {
             skip: Skip,
             limit: Limit
             }
-            // console.log('props', props.user.userData)
-            // let user_season = props.user.userData.season ? props.user.userData.season : ''
-            // setPersonalColor(user_season)
-            // console.log('Personal-COLOR: ', user_season)
-            getProducts(body)
+            setPersonalColor(props.user.userData.season)
+            setInterestCategory(props.user.userData.interestCategory)
+            // state인 PersonalColor로 인자로 주면 안됨
+            // -> 아마 비동기로 동작해서 순서대로 state에 저장이 안됨
+            // 걍 initial state인 ''임 
+            // 만약 PersonalColor로 인자로 주면 그 다음에 set State된 PersonalColor 반영됨
+            getProducts(body, props.user.userData.season)
         }
-        // return () => mounted = false;
-    }, [props.user, PersonalColor]) // personalColor없으면 setPersonalColor에 적용 xx
-    // const person
+    }, [props]) // personalColor없으면 setPersonalColor에 적용 xx
 
-    const getProducts = ( body) => {
-        axios.post(`/api/product/season/${PersonalColor}`, body)
+    // 210427 backend productController에서 메인페이지 3개 아이템을 위한 컨트롤러 추가하고 바꾸기
+    const getProducts = ( body, personalColor) => {
+        axios.post(`/api/product/season/${personalColor}`, body)
             .then(response => {
                 if(response.data.success) {
                     if(body.loadMore){
@@ -59,8 +56,6 @@ function MainPage(props) {
                         setProducts(response.data.productInfo)
                     }
                     setPostSize(response.data.postSize)
-                    // console.log(response.data.productInfo)
-                    // setProducts(response.data.productInfo)
                 } else {
                     alert('상품을 가져오는데 실패했습니다')
                 }
@@ -77,7 +72,54 @@ function MainPage(props) {
         getProducts(body);
         setSkip(skip);
     }
+    const pccs = {
+        'p': 'pale',
+        'lt': 'light',
+        'b' : 'bright',
+        'v' : 'vivid',
+        'ltg' :  'light grayish',
+        'sf' : 'soft',
+        'g' : 'grayish',
+        'd' : 'dull',
+        's' : 'strong',
+        'dp' : 'deep',
+        'dkg' : 'dark grayish',
+        'dk' : 'dark'
+    }
+    // const getProducts = ( body, personalColor) => {
+    //     axios.post(`/api/product/season/${personalColor}`, body)
+    //         .then(response => {
+    //             if(response.data.success) {
+    //                 if(body.loadMore){
+    //                     setProducts([...response.data.productInfo])
+    //
+    //                 } else{
+    //                     console.log(response.data.productInfo)
+    //                     setProducts(response.data.productInfo)
+    //                 }
+    //                 setPostSize(response.data.postSize)
+    //             } else {
+    //                 alert('상품을 가져오는데 실패했습니다')
+    //             }
+    //         })
+    // }
 
+    const onClickToSaveClickProduct = (product, user) => {
+        let body = {
+            product_data_code: product['data-code'],
+            product_id: product._id,
+            user_id: user._id,
+            user_season: user.season,
+            product_season: product.season
+        }
+        // console.log(body)
+        axios.post('/api/click-product/click-log', body)
+            .then(response => {
+                if(response.data.clickLogSuccess) {
+                    // console.log(response)
+                }
+            })
+    }
     const categoryHandler = InterestCategory.map((category, index) => {
         let categoryName = category.toUpperCase();
         return (
@@ -106,17 +148,34 @@ function MainPage(props) {
                                 product.price <= userPrice[1]) {
                                 return (
                                     <Col lg={8} md={12} xs={24} key={index} >
-                                        <CardComponent 
-                                            brand={product.brand} 
-                                            name={product.name} 
-                                            title={product.title}
-                                            pccs={product.pccs} 
-                                            season={product.season} 
-                                            img-url={product['img-url']} 
-                                            data-code={product['data-code']}
-                                            price={product.price}>    
+                                        <CardComponent
+                                            user = {props.user.userData}
+                                            product={product}>
                                         </CardComponent>
                                     </Col>
+                                    // <Col lg={8} md={12} xs={24} key={index} >
+                                    //     <Card cover={
+                                    //         <Link onClick={()=>onClickToSaveClickProduct(product, props.user.userData)}
+                                    //               to={{
+                                    //                 pathname :`/product/${product['data-code']}`,
+                                    //             }}>
+                                    //             <img src={product['img-url']}/>
+                                    //         </Link>
+                                    //     }>
+                                    //         <Meta
+                                    //             title={product.name+" "+product.title}
+                                    //             description={
+                                    //                 <div>
+                                    //                     [ {product.brand} ]
+                                    //                     <br/>
+                                    //                     {product.season} {pccs[product.pccs]}
+                                    //                     <br/>
+                                    //                     {product.price}원
+                                    //                 </div>
+                                    //             }
+                                    //         />
+                                    //     </Card>
+                                    // </Col>
                                 )
                             }
                         }) : ''
@@ -125,7 +184,6 @@ function MainPage(props) {
             </Row>
         )
     })
-
     return (
         <>
         <Header/>
@@ -150,7 +208,6 @@ function MainPage(props) {
                     } */}
                 </div>
             </div>
-            
         </div>
         <Footer/>
         </>
