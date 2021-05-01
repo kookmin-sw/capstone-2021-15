@@ -1,0 +1,10 @@
+
+header{
+    position: fixed;
+}
+
+
+.card-container {
+    width: 1024px;
+    display: inline-block ;
+}

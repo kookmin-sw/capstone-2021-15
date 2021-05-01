@@ -1,0 +1,63 @@
+
+.canvas{
+    display: flex;
+    justify-content: center;
+
+
+}
+
+
+.canvas img{
+    width: 600px;
+    height: 450px;
+}
+.face{
+
+}
+.face img{
+    z-index: 998;
+    max-height: 450px;
+
+}
+
+
+
+
+
+
+
+
+.cards {
+    display: -ms-inline-flexbox;
+    align-content: center;
+
+    height: 450px;
+
+}
+#bg{
+    width: 600px;
+    height: 450px;
+}
+
+.cardWrapper {
+    overflow: hidden;
+}
+
+.cardWrapper:last-child, .cardWrapper:hover {
+    overflow: visible;
+}
+#face{
+    z-index: 997;
+    max-height: 450px;
+}
+
+.cardd {
+
+    height: 6em;
+    padding: 0.25em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
