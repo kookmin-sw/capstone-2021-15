@@ -59,7 +59,6 @@ const ProductPage = (props) => {
     // }, [])
 
     var data = sampleData[0];
-
     const onClickToSaveBuyProduct = (product, user) => {
         let body = {
             product_data_code: product['data-code'],
@@ -113,7 +112,15 @@ const ProductPage = (props) => {
                                     <Col className="right" lg={12} md={12} xs={12}>
                                         <div style={{fontSize: "30px", marginBottom: "15px"}}>가격</div>
                                         <div style={{fontSize: "24px"}}>{product.price}원</div>
-                                        <Button className="buyBtn" type="link" onClick={() => {window.open(product.site, '_blank'); onClickToSaveBuyProduct(product, props.user.userData)}}>구매하러 가기 &gt;</Button>
+                                        <Button
+                                            className="buyBtn"
+                                            type="link"
+                                            onClick={() => {
+                                                    window.open(product.site, '_blank');
+                                                    onClickToSaveBuyProduct(product, props.user.userData)
+                                                }}>
+                                            구매하러 가기 &gt;
+                                        </Button>
                                     </Col>
                                 </Row>
                                 <div className="other_contents">

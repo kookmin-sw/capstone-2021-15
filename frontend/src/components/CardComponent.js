@@ -20,6 +20,14 @@ function CardComponent(props) {
         'dkg' : 'dark grayish',
         'dk' : 'dark'
     }
+    const [product, setProduct] = useState({});
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        setUser(props.user)
+        setProduct(props.product)
+    },[props.product, props.user])
+
+
     const onClickToSaveClickProduct = (product, user) => {
         let body = {
             product_data_code: product['data-code'],
@@ -36,11 +44,23 @@ function CardComponent(props) {
                 }
             })
     }
+    const onClickToUpdateClickLog = (product) => {
+        axios.post(`/api/product/click-log/product_by_id?id=${product._id}`)
+            .then(response => {
+                if(response.data.ClickLogSuccess) {
+                    // console.log(response)
+                }
+            })
+    }
     return (
         <>
             {/* <Link to={`/product/${props['data-code']}`}> */}
                 <Card cover={
-                        <Link onClick={()=>onClickToSaveClickProduct(props.product, props.user) }
+                        <Link
+                            onClick={()=>{
+                                onClickToSaveClickProduct(product, user);
+                                onClickToUpdateClickLog(product)
+                            }}
                             to={`/product/${props.product['data-code']}`}>
                             <img src={props.product['img-url']}/>
                         </Link>
