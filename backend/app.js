@@ -11,8 +11,7 @@ var MONGODB_URI = config.mongoURI;
 mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true, 
   useNewUrlParser:true, 
-  useCreateIndex: true, 
-  useFindAndModify: true 
+  useCreateIndex: true,
   }, function(err, db){
   console.log('db connect');
 })
