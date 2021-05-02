@@ -5,10 +5,9 @@ import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import CardComponent from "../../components/CardComponent";
-import { Col, Row, Card, Button } from 'antd';
+import { Col, Row, Button } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import './MainPage.css';
-const { Meta } = Card;
 
 function MainPage(props) {
     // 이건 backend에서 가져와야댐
@@ -19,9 +18,10 @@ function MainPage(props) {
     const [PostSize, setPostSize] = useState(0)
     const [PersonalColor, setPersonalColor] = useState('')
     const [InterestCategory, setInterestCategory ] = useState([])
-    const [userPrice, setUserPrice] = useState([20000, 35000]);
+    const [userPrice, setUserPrice] = useState([9000, 100000]);
     const [UserInfo, setUserInfo] = useState({})
     const [IsMount, setIsMount] = useState(true)
+
     // console.log('props', props)
     useEffect(() => {
         // 처음 렌더링 시 props에 user데이터가 없음
@@ -40,10 +40,28 @@ function MainPage(props) {
             // 걍 initial state인 ''임 
             // 만약 PersonalColor로 인자로 주면 그 다음에 set State된 PersonalColor 반영됨
             getProducts(body, props.user.userData.season)
-        }
-    }, [props]) // personalColor없으면 setPersonalColor에 적용 xx
 
-    // 210427 backend productController에서 메인페이지 3개 아이템을 위한 컨트롤러 추가하고 바꾸기
+        }
+    }, [props])
+
+    // impresssion 쌓으려면 주석을 푸세용
+    // useEffect(()=> {
+    //      function asyncUpdateImpression(products)  {
+    //          products.map((product) => updateImpression(product));
+    //     }
+    //     asyncUpdateImpression(Products)
+    // }, [Products])
+    //
+    const updateImpression = (product) => {
+        // console.log(body)
+        axios.post(`/api/product/impression/product_by_id?id=${product._id}`)
+            .then(response => {
+                if(response.data.impressionSuccess) {
+                    // console.log(response)
+                }
+            })
+    }
+
     const getProducts = ( body, personalColor) => {
         axios.post(`/api/product/season/${personalColor}`, body)
             .then(response => {
@@ -104,22 +122,6 @@ function MainPage(props) {
     //         })
     // }
 
-    const onClickToSaveClickProduct = (product, user) => {
-        let body = {
-            product_data_code: product['data-code'],
-            product_id: product._id,
-            user_id: user._id,
-            user_season: user.season,
-            product_season: product.season
-        }
-        // console.log(body)
-        axios.post('/api/click-product/click-log', body)
-            .then(response => {
-                if(response.data.clickLogSuccess) {
-                    // console.log(response)
-                }
-            })
-    }
     const categoryHandler = InterestCategory.map((category, index) => {
         let categoryName = category.toUpperCase();
         return (
@@ -138,7 +140,7 @@ function MainPage(props) {
                     </Col>
                 </Row>
                 <Row type="flex" gutter={[30, 30]} >
-                    {    
+                    {
                         Products ? Products.map((product, index) => {
                             // 반응형 -> 전체 크기 화면 24 / 8 = 3 카드
                             // 중간 화면 -> 24 / 12 = 2 카드
@@ -153,29 +155,6 @@ function MainPage(props) {
                                             product={product}>
                                         </CardComponent>
                                     </Col>
-                                    // <Col lg={8} md={12} xs={24} key={index} >
-                                    //     <Card cover={
-                                    //         <Link onClick={()=>onClickToSaveClickProduct(product, props.user.userData)}
-                                    //               to={{
-                                    //                 pathname :`/product/${product['data-code']}`,
-                                    //             }}>
-                                    //             <img src={product['img-url']}/>
-                                    //         </Link>
-                                    //     }>
-                                    //         <Meta
-                                    //             title={product.name+" "+product.title}
-                                    //             description={
-                                    //                 <div>
-                                    //                     [ {product.brand} ]
-                                    //                     <br/>
-                                    //                     {product.season} {pccs[product.pccs]}
-                                    //                     <br/>
-                                    //                     {product.price}원
-                                    //                 </div>
-                                    //             }
-                                    //         />
-                                    //     </Card>
-                                    // </Col>
                                 )
                             }
                         }) : ''

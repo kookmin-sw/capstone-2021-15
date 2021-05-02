@@ -49,11 +49,12 @@ const ProductSchema = new Schema({
 	},
 	// 상품 가져올 때 클릭 로그가 높은 순으로 가져오는 것을 고려할 것
 	click_log: {
-		type: Array,
-		default: []
+		type: Number,
+		default: 0
 	},
 	impression: {
-
+		type: Number,
+		default: 0
 	},
 	// 좋아요 누른 사람
 	likes: [{
