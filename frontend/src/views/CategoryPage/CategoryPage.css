@@ -1,0 +1,39 @@
+.main-container {
+    text-align: center;
+}
+
+.category_inner {
+    margin-top: 30px;
+    width: 1024px;
+    display: inline-block !important;
+}
+
+.filter {
+    text-align: left;
+    margin-bottom: 30px !important;
+}
+
+/* .ant-card-body .btn,
+.ant-card-body .btn:hover,.ant-card-body .btn:focus,.ant-card-body .btn:active, 
+.ant-card-body .btn:active:focus:not(:disabled):not(.disabled),
+.ant-card-body .btn:focus, .ant-card-body .btn:active, .ant-card-body .btn:hover{
+    box-shadow: none!important;
+    outline: none;
+    background-color: transparent;
+    color: black;
+    border: 0px; 
+    font-size: 16px;
+} */
+
+
+.ant-card-body .ant-btn,
+.ant-card-body .ant-btn:hover,.ant-card-body .ant-btn:focus,.ant-card-body .ant-btn:active, 
+.ant-card-body .ant-btn:active:focus:not(:disabled):not(.disabled),
+.ant-card-body .ant-btn:focus, .ant-card-body .ant-btn:active, .ant-card-body .ant-btn:hover{
+    background-color: transparent;
+    margin-right: 30px;
+}
+
+.ant-card-body .toast {
+    margin-top: 15px;
+}

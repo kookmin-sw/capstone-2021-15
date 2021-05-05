@@ -11,13 +11,11 @@ const createUserData = async (userInput) => {
     return user.save();
 };
 
-const userWithEncodedPassword = async ({nickName, password, age, personalColor}) => {
+const userWithEncodedPassword = async ({nickName, password, age}) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({
         nickName,
         password: hashedPassword,
-        age,
-        personalColor,
     });
     return user;
 }
@@ -31,17 +29,17 @@ module.exports = {
             const {nickName} =  req.body;
             const user =  await User.findOne({ nickName });
             if (user) {
-                return res.json({registerSuccess: false, message:'User existed'});
+                return res.json({success: false, message:'User existed'});
             }
             await createUserData(req.body);
-            return res.status(201).json({registerSuccess: true, message: "User Created"});
+            return res.status(201).json({success: true, message: "User Created"});
         } catch (err) {
             next(err);
         }
     },
     login: async (req, res, next) =>{
         // 요청된 nickName이 데이터베이스에 있는지 찾음
-        User.findOne({ nickName: req.body.nickName }, (err, user) => {
+        await User.findOne({ nickName: req.body.nickName }, (err, user) => {
             if(!user){
                 return res.json({
                     loginSuccess: false,
@@ -67,23 +65,27 @@ module.exports = {
         })
     },
 
-    auth: async (req, res) => {
+    auth: (req, res) => {
         // auth 미들웨어가 통과한 것은 authentication이 true라는 의미
         res.status(200).json({
             _id: req.user._id,
             nickName : req.user.nickName,
-            personalColor : req.user.personalColor,
             role: req.user.role,
             isAdmin: req.user.role === 0 ? false : true,
             isAuth: true,
-        })
+            like: req.user.like,
+            season: req.user.season,
+            tone: req.user.tone,
+            pccs: req.user.pccs,
+            interestCategory: req.user.interestCategory,
 
+        })
     },
 
     logout: async (req, res) => {
         // req: auth 미들웨어에서 받은
         // token: '' : 토큰 지우기
-        User.findOneAndUpdate({_id: req.user._id}, { token : "" }, (err, user) => {
+        await User.findOneAndUpdate({_id: req.user._id}, { token : "" }, (err, user) => {
             if(err) return res.json({ success: false, err});
             return res.status(200).send({ success : true });
         })

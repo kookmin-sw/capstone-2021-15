@@ -1,12 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
 .App {
-    font-family: 'Nanum Gothic', sans-serif;
-    font-family: 'Noto Sans KR', sans-serif;
-    min-height: 100vh;
-    min-width: 100vw;
-    width: 100%;
-    height: 100%;
+    text-align: center;
 }
 
 .App-logo {
@@ -15,11 +8,10 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
     }
 }
-
 .App-header {
     background-color: #282c34;
     min-height: 100vh;
@@ -35,16 +27,9 @@
     color: #61dafb;
 }
 
-.main-container {
-    width: 100%;
-    max-height: 1280px;
-    padding: 0 60px;
-    margin: 0 30px;
-}
-
 @keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
+from {
+    transform: rotate(0deg);
     }
     to {
         transform: rotate(360deg);

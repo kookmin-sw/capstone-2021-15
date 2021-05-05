@@ -1,0 +1,143 @@
+.product_inner {
+    text-align: center;
+}
+
+.product_top {
+    max-height: 600px;
+    width: 1024px;
+    display: inline-block;
+}
+
+.product_title {
+    position: relative; 
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.product_img {
+    height:600px;
+    width: auto;
+    vertical-align: top;
+}
+
+.product_name {
+    height: 200px;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 30px;
+    font-size: 42px;
+    color: white;
+    background-color: rgba(57, 55, 55, 0.3);
+    position: absolute;
+    bottom: 0px;
+}
+
+.product_bottom {
+    background-color: #2F2F2F;
+}
+
+.product_personal_color {
+    background-color: #3E3F67;
+    color: white;
+    padding: 30px;
+    position: absolute;
+    top: -38px;
+    left: 30px;
+    font-size: 16px;
+}
+
+.product_info {
+    color: white;
+    width: 1024px;
+    display: inline-block;
+    position: relative;
+}
+
+.product_like {
+    text-align: right;
+    padding-right: 30px;
+    padding-top: 30px;
+    font-size: 16px;
+}
+
+/* .ant-btn,
+.ant-btn:hover,.ant-btn:focus,.ant-btn:active, 
+.ant-btn:active:focus:not(:disabled):not(.disabled),
+.ant-btn:focus, .ant-btn:active, .ant-btn:hover {
+    box-shadow: none!important;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    border: 0px; 
+}
+
+.likebtn_img {
+    width: 16px;
+    height: 16px;
+} */
+
+.likeBtn {
+    border-color: transparent !important;
+    color: white;
+}
+/* 
+.likeBtn:hover, .likeBtn:focus, .likeBtn:active,
+.likeBtn:active:focus:not(:disabled):not(.disabled),
+.likeBtn:focus, .likeBtn:active, .likeBtn:hover {
+    color: red;
+} */
+
+
+.liveRanking {
+    color: #C644B9;
+    font-size: 24px;
+    text-align: left;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+
+.product_detail {
+    padding-top: 60px;
+}
+
+.product_detail .left {
+    text-align: left;
+    padding-left: 45px;
+}
+
+.product_detail .right {
+    text-align: left;
+}
+
+/* .right .btn,
+.right .btn:hover,.right .btn:focus,.right .btn:active, 
+.right .btn:active:focus:not(:disabled):not(.disabled),
+.right .btn:focus, .right .btn:active, .right .btn:hover {
+    box-shadow: none!important;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    border: 0px; 
+} */
+
+/* .right .btn {
+    margin-top: 100px;
+    font-size: 30px;
+    color: #C4C4C4
+} */
+.buyBtn {
+    color: white !important;
+    font-size: 30px !important;
+    margin-top: 60px;
+    padding-left: 0px !important;
+}
+
+.other_contents {
+    color: white;
+    text-align: left;
+    padding-left: 30px;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    font-size: 30px;
+}
