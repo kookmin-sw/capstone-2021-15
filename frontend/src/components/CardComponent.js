@@ -60,7 +60,7 @@ function CardComponent(props) {
                             // onClick={()=>{
                             //     // onClickToSaveClickProduct(product, user);
                             //     // onClickToUpdateClickLog(product)
-                            }}
+                            // }}
                             to={`/product/${props.product['data-code']}`}>
                             <img src={props.product['img-url']}/>
                         </Link>
