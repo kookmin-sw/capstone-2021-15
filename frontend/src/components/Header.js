@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import { withRouter, Link } from 'react-router-dom';
-import { Row, Col, Button, Menu } from 'antd';
+import { Row, Col, Button } from 'antd';
 
 function Header(props) {
     const user = props.user;

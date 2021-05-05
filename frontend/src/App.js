@@ -29,7 +29,7 @@ function App() {
                 <Route exact path="/category" component={Auth(CategoryPage, true)}/>
                 <Route exact path="/category/:id" component={Auth(CategoryPage,true)}/>
                 <Route exact path="/product" component={Auth(ProductPage, true)}/>
-                <Route exact path="/product/:id" component={ProductPage}/>
+                <Route exact path="/product/:id" component={Auth(ProductPage, true)}/>
                 <Route exact path="/test" component={TestPage}/>
             </div>
         </Router>
