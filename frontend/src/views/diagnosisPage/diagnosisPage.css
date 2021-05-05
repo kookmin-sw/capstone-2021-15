@@ -10,4 +10,13 @@ header{
 
 .diagnosis{
     margin-bottom: 100px;
+    justify-content: center !important;
+
 }
+
+.test{
+    margin-top: 15px;
+    justify-content: center !important;
+}
+
+
