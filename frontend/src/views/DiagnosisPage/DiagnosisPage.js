@@ -44,11 +44,11 @@ function DiagnosisPage() {
                     <div className="diagnosos">
                         <DrapeComponent bgSeason={season} detectedFace={hFace} ></DrapeComponent>
 
-                        <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+                        <ToggleButtonGroup className="diagnosis" type="radio" name="options" defaultValue={1}>
                             <ToggleButton onClick={onSpring} value={1} variant="outline-secondary" > 1 </ToggleButton>
                             <ToggleButton onClick={onSummer}value={2} variant="outline-secondary"> 2 </ToggleButton>
                             <ToggleButton onClick={onFall} value={3} variant="outline-secondary"> 3 </ToggleButton>
-                            <ToggleButton onClick={onWinter} variant="outline-secondary"> 4 </ToggleButton>
+                            <ToggleButton onClick={onWinter} value={4} variant="outline-secondary"> 4 </ToggleButton>
                         </ToggleButtonGroup>
                     </div>
 
