@@ -67,16 +67,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c709be8e-24da-4d15-a59c-a742e0c8e7db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/background/fall.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/background/spring.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/background/summer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/background/winter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DrapeComponent.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DrapeComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hyeonFace.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/diagnosisPage/diagnosisPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/diagnosisPage/diagnosisPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DrapeComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DrapeComponent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LoginPage/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LoginPage/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/diagnosisPage/diagnosisPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/diagnosisPage/diagnosisPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/diagnosisPage/diagnosisPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/diagnosisPage/diagnosisPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +126,8 @@
       <workItem from="1619764848739" duration="16000" />
       <workItem from="1619764874618" duration="85000" />
       <workItem from="1619765675090" duration="5946000" />
-      <workItem from="1619828827674" duration="624000" />
+      <workItem from="1619828827674" duration="17202000" />
+      <workItem from="1619874264983" duration="2535000" />
     </task>
     <servers />
   </component>

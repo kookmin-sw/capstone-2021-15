@@ -10,7 +10,8 @@ import SignUpPage from './views/SignUpPage/SignUpPage'
 import WelcomePage from './views/WelcomePage/WelcomePage'
 import ProductPage from './views/ProductPage/ProductPage'
 import TestPage from './views/TestPage/TestPage'
-import diagnosisPage from './views/diagnosisPage/diagnosisPage'
+import DiagnosisPage from './views/DiagnosisPage/DiagnosisPage'
+import InputPage from './views/InputPage/InputPage'
 import { Route, BrowserRouter as Router} from "react-router-dom"
 import "antd/dist/antd.css"
 
@@ -32,7 +33,9 @@ function App() {
                 <Route exact path="/product" component={Auth(ProductPage, true)}/>
                 <Route exact path="/product/:id" component={ProductPage}/>
                 <Route exact path="/test" component={TestPage}/>
-                <Route exact path="/diagnosis" component={diagnosisPage}/>
+                <Route exact path="/diagnosis" component={DiagnosisPage}/>
+                <Route exact path="/diagnosis/input" component={InputPage}/>
+
             </div>
         </Router>
     );

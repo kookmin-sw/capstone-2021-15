@@ -1,4 +1,3 @@
-
 header{
     position: fixed;
 }
@@ -7,4 +6,8 @@ header{
 .card-container {
     width: 1024px;
     display: inline-block ;
+}
+
+.diagnosis{
+    margin-bottom: 100px;
 }
