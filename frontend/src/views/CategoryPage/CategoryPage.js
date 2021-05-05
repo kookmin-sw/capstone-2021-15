@@ -12,7 +12,7 @@ import SearchFeature from './SearchFeature'
 
 function CategoryPage(props) {
     const [Products, setProducts] = useState([])
-    const [Limit, setLimit] = useState(100)
+    const [Limit, setLimit] = useState(50)
     const [Skip, setSkip] = useState(0)
     const [PostSize, setPostSize] = useState(0)
     const [filterPC, setFilterPC] = useState(false);
@@ -163,14 +163,8 @@ function CategoryPage(props) {
                                     return (
                                         <Col  key={index} lg={6} md={12} xs={24} >
                                             <CardComponent 
-                                                brand={product.brand} 
-                                                name={product.name} 
-                                                title={product.title} 
-                                                pccs={product.pccs} 
-                                                season={product.season} 
-                                                img-url={product['img-url']} 
-                                                data-code={product['data-code']} 
-                                                price={product.price}>
+                                                user={props.user.userData}
+                                                product={product}>
                                             </CardComponent>
                                         </Col>
                                     )
