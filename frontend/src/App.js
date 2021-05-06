@@ -12,6 +12,7 @@ import ProductPage from './views/ProductPage/ProductPage'
 import TestPage from './views/TestPage/TestPage'
 import { Route, BrowserRouter as Router} from "react-router-dom"
 import "antd/dist/antd.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     // const cardMargin = {
