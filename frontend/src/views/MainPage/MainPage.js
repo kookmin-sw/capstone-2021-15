@@ -8,6 +8,10 @@ import CardComponent from "../../components/CardComponent";
 import { Col, Row, Button } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import './MainPage.css';
+import m1 from '../../m1.png'
+import m2 from '../../m2.png'
+import m3 from '../../m3.png'
+
 
 function MainPage(props) {
     // 이건 backend에서 가져와야댐
@@ -193,4 +197,4 @@ function MainPage(props) {
     );
 }
 
-export default MainPage
+export default MainPage;

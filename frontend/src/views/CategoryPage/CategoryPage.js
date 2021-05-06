@@ -57,9 +57,9 @@ function CategoryPage(props) {
             price: Price
         }
         getProducts(body);
-        
-    }, [PersonalColor])   
-    
+
+    }, [PersonalColor])
+
 
     const loadMoreHandler = () => {
         let skip = Skip + Limit;
@@ -107,7 +107,7 @@ function CategoryPage(props) {
     //     if (mounted) {
     //         getProducts();
     //     }
-        
+
     //     return () => mounted = false;
     // }, [])
 
@@ -131,47 +131,50 @@ function CategoryPage(props) {
             <Navigation/>
             <div className="main-container">
                 <Row className="category_inner" >
-                    <Card className="filter" title="Filter">
-                        <Button onClick={togglePC}>
-                            Personal Color
-                        </Button>
-                        <Button onClick={togglePrice}>
-                            Price
-                        </Button>
-                        <Button onClick={toggleSearch}>
-                            Search
-                        </Button>
+                    <Card className="filter" id="filter" title="Filter">
+                        <Button.Group>
+                            <Button onClick={togglePC}>
+                                Personal Color
+                            </Button>
+                            <Button onClick={togglePrice}>
+                                Price
+                            </Button>
+                            <Button onClick={toggleSearch}>
+                                Search
+                            </Button>
+                        </Button.Group>
                         <Toast onClose={togglePC} show={filterPC}>
                             <Radio.Group options={seasons} onChange={changePCHandler} value={PersonalColor} />
                         </Toast>
-                        <Toast onClose={togglePrice} show={filterPrice} style={{textAlign: "center"}}>
+                        <Toast  id="pslider" onClose={togglePrice} show={filterPrice} style={{textAlign: "center"}}>
+                            {/*tipFormatter setting*/}
                             <Slider range marks={marks} defaultValue={UserPrice} onChange={changePriceHandler}/>
-                            <Button onClick={changeUserPriceHandler}>적용</Button>
+                            <Button id="pricebtn" onClick={changeUserPriceHandler}>적용</Button>
                         </Toast>
                         <Toast onClose={toggleSearch} show={filterSearch} style={{textAlign: "left"}}>
                             {/* {search box} */}
-                            
+
                             <SearchFeature refreshFunction={updateSearchTerm}/>
                         </Toast>
                     </Card>
                     <Row type="flex" gutter={[30, 30]}>
-                    {
-                        Products ? Products.map((product, index) => {
-                            // if (product.season === PersonalColor) {
+                        {
+                            Products ? Products.map((product, index) => {
+                                // if (product.season === PersonalColor) {
 
                                 if (product.price >= UserPrice[0]*500 && product.price <= UserPrice[1]*500) {
                                     return (
                                         <Col  key={index} lg={6} md={12} xs={24} >
-                                            <CardComponent 
+                                            <CardComponent
                                                 user={props.user.userData}
                                                 product={product}>
                                             </CardComponent>
                                         </Col>
                                     )
                                 }
-                            // }
-                        }) : ''
-                    }
+                                // }
+                            }) : ''
+                        }
                     </Row>
                 </Row>
             </div>
