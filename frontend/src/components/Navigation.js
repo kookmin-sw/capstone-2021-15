@@ -36,7 +36,7 @@ const Navigation = ( props ) =>  {
             <Filter togglefilter={togglefilter} filter={filter}></Filter>
         </div> */}
         <div className="navigation_inner">
-            <Nav >
+            <Nav>
                 <Nav.Link href="/category/hair">HAIR</Nav.Link>
                 <Nav.Link href="/category/base">BASE</Nav.Link>
                 <Nav.Link href="/category/lens">LENS</Nav.Link>
