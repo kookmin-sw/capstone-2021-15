@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom';
-import { Icon, Form, Input, Button, Typography} from 'antd';
+import Icon from '@ant-design/icons';
+import { Form, Input, Button, Typography} from 'antd';
 import * as Yup from 'yup'
 import { Formik} from 'formik';
 import { loginUser } from '../../_actions/user_actions';

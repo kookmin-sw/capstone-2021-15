@@ -2,7 +2,11 @@
     background-color: #979797 !important;
     background-clip: padding-box;
     text-align: center;
-    padding: 16px !important;
+    padding: 11px !important;
+}
+.nav-link {
+    padding-right: 1.5% !important;
+    font-size: 18px !important;
 }
 
 .filter_img {
