@@ -10,6 +10,7 @@ import SignUpPage from './views/SignUpPage/SignUpPage'
 import WelcomePage from './views/WelcomePage/WelcomePage'
 import ProductPage from './views/ProductPage/ProductPage'
 import TestPage from './views/TestPage/TestPage'
+import SetInfoPage from './views/SetInfoPage/SetInfoPage'
 import { Route, BrowserRouter as Router} from "react-router-dom"
 import "antd/dist/antd.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,6 +27,7 @@ function App() {
                 <Route exact path="/" component={Auth(WelcomePage, null)}/>
                 <Route exact path="/login" component={Auth(LoginPage, false)}/>
                 <Route exact path="/signup" component={Auth(SignUpPage, false)}/>
+                <Route exact path="/signup/info" component={Auth(SetInfoPage, false)}/>
                 <Route exact path="/main" component={Auth(MainPage, true)}/>
                 <Route exact path="/category" component={Auth(CategoryPage, true)}/>
                 <Route exact path="/category/:id" component={Auth(CategoryPage,true)}/>
