@@ -67,19 +67,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c709be8e-24da-4d15-a59c-a742e0c8e7db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/SetInfoPage/SetInfoPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/SetInfoPage/SetInfoPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CardComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardComponent.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CardComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navigation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/CategoryPage/CategoryPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CategoryPage/CategoryPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/CategoryPage/CategoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CategoryPage/CategoryPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/m1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/m3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LoginPage/LoginPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LoginPage/LoginPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MainPage/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainPage/MainPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/MainPage/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainPage/MainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WelcomePage/WelcomePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WelcomePage/WelcomePage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WelcomePage/WelcomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WelcomePage/WelcomePage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +87,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -134,6 +132,7 @@
       <workItem from="1619765675090" duration="5946000" />
       <workItem from="1619828827674" duration="15878000" />
       <workItem from="1620193314091" duration="26167000" />
+      <workItem from="1620367021899" duration="8648000" />
     </task>
     <servers />
   </component>

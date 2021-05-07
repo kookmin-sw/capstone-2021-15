@@ -8,6 +8,11 @@
     text-align: left;
 }
 
+.carousel-item{
+    width: 1024px!important;
+    height: 400px!important;
+}
+
 .profile {
     position: relative; 
     border-left: 1px solid black;

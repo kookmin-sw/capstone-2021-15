@@ -1,4 +1,5 @@
 .box{
+    padding: 80px;
     display: flex;
 
     flex-direction: column;
