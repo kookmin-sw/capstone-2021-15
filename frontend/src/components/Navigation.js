@@ -36,11 +36,11 @@ const Navigation = ( props ) =>  {
             <Filter togglefilter={togglefilter} filter={filter}></Filter>
         </div> */}
         <div className="navigation_inner">
-            <Nav >
-                <Nav.Link href="/category/hair">HAIR</Nav.Link>
+            <Nav>
                 <Nav.Link href="/category/base">BASE</Nav.Link>
-                <Nav.Link href="/category/lens">LENS</Nav.Link>
                 <Nav.Link href="/category/lip">LIP</Nav.Link>
+                <Nav.Link href="/category/hair">HAIR</Nav.Link>
+                <Nav.Link href="/category/lens">LENS</Nav.Link>
                 <Nav.Link href="/category/top">TOP</Nav.Link>
                 <Nav.Link href="/category/acc">ACC</Nav.Link>
                 

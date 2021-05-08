@@ -1,0 +1,25 @@
+.appContainer{
+    padding: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.app {
+    width: 720px;
+    min-width: 360px;
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    padding: 1rem;
+    border-radius: 10px;
+
+}
+
+.btn{
+    margin: 20px 4px!important;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import { withRouter, Link } from 'react-router-dom';
 import { Row, Col, Button } from 'antd';
+import './Header.css';
 
 function Header(props) {
     const user = props.user;
@@ -18,16 +19,16 @@ function Header(props) {
     }
 
     return (
-        <div style={{textAlign: "center", backgroundColor:"#2F2F2F"}}>
-            <Row style={{width:"1024px", display: "inline-block"}}>
-                <Col lg={12} style={{textAlign: "left"}}>
+        <div className="headerContainer">
+            <Row className="row">
+                <Col className="col1" lg={12}>
                     <Link to={`/main`}>
                         <Button type="link" style={{color: "white", fontSize: "30px"}}>
                             LOGO
                         </Button>
                     </Link>
                 </Col>
-                <Col lg={12} style={{textAlign: "right"}}>
+                <Col className="col2" lg={12}>
                     <Button type="link" style={{color: "white", fontSize: "16px"}}>MY PAGE</Button>
                     <Button type="link" style={{color: "white", fontSize: "16px"}} onClick={logoutHandler}>LOGOUT</Button>
                 </Col>

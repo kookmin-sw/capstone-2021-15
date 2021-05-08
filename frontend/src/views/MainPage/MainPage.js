@@ -5,9 +5,14 @@ import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import CardComponent from "../../components/CardComponent";
+import Carousel from 'react-bootstrap/Carousel'
 import { Col, Row, Button } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import './MainPage.css';
+import m1 from '../../m1.jpg'
+import m2 from '../../m2.png'
+import k1 from '../../k1.png'
+
 
 function MainPage(props) {
     // 이건 backend에서 가져와야댐
@@ -123,7 +128,8 @@ function MainPage(props) {
     // }
 
     const categoryHandler = InterestCategory.map((category, index) => {
-        let categoryName = category.toUpperCase();
+        // let categoryName = category.toUpperCase();
+        let categoryName = 'LIP'
         return (
             <Row key={index}>
                 <Row>
@@ -169,6 +175,43 @@ function MainPage(props) {
         <Navigation/>
         <div className="main_inner">
             <div className="main_top">
+                <div className="slider">
+                    <Carousel prevLabel="" nextLabel="">
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src={k1}
+                                alt="First slide"
+                            />
+                            <Carousel.Caption>
+                                <h3 style={{color:"white"}}>여기에 뭔가 들어갈거임!</h3>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src={m1}
+                                alt="Second slide"
+                            />
+
+                            <Carousel.Caption>
+                                <h3 style={{color:"white"}}>여기에 뭔가 들어갈거임!</h3>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src={m2}
+                                alt="Third slide"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>여기에 뭔가 들어갈거임!</h3>
+
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    </Carousel>
+                </div>
                 <div className="profile">
                     <div style={{fontSize:"24px"}}>
                         <span style={{color:"#F0D1D1"}}>(닉네임)</span>
@@ -193,4 +236,4 @@ function MainPage(props) {
     );
 }
 
-export default MainPage
+export default MainPage;

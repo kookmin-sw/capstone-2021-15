@@ -10,30 +10,65 @@
 
 .filter {
     text-align: left;
-    margin-bottom: 30px !important;
+    margin-bottom: 60px !important;
+}
+
+.ant-card-head{
+    min-height: 0px!important;
+}
+
+.ant-card-head-title{
+    padding: 8px 0!important;
+}
+
+#filter .ant-card-body{
+    padding: 14px 24px !important;
+}
+
+#pricebtn{
+    border-color: whitesmoke;
+    border-radius: 6%;
 }
 
 /* .ant-card-body .btn,
-.ant-card-body .btn:hover,.ant-card-body .btn:focus,.ant-card-body .btn:active, 
+.ant-card-body .btn:hover,.ant-card-body .btn:focus,.ant-card-body .btn:active,
 .ant-card-body .btn:active:focus:not(:disabled):not(.disabled),
 .ant-card-body .btn:focus, .ant-card-body .btn:active, .ant-card-body .btn:hover{
     box-shadow: none!important;
     outline: none;
     background-color: transparent;
     color: black;
-    border: 0px; 
+    border: 0px;
     font-size: 16px;
 } */
 
 
 .ant-card-body .ant-btn,
-.ant-card-body .ant-btn:hover,.ant-card-body .ant-btn:focus,.ant-card-body .ant-btn:active, 
+.ant-card-body .ant-btn:hover,.ant-card-body .ant-btn:focus,.ant-card-body .ant-btn:active,
 .ant-card-body .ant-btn:active:focus:not(:disabled):not(.disabled),
 .ant-card-body .ant-btn:focus, .ant-card-body .ant-btn:active, .ant-card-body .ant-btn:hover{
     background-color: transparent;
-    margin-right: 30px;
+    margin-right: 10px;
 }
 
 .ant-card-body .toast {
     margin-top: 15px;
+}
+
+.ant-input-group-addon{
+    background-color: #C4C4C4!important;
+}
+
+.toast{
+    border: 0!important;
+    background-color: transparent !important;
+    box-shadow:none !important;
+}
+
+.toast img, svg{
+    vertical-align: baseline!important;
+}
+
+#pslider{
+    width: 700px !important;
 }
