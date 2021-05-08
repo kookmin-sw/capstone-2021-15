@@ -33,7 +33,6 @@ module.exports = {
         let limit = req.body.limit ? parseInt(req.body.limit) :30;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
 
-        let season = req.body.season ? req.body.season : '';
         // let price = '' ? req.body.season : '';
         // 검색창에 들어오는 단어 처리
         let term = req.body.searchTerm;
@@ -53,9 +52,7 @@ module.exports = {
                 }
             }) 
         } else{
-            await Product.find({
-                'season':season
-            })
+            await Product.find()
             .skip(skip)
             .limit(limit)
             .exec((err, productInfo) => {
@@ -82,17 +79,31 @@ module.exports = {
     read_season_products:(req, res) => {
         let limit = req.body.limit ? parseInt(req.body.limit) : 30;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
-
-        Product.find({season:req.params.season}) 
-            .limit(limit)
-            .skip(skip)
-            .exec((err, productInfo) => {
-            if(err) return res.status(500).json({ success: false, err });
-            else{
-                if (productInfo.length === 0) return res.send({message: "no products"}) // 아예 아이템이 존재하지 않을 때. (!productInfo) 는 빈 배열[] 을 리턴함
-                return res.json({productInfo, success: true});
-            }
-        })
+        let season = req.params.season!=='' ? req.params.season :'spring'
+        if (season!=='') {
+            Product.find({'season':season})
+                .limit(limit)
+                .skip(skip)
+                .exec((err, productInfo) => {
+                    if(err) return res.status(500).json({ success: false, err });
+                    else{
+                        if (productInfo.length === 0) return res.send({message: "no products"}) // 아예 아이템이 존재하지 않을 때. (!productInfo) 는 빈 배열[] 을 리턴함
+                        return res.json({productInfo, success: true});
+                    }
+                })
+        }
+        else{
+            Product.find()
+                .limit(limit)
+                .skip(skip)
+                .exec((err, productInfo) => {
+                    if(err) return res.status(500).json({ success: false, err });
+                    else{
+                        if (productInfo.length === 0) return res.send({message: "no products"}) // 아예 아이템이 존재하지 않을 때. (!productInfo) 는 빈 배열[] 을 리턴함
+                        return res.json({productInfo, success: true});
+                    }
+                })
+        }
     },
     read_season_product_one : async(req, res) => {
         await Product.findOne({
