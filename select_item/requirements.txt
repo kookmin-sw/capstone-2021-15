@@ -1,0 +1,4 @@
+chalice~=1.21.6
+pymongo 
+pandas~=1.1.4
+requests~=2.25.0
