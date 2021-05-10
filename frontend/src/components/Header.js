@@ -29,7 +29,7 @@ function Header(props) {
                     </Link>
                 </Col>
                 <Col className="col2" lg={12}>
-                    <Button type="link" style={{color: "white", fontSize: "16px"}}>MY PAGE</Button>
+                    <Button type="link" href='/setting' style={{color: "white", fontSize: "16px"}}>MY INFO</Button>
                     <Button type="link" style={{color: "white", fontSize: "16px"}} onClick={logoutHandler}>LOGOUT</Button>
                 </Col>
                 {/* <Menu mode="vertical">
