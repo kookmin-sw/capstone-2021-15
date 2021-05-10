@@ -11,11 +11,13 @@ const createUserData = async (userInput) => {
     return user.save();
 };
 
-const userWithEncodedPassword = async ({nickName, password, age}) => {
+const userWithEncodedPassword = async ({nickName, password, interestCategory, season}) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({
         nickName,
         password: hashedPassword,
+        interestCategory,
+        season
     });
     return user;
 }

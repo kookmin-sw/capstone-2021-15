@@ -23,6 +23,7 @@ const userSchema = new Schema({
 	// },
 	season: {
 		type: String,
+		default:''
 	},
 	tone: {
 		type: String,
@@ -41,10 +42,7 @@ const userSchema = new Schema({
 		type: Array,
 		default: []
 	},
-	like: {
-		type: Array,
-		default: []
-	}
+
 	// createdAt: {
 	// 	type: Date,
 	// 	default: Date.now,// 현재시각 저장

@@ -69,7 +69,10 @@
     <list default="true" id="c709be8e-24da-4d15-a59c-a742e0c8e7db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MainPage/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainPage/MainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SetInfoPage/SetInfoPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SetInfoPage/SetInfoPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SetInfoPage/SetInfoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SetInfoPage/SetInfoPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,5 +155,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1620193310618" />
+    <state x="323" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1620585840411">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="323" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1620585840410" />
   </component>
 </project>

@@ -128,7 +128,8 @@ function MainPage(props) {
     // }
 
     const categoryHandler = InterestCategory.map((category, index) => {
-        let categoryName = category.toUpperCase();
+        // let categoryName = category.toUpperCase();
+        let categoryName = 'LIP'
         return (
             <Row key={index}>
                 <Row>
