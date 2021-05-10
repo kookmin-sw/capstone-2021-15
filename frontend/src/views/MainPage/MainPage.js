@@ -86,7 +86,7 @@ function MainPage(props) {
     //         })
     // }
 
-    // 3개의 상품을 추천해주는 getProducts - 0509
+    // 3개의 상품을 추천해주는 getProducts  - 0509
     const getProducts = (personalColor, category) => {
         axios.get(
             `https://50w1qylt07.execute-api.ap-northeast-2.amazonaws.com/api/recommend?psc=${personalColor}&category=${category}`)
