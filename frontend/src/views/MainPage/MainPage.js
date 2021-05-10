@@ -20,7 +20,7 @@ function MainPage(props) {
     const [Skip, setSkip] = useState(0)
     // 처음에 3개의 아이템만 가져옴
     const [Limit, setLimit] = useState(3)
-    const [PostSize, setPostSize] = useState(0)
+    // const [PostSize, setPostSize] = useState(0)
     const [PersonalColor, setPersonalColor] = useState('')
     const [InterestCategory, setInterestCategory ] = useState([])
     const [userPrice, setUserPrice] = useState([9000, 100000]);
@@ -40,15 +40,16 @@ function MainPage(props) {
             }
             setPersonalColor(props.user.userData.season)
             setInterestCategory(props.user.userData.interestCategory)
+            setUserInfo(props.user.userData)
             // state인 PersonalColor로 인자로 주면 안됨
             // -> 아마 비동기로 동작해서 순서대로 state에 저장이 안됨
             // 걍 initial state인 ''임 
             // 만약 PersonalColor로 인자로 주면 그 다음에 set State된 PersonalColor 반영됨
-            getProducts(body, props.user.userData.season)
+            getProducts(props.user.userData.season, props.user.userData.interestCategory)
 
         }
     }, [props])
-
+    console.log(props.user)
     // impresssion 쌓으려면 주석을 푸세용
     // useEffect(()=> {
     //      function asyncUpdateImpression(products)  {
@@ -66,22 +67,32 @@ function MainPage(props) {
                 }
             })
     }
+    // 기존의 getProducts
+    // const getProducts = ( body, personalColor) => {
+    //     axios.post(`/api/product/season/${personalColor}`, body)
+    //         .then(response => {
+    //             if(response.data.success) {
+    //                 if(body.loadMore){
+    //                     setProducts([...response.data.productInfo])
+    //
+    //                 } else{
+    //                     console.log(response.data.productInfo)
+    //                     setProducts(response.data.productInfo)
+    //                 }
+    //                 setPostSize(response.data.postSize)
+    //             } else {
+    //                 alert('상품을 가져오는데 실패했습니다')
+    //             }
+    //         })
+    // }
 
-    const getProducts = ( body, personalColor) => {
-        axios.post(`/api/product/season/${personalColor}`, body)
+    // 3개의 상품을 추천해주는 getProducts  - 0509
+    const getProducts = (personalColor, category) => {
+        axios.get(
+            `https://50w1qylt07.execute-api.ap-northeast-2.amazonaws.com/api/recommend?psc=${personalColor}&category=${category}`)
             .then(response => {
-                if(response.data.success) {
-                    if(body.loadMore){
-                        setProducts([...response.data.productInfo])
-
-                    } else{
-                        console.log(response.data.productInfo)
-                        setProducts(response.data.productInfo)
-                    }
-                    setPostSize(response.data.postSize)
-                } else {
-                    alert('상품을 가져오는데 실패했습니다')
-                }
+                setProducts([...response.data.result])
+                console.log(response.data.result)
             })
     }
 
@@ -129,7 +140,7 @@ function MainPage(props) {
 
     const categoryHandler = InterestCategory.map((category, index) => {
         // let categoryName = category.toUpperCase();
-        let categoryName = 'LIP'
+        let categoryName = InterestCategory
         return (
             <Row key={index}>
                 <Row>
@@ -214,7 +225,7 @@ function MainPage(props) {
                 </div>
                 <div className="profile">
                     <div style={{fontSize:"24px"}}>
-                        <span style={{color:"#F0D1D1"}}>(닉네임)</span>
+                        <span style={{color:"#F0D1D1"}}>{UserInfo.nickName}</span>
                         <span>님을 위한 맞춤 추천</span>
                     </div>
                     <div style={{fontSize:"16px"}}>#personal_color</div>
