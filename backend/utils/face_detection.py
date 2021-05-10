@@ -13,7 +13,7 @@ s3 = boto3.resource('s3')
 s3_client = boto3.client('s3')
 bucket_name = 'utpr'
 input_path = 'inputs/'
-result_path = 'results'
+result_path = 'results/'
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-p", "--shape-predictor", required=True,
@@ -31,7 +31,6 @@ def face_remap(shape):
 
 
 def lambda_handler(event, context):
-    s3_client.download_file(bucket_name, 'inputs/' + args["image"], './' + args["image"])
     image = './' + args["image"]
     image = cv2.imread(image)
     image = imutils.resize(image, width=500)
@@ -69,3 +68,5 @@ def lambda_handler(event, context):
 
         cv2.imwrite(args["image"], out_face)
         s3_client.upload_file(output, bucket_name, result_path + args["image"])
+
+    print('suc')

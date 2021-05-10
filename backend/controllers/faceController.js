@@ -2,61 +2,35 @@ const AWS = require('aws-sdk');
 const config = require("../config/key");
 const {spawn} = require('child_process')
 
-
-async function uploadImage(req, res) {
-    console.log('backend')
-    console.log(req.body.file)
-    const file = req.body.filename;
-    //아마존 S3에 저장하려면 먼저 설정을 업데이트합니다.
-    const python = spawn('python3', ['../utils/face_detection.py --shape-predictor shape_predictor_68_face_landmarks.dat --image'] + file.name)
-
-    AWS.config.region = 'ap-northeast-2'; //Seoul
-    AWS.config.update({
-        accessKeyId: config.ACCESS_KEY_ID,
-        secretAccessKey: config.SECRET_ACCESS_KEY,
-    });
-    var s3_params = {
-        Bucket: 'utpr',
-        Key: `outputs/${file.name}`,
+const downloadFile = async (file_name, local_path) => {
+    const fs = require('fs');
+    const AWS = require('aws-sdk');
+    const s3 = new AWS.S3({accessKeyId: config.ACCESS_KEY_ID, secretAccessKey: config.SECRET_ACCESS_KEY})
+    const params = {
+        Bucket: config.BUCKET_NAME,
+        Key: file_name
     };
-    var s3obj = new AWS.S3();
-    s3obj.getObject(s3_params, (err, data) => {
-        if (err)
-            return err;
-        var objectData = data.Body.toString('utf-8');
-        console.log(objectData)
-        return res.json(objectData)
+    console.log(local_path)
+    s3.getObject(params, (err, data) => {
+        if (err) {
+            console.log(err)
+            // throw err;
+        }
+        console.log(data.Body)
+        fs.writeFileSync(local_path, data.Body)
     })
-
-
-}
+};
 
 module.exports = {
     uploadImage: async (req, res, next) => {
         try {
-            console.log('backend')
-            console.log(req.body.file)
-            const file = req.body.filename;
+            const file_name = req.body.name;
+            downloadFile(file_name, './utils/' + file_name)
             //아마존 S3에 저장하려면 먼저 설정을 업데이트합니다.
-            const python = spawn('python3', ['../utils/face_detection.py --shape-predictor shape_predictor_68_face_landmarks.dat --image'] + file.name)
+            const python = spawn('python3', ['../utils/face_detection.py --shape-predictor shape_predictor_68_face_landmarks.dat --image jg.JPG'])
 
-            AWS.config.region = 'ap-northeast-2'; //Seoul
-            AWS.config.update({
-                accessKeyId: config.ACCESS_KEY_ID,
-                secretAccessKey: config.SECRET_ACCESS_KEY,
-            });
-            var s3_params = {
-                Bucket: 'utpr',
-                Key: `outputs/${file.name}`,
-            };
-            var s3obj = new AWS.S3();
-            s3obj.getObject(s3_params, (err, data) => {
-                if (err)
-                    return err;
-                var objectData = data.Body.toString('utf-8');
-                console.log(objectData)
-                return res.json(objectData)
-            })
+            return res.json(200)
+
         } catch (err) {
             console.log(err)
         }

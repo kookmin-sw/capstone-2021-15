@@ -2,29 +2,29 @@ import React, {useState} from 'react'
 import {withRouter} from 'react-router-dom';
 import {useDispatch} from 'react-redux'
 import './DiagnosisPage.css'
-import * as config from '../../Config'
 import axios from 'axios'
 import S3 from "react-aws-s3"
+import {uploadFile} from "react-s3";
+
+const config = {
+    bucketName: process.env.REACT_APP_BUCKET_NAME,
+    region: process.env.REACT_APP_REGION,
+    accessKeyId: process.env.REACT_APP_ACCESS_ID,
+    secretAccessKey: process.env.REACT_APP_ACCESS_KEY
+}
 
 function DiagnosisPage(props) {
 
     const onChange = (e) => {
-        var img = e.target.files[0]
+        e.preventDefault(); // 화면 새로고침 x
+        var file = e.target.files[0]
         var data = {
-            'file': img,
-            'filename': img.name
+            'file': file,
+            'name': 'inputs/' + file.name
         }
-        const config = {
-            bucketName: process.env.REACT_APP_BUCKET_NAME,
-            region: process.env.REACT_APP_REGION,
-            accessKeyId: process.env.REACT_APP_ACCESS_KEY,
-            secretAccessKey: process.env.REACT_APP_ACCESS_KEY,
-        }
-        const ReactS3Client = new S3(config);
-        ReactS3Client.uploadFile(data.file, data.filename)
-            .then(data => {
-                console.log(data)
-            })
+        uploadFile(data, config)
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
 
         axios.post('/api/user/face', data)
             .then(response => {
