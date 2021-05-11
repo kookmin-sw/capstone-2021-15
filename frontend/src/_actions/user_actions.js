@@ -3,7 +3,8 @@ import {
     LOGIN_USER,
     AUTH_USER,
     SIGNUP_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    MODIFY_USER
 } from './types'
 
 // 회원가입
@@ -43,6 +44,16 @@ export function logoutUser(){
 
     return {
         type: LOGOUT_USER,
+        payload: request
+    }
+}
+// 회원정보 수정
+export function modifyUser(dataToSubmit) {
+    const request = axios.put(`/api/user/modify`, dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: MODIFY_USER,
         payload: request
     }
 }

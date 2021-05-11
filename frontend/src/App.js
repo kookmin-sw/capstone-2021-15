@@ -10,7 +10,7 @@ import SignUpPage from './views/SignUpPage/SignUpPage'
 import WelcomePage from './views/WelcomePage/WelcomePage'
 import ProductPage from './views/ProductPage/ProductPage'
 import TestPage from './views/TestPage/TestPage'
-import MyInfoPage from  './views/SetInfoPage/SetInfoPage'
+import MyInfoPage from "./views/MyInfoPage/MyInfoPage";
 import { Route, BrowserRouter as Router} from "react-router-dom"
 import "antd/dist/antd.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -32,7 +32,7 @@ function App() {
                 <Route exact path="/category/:id" component={Auth(CategoryPage,true)}/>
                 <Route exact path="/product" component={Auth(ProductPage, true)}/>
                 <Route exact path="/product/:id" component={Auth(ProductPage, true)}/>
-                <Route exact path="/setting" component={Auth(MyInfoPage, true)}/>
+                <Route exact path="/myinfo" component={Auth(MyInfoPage, true)}/>
                 <Route exact path="/test" component={TestPage}/>
             </div>
         </Router>
