@@ -55,14 +55,17 @@ function MyInfoPage(props) {
 
     const seasonChange = (value) => {
         setPersonalColor(value)
+
     }
     const categoryChange = (value) => {
         setInterestCategory([value])
     }
+
     useEffect(() => {
         if (IsMount ){
             setIsMount(false)
         } else {
+
             setNickName(props.user.userData.nickName)
             setUserInfo(props.user.userData)
             setPersonalColor(props.user.userData.season)
@@ -79,8 +82,10 @@ function MyInfoPage(props) {
         dispatch(modifyUser(data))
             .then(response => {
                 if(response.payload.modifySuccess) {
-                    console.log(response.payload.user)
+                    window.location.reload();
                     alert('정상적으로 수정되었습니다')
+                    console.log(response.payload.user)
+
                 } else {
                     alert(response.payload.err)
                 }
@@ -105,8 +110,8 @@ function MyInfoPage(props) {
                         <Form.Item label="관심 카테고리" name="interestCategory">
                             <Select
                                 name="interestCategory"
-                                // defaultValue={interestCategory}
-                                onChange={(value)=>categoryChange(value)}
+                                // onChange={(value)=>categoryChange(value)}
+                                onChange={categoryChange}
                                 style={{fontSize:'2rem', width:'250px', height:'40px'}}>
                                 {Categories.map(item => (
                                     <Option key={item.key} value={item.value}>{item.value}</Option>
@@ -116,17 +121,19 @@ function MyInfoPage(props) {
                         <Form.Item label="퍼스널 컬러" name="season">
                             <Select
                                 // defaultValue="season"
-                                onChange={(value)=>seasonChange(value)}
+                                // onChange={(value)=>seasonChange(value)}
+                                onChange={seasonChange}
                                 style={{fontSize:'2rem', width:'250px', height:'40px'}}>
                                 {Seasons.map(item => (
                                     <Option key={item.key} value={item.value}>{item.value}</Option>
                                 ))}
                             </Select>
                         </Form.Item>
-                        <div className="diagnosis-link">
-                            내 퍼스널 컬러를 궁금하다면?
-                            <Link to="/test" style={{color: '#50C2FF', textDecoration:'none'}}>  진단받기</Link>
+                        <div className="diagnosis-field">
+                            <span className="diagnosis-text">내 퍼스널 컬러를 궁금하다면?
+                            <Link to="/test" style={{color: '#50C2FF', textDecoration:'none'}}>  진단받기</Link></span>
                         </div>
+                        <br/>
                         <Form.Item {...tailFormItemLayout}>
                             <Button
                                 onClick={()=>clickHandler({

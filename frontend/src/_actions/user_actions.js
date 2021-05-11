@@ -49,7 +49,7 @@ export function logoutUser(){
 }
 // 회원정보 수정
 export function modifyUser(dataToSubmit) {
-    const request = axios.put(`/api/user/modify`, dataToSubmit)
+    const request = axios.post(`/api/user/modify`, dataToSubmit)
         .then(response => response.data)
 
     return {
