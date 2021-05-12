@@ -55,17 +55,15 @@ function MyInfoPage(props) {
 
     const seasonChange = (value) => {
         setPersonalColor(value)
-
     }
     const categoryChange = (value) => {
         setInterestCategory([value])
     }
-
+    const [IsSubmitted, setIsSubmitted] = useState(false);
     useEffect(() => {
         if (IsMount ){
             setIsMount(false)
         } else {
-
             setNickName(props.user.userData.nickName)
             setUserInfo(props.user.userData)
             setPersonalColor(props.user.userData.season)
@@ -73,19 +71,30 @@ function MyInfoPage(props) {
             form.setFieldsValue({
                 nickName: props.user.userData.nickName,
                 interestCategory: props.user.userData.interestCategory,
-                season: props.user.userData.season ? props.user.userData.season : '',
+                season:props.user.userData.season ? props.user.userData.season : '',
             })
         }
     },[props])
+    useEffect(()=>{
+        console.log('test')
+        if (IsSubmitted) {
+            form.setFieldsValue({
+                interestCategory: props.user.modifiedUserData.user.interestCategory,
+                season:props.user.modifiedUserData.user.season ? props.user.modifiedUserData.user.season : '',
+            })
+            setIsSubmitted(false)
+        }
+    }, [IsSubmitted])
 
-    const clickHandler = (data) => {
+    const clickHandler = (e, data) => {
+        e.preventDefault();
         dispatch(modifyUser(data))
             .then(response => {
                 if(response.payload.modifySuccess) {
-                    window.location.reload();
+                    setIsSubmitted(true)
                     alert('정상적으로 수정되었습니다')
+                    setUserInfo(response.payload.user)
                     console.log(response.payload.user)
-
                 } else {
                     alert(response.payload.err)
                 }
@@ -111,7 +120,7 @@ function MyInfoPage(props) {
                             <Select
                                 name="interestCategory"
                                 // onChange={(value)=>categoryChange(value)}
-                                onChange={categoryChange}
+                                onChange={()=>categoryChange}
                                 style={{fontSize:'2rem', width:'250px', height:'40px'}}>
                                 {Categories.map(item => (
                                     <Option key={item.key} value={item.value}>{item.value}</Option>
@@ -136,11 +145,12 @@ function MyInfoPage(props) {
                         <br/>
                         <Form.Item {...tailFormItemLayout}>
                             <Button
-                                onClick={()=>clickHandler({
+                                onClick={(e)=>{
+                                    clickHandler(e, {
                                     _id: userInfo._id,
                                     season: PersonalColor,
                                     interestCategory: InterestCategory
-                                })}
+                                })}}
                                 className="modify-form-button"
                                 type="primary">
                                 수정하기
