@@ -45,9 +45,9 @@
 .ant-form-item-control-input {
     width: 250px;
 }
-.ant-form-item-label > label {
-    font-size: 24px !important;
-}
+/*.ant-form-item-label > label {*/
+/*    font-size: 24px !important;*/
+/*}*/
 .ant-select-selection-item {
     font-size: 14px
 }
