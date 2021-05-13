@@ -87,7 +87,8 @@ module.exports = {
     logout: async (req, res) => {
         // req: auth 미들웨어에서 받은
         // token: '' : 토큰 지우기
-        await User.findOneAndUpdate({_id: req.user._id}, { token : "" }, (err, user) => {
+        await User.findOneAndUpdate({_id: req.user._id},
+            { token : "" }, (err, user) => {
             if(err) return res.json({ success: false, err});
             return res.status(200).send({ success : true });
         })
@@ -99,5 +100,15 @@ module.exports = {
         return res.json({
             message: "user delete completely",
         });
+    },
+    modify: async(req, res) => {
+        await User.findOneAndUpdate({_id: req.body._id},
+            {
+                season: req.body.season,
+                interestCategory: req.body.interestCategory
+            }, {new: true},(err, user) =>{
+                if(err) return res.json({modifySuccess: false, err})
+                return res.status(200).send({modifySuccess: true, user})
+            })
     }
 }

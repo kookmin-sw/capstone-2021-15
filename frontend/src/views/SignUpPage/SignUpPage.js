@@ -79,7 +79,7 @@ function SignUpPage(props) {
                             interestCategory: values.interestCategory,
                             season: values.season === noChoice ? '' : values.season
                         };
-                        console.log(dataToSubmit)
+                        // console.log(dataToSubmit)
                         dispatch(signupUser(dataToSubmit))
                             .then(response => {
                                 if (response.payload.success) {

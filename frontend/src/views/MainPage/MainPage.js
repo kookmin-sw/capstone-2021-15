@@ -120,24 +120,6 @@ function MainPage(props) {
         'dkg' : 'dark grayish',
         'dk' : 'dark'
     }
-    // const getProducts = ( body, personalColor) => {
-    //     axios.post(`/api/product/season/${personalColor}`, body)
-    //         .then(response => {
-    //             if(response.data.success) {
-    //                 if(body.loadMore){
-    //                     setProducts([...response.data.productInfo])
-    //
-    //                 } else{
-    //                     console.log(response.data.productInfo)
-    //                     setProducts(response.data.productInfo)
-    //                 }
-    //                 setPostSize(response.data.postSize)
-    //             } else {
-    //                 alert('상품을 가져오는데 실패했습니다')
-    //             }
-    //         })
-    // }
-
     const categoryHandler = InterestCategory.map((category, index) => {
         // let categoryName = category.toUpperCase();
         let categoryName = InterestCategory
@@ -204,7 +186,6 @@ function MainPage(props) {
                                 src={m1}
                                 alt="Second slide"
                             />
-
                             <Carousel.Caption>
                                 <h3 style={{color:"white"}}>여기에 뭔가 들어갈거임!</h3>
                             </Carousel.Caption>
@@ -215,10 +196,8 @@ function MainPage(props) {
                                 src={m2}
                                 alt="Third slide"
                             />
-
                             <Carousel.Caption>
                                 <h3>여기에 뭔가 들어갈거임!</h3>
-
                             </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
