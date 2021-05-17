@@ -10,7 +10,7 @@ router.post('/season',productController.read_products)
 // router.post('/season/:season/tone/', productController.read_season_tone);
 router.get('/season/:season/:product_id', productController.read_season_product_one);
 // category2: lip/eye_shadow/cheek 
-router.post('/category1/:category1', productController.read_category1_products);
+// router.post('/category1/:category1', productController.read_category1_products);
 router.post('/category2/:category2', productController.read_category2_products);
 router.post('/impression/product_by_id', productController.update_impression); // impression update
 router.post('/click-log/product_by_id', productController.update_click_log); // click-log update

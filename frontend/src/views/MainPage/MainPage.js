@@ -49,7 +49,7 @@ function MainPage(props) {
 
         }
     }, [props])
-    console.log(props.user)
+    // console.log(props.user)
     // impresssion 쌓으려면 주석을 푸세용
     // useEffect(()=> {
     //      function asyncUpdateImpression(products)  {
