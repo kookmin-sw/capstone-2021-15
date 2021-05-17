@@ -120,7 +120,7 @@ function MyInfoPage(props) {
                             <Select
                                 name="interestCategory"
                                 // onChange={(value)=>categoryChange(value)}
-                                onChange={()=>categoryChange}
+                                onChange={categoryChange}
                                 style={{fontSize:'2rem', width:'250px', height:'40px'}}>
                                 {Categories.map(item => (
                                     <Option key={item.key} value={item.value}>{item.value}</Option>
