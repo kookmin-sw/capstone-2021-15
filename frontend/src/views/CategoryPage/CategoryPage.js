@@ -78,7 +78,7 @@ function CategoryPage(props) {
             // setSkip(skip);
         }
 
-    }, [PersonalColor])
+    }, [IsMount, PersonalColor])
 
 
     const changePCHandler = (e) => {
