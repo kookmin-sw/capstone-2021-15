@@ -14,7 +14,7 @@ function CategoryPage(props) {
     const [Products, setProducts] = useState([])
     const [Limit, setLimit] = useState(50)
     const [Skip, setSkip] = useState(0)
-    const [PostSize, setPostSize] = useState(0)
+    // const [PostSize, setPostSize] = useState(0)
     const [filterPC, setFilterPC] = useState(false);
     const [filterPrice, setFilterPrice] = useState(false);
     // 검색 단어
@@ -27,6 +27,10 @@ function CategoryPage(props) {
 
     const [User, setUser] = useState({})
     const [IsMount, setIsMount] = useState(true)
+    // 카테고리 명
+    const [Category, setCategory] = useState(props.location.pathname.split("/")[2])
+
+
 
     const togglePC = () => {setFilterPC(!filterPC); setFilterPrice(false); setFilterSearch(false);}
     const togglePrice = () => {setFilterPrice(!filterPrice); setFilterPC(false);setFilterSearch(false);}
@@ -48,32 +52,38 @@ function CategoryPage(props) {
         80: '4만원',
         100:'5만원'
     }
-
+    const getProducts = (body) => {
+        // axios.post(`/api/product/category2/${category2}`)
+        axios.post(`/api/product/category2/${Category}`, body)
+            .then(response => {
+                if(response.data.success) {
+                    console.log(response.data.productInfo)
+                    setProducts(response.data.productInfo)
+                } else {
+                    if(response.data.message === "no products") { }
+                    else alert('상품을 가져오는데 실패했습니다')
+                }
+            })
+    }
     useEffect(()=>{
         let body = {
             skip:Skip,
             limit:Limit,
             season: PersonalColor,
-            price: Price
         }
-        getProducts(body);
-
-    }, [PersonalColor])
-
-
-    const loadMoreHandler = () => {
-        let skip = Skip + Limit;
-        let body = {
-            skip: skip,
-            limit: Limit,
-            loadMore: true,
+        if (IsMount) {
+            setIsMount(false)
+        } else {
+            getProducts(body);
+            // setSkip(skip);
         }
-        getProducts(body);
-        setSkip(skip);
-    }
 
-    const changePCHandler = e => {
+    }, [IsMount, PersonalColor])
+
+
+    const changePCHandler = (e) => {
         setPersonalColor(e.target.value);
+        console.log(e.target.value)
     }
 
     const changePriceHandler = (value) => {
@@ -111,19 +121,6 @@ function CategoryPage(props) {
     //     return () => mounted = false;
     // }, [])
 
-    const getProducts = (body) => {
-        // axios.post(`/api/product/category2/${category2}`)
-        axios.post('/api/product/products', body)
-            .then(response => {
-                if(response.data.success) {
-                    console.log(response.data.productInfo)
-                    setProducts(response.data.productInfo)
-                } else {
-                    if(response.data.message === "no products") { }
-                    else alert('상품을 가져오는데 실패했습니다')
-                }
-            })
-    }
 
     return (
         <div className="App">
@@ -140,7 +137,7 @@ function CategoryPage(props) {
                                 Price
                             </Button>
                             <Button onClick={toggleSearch}>
-                                Search
+                                브랜드 검색
                             </Button>
                         </Button.Group>
                         <Toast onClose={togglePC} show={filterPC}>

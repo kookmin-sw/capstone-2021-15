@@ -2,14 +2,6 @@
 const Product = require('../models/product');
 
 module.exports = {
-    // logout: async (req, res) => {
-    //     // req: auth 미들웨어에서 받은
-    //     // token: '' : 토큰 지우기
-    //     await User.findOneAndUpdate({_id: req.user._id}, { token : "" }, (err, user) => {
-    //         if(err) return res.json({ success: false, err});
-    //         return res.status(200).send({ success : true });
-    //     })
-    // },
     update_impression: async (req, res) => {
         await Product.findOneAndUpdate(
             {_id: req.query.id},
@@ -148,8 +140,9 @@ module.exports = {
     read_category2_products : (req, res) => {
         let limit = req.body.limit ? parseInt(req.body.limit) : 30;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
-
-        Product.find({category2:req.params.category2}) 
+        let season = req.body.season? req.body.season : ''
+        // console.log(req.body)
+        Product.find({category2:req.params.category2, season:season})
             .limit(limit)
             .skip(skip)
             .exec((err, productInfo) => {
