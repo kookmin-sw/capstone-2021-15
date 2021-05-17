@@ -66,19 +66,19 @@ function CategoryPage(props) {
             })
     }
     useEffect(()=>{
-        let body = {
-            skip:Skip,
-            limit:Limit,
-            season: PersonalColor,
-        }
         if (IsMount) {
             setIsMount(false)
         } else {
+            let body = {
+                skip:Skip,
+                limit:Limit,
+                season: PersonalColor,
+            }
             getProducts(body);
             // setSkip(skip);
         }
 
-    }, [IsMount, PersonalColor])
+    }, [PersonalColor])
 
 
     const changePCHandler = (e) => {
