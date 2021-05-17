@@ -49,7 +49,7 @@ function MainPage(props) {
 
         }
     }, [props])
-    console.log(props.user)
+    // console.log(props.user)
     // impresssion 쌓으려면 주석을 푸세용
     // useEffect(()=> {
     //      function asyncUpdateImpression(products)  {
@@ -126,16 +126,15 @@ function MainPage(props) {
         return (
             <Row key={index}>
                 <Row>
+                    {categoryName}
                     <Col lg={12} md={12} xs={12}>
-                        {categoryName}
-                        <Button className="reloadBtn" type="circle" ghost="true" onClick={reloadHandler}>
+                        <Button className="reloadBtn"
+                                type="circle"
+                                ghost="true"
+                                onClick={()=>getProducts(PersonalColor, InterestCategory)}
+                                style={{float:"left"}}>
                             <ReloadOutlined />
                         </Button>
-                    </Col>
-                    <Col lg={12} md={12} xs={12} style={{textAlign: "right"}}> 
-                        <Link to={`/category/${category}`}>
-                            <Button className="moreBtn" type="link">더 보기</Button>
-                        </Link>
                     </Col>
                 </Row>
                 <Row type="flex" gutter={[30, 30]} >
