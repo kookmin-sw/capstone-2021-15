@@ -20,9 +20,9 @@ function DiagnosisPage(props) {
         var file = e.target.files[0]
         var data = {
             'file': file,
-            'name': 'inputs/' + file.name
+            'name': file.name
         }
-        uploadFile(data, config)
+        uploadFile(file, config)
             .then(data => console.log(data))
             .catch(err => console.log(err))
 
