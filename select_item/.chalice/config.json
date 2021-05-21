@@ -1,0 +1,19 @@
+{
+  "version": "2.0",
+  "app_name": "capstone2021",
+  "environment_variables": {
+    "MONGODB_USER" : "",
+    "MONGODB_PASSWORD" : "",
+    "ACCESS_KEY_ID": "",
+    "SECRET_ACCESS_KEY": ""
+  },
+  "stages": {
+    "dev": {
+      "api_gateway_stage": "api",
+      "qutogen_policy":false,
+      "iam_policy_file":"api-policy.json"
+    }
+  },
+  "lambda_timeout" : 900
+}
+
