@@ -1,16 +1,16 @@
 //mongoose
 const mongoose = require('mongoose');
-const RecommendFeedback = require('../models/recommendFeedback');
+const Feedback = require('../models/feedback');
 
 module.exports = {
     save_feedback: async (req, res, next) => {
         try{
-            const feedbackLog = new RecommendFeedback(req.body)
+            const feedbackLog = new Feedback(req.body)
             await feedbackLog.save();
             return res.status(201)
                 .json({
                     submitSuccess: true,
-                    message: "recommend feedback created"});
+                    message: "feedback created"});
         } catch(err) {
             next(err)
         }
