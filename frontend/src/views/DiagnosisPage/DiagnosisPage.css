@@ -1,0 +1,58 @@
+.image-input {
+    border: 1vh solid rgb(10, 59, 112);
+    position: relative;
+    border-radius: 2vh;
+    margin-top: 15px;
+    width: 36vh;
+    height: 16vh;
+    min-width: 135px;
+    background: white;
+    text-align: center;
+    cursor: pointer;
+    outline: 0;
+}
+
+.image-input input:hover {
+    cursor: pointer;
+}
+
+.image-input div {
+    margin-top: 43px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.image-input input {
+    opacity: 0.0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.result-button {
+    cursor: pointer;
+    width: 100px;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 30px;
+    font-weight: bold;
+    background: dodgerblue;
+    color: white;
+    padding: 10px 0;
+}
+
+.rank input {
+    width: 41px;
+    text-align: center;
+}
+
+.notice {
+    margin-top:10px;
+    font-size:20px;
+    font-weight: 600;
+
+}
