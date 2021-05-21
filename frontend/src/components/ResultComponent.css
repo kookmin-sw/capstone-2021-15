@@ -1,0 +1,27 @@
+.resultContainer {
+    width: 1024px;
+    display: inline-block;
+    align-items: center;
+}
+
+.resultContents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.site-card-border-less-wrapper {
+    padding: 30px;
+    background: #ececec;
+}
+
+.progressContainer{
+    display: flex;
+    justify-content: space-around !important;
+    width: 970px;
+    padding-top: 15px;
+}
+
+.progressContainer p{
+    margin-bottom: 0 !important;
+}
