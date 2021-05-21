@@ -11,6 +11,7 @@ import WelcomePage from './views/WelcomePage/WelcomePage'
 import ProductPage from './views/ProductPage/ProductPage'
 import TestPage from './views/TestPage/TestPage'
 import MyInfoPage from "./views/MyInfoPage/MyInfoPage";
+import FeedbackPage from "./views/FeedbackPage/FeedbackPage";
 import { Route, BrowserRouter as Router} from "react-router-dom"
 import "antd/dist/antd.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -34,6 +35,7 @@ function App() {
                 <Route exact path="/product/:id" component={Auth(ProductPage, true)}/>
                 <Route exact path="/myinfo" component={Auth(MyInfoPage, true)}/>
                 <Route exact path="/test" component={TestPage}/>
+                <Route exact path="/feedback" component={Auth(FeedbackPage, true)}/>
             </div>
         </Router>
     );

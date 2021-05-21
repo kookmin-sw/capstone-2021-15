@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 const config = require("./config/key");
 var mongoose = require('mongoose');
-var fs = require('fs')
 var morgan = require('morgan');
 
 var MONGODB_URI = config.mongoURI;
@@ -21,7 +20,7 @@ var userRouter = require('./routes/user');
 var productRouter = require('./routes/product');
 var clickProductRouter = require('./routes/clickProduct');
 var buyProductRouter = require('./routes/buyProduct');
-
+var feedbackRouter = require('./routes/feedback');
 var app = express();
 
 app.set('view engine', 'pug');
@@ -38,6 +37,7 @@ app.use('/api/user/', userRouter);
 app.use('/api/product/', productRouter);
 app.use('/api/click-product/', clickProductRouter);
 app.use('/api/buy-product/', buyProductRouter);
+app.use('/api/feedback/', feedbackRouter);
 // app.use('/like', likeRouter);
 
 app.use((req, res, next) => {
