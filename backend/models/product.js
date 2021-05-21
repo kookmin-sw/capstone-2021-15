@@ -61,6 +61,10 @@ const ProductSchema = new Schema({
 		type: ObjectId,
 		ref: 'User',
 	}],
+	score: {
+		type: Number,
+		default: 0
+	}
 });
 ProductSchema.index({
 	title:'text',
