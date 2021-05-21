@@ -21,7 +21,7 @@ var userRouter = require('./routes/user');
 var productRouter = require('./routes/product');
 var clickProductRouter = require('./routes/clickProduct');
 var buyProductRouter = require('./routes/buyProduct');
-
+var recommendFeedbackRouter = require('./routes/recommendFeedback');
 var app = express();
 
 app.set('view engine', 'pug');
@@ -38,6 +38,7 @@ app.use('/api/user/', userRouter);
 app.use('/api/product/', productRouter);
 app.use('/api/click-product/', clickProductRouter);
 app.use('/api/buy-product/', buyProductRouter);
+app.use('/api/recommend-feedback/', recommendFeedbackRouter);
 // app.use('/like', likeRouter);
 
 app.use((req, res, next) => {

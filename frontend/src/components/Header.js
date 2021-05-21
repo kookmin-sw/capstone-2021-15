@@ -31,6 +31,7 @@ function Header(props) {
                 <Col className="col2" lg={12}>
                     <Button type="link" href='/myinfo' style={{color: "white", fontSize: "16px"}}>MY INFO</Button>
                     <Button type="link" style={{color: "white", fontSize: "16px"}} onClick={logoutHandler}>LOGOUT</Button>
+                    <Button type="link" href='/feedback'style={{color: "white", fontSize: "16px"}}>FEEDBACK</Button>
                 </Col>
                 {/* <Menu mode="vertical">
                     <Menu.Item key="mypage">
