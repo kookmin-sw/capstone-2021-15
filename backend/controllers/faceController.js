@@ -97,7 +97,7 @@ module.exports = {
                     prob[data[0]] = warm[3]
                     prob[data[1]] = warm[4]
                     type = warm[0]
-                } else if (data[1] === "fall") {
+                } else if (data[1] === "summer") {
                     prob[data[0]] = mute[3]
                     prob[data[1]] = mute[4]
                     type = mute[0]
@@ -111,7 +111,7 @@ module.exports = {
                     prob[data[0]] = bright[3]
                     prob[data[1]] = bright[4]
                     type = bright[0]
-                } else if (data[1] === "fall") {
+                } else if (data[1] === "summer") {
                     prob[data[0]] = cool[3]
                     prob[data[1]] = cool[4]
                     type = cool[0]
