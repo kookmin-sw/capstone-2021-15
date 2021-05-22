@@ -155,6 +155,7 @@ def create_model(args):
 
     inputs = Input(batch_shape=(args.batchsize, 1, args.train_n_items))
     gru, gru_states = GRU(hidden_units, stateful=True, return_state=True, name="GRU")(inputs)
+
     drop2 = Dropout(0.25)(gru)
     predictions = Dense(args.train_n_items, activation='softmax')(drop2)
     model = Model(inputs=inputs, outputs=[predictions])
@@ -168,7 +169,7 @@ def create_model(args):
     return model
 
 # def train_model(model, test_data, train_data,batchsize,epochs, train_samples_qty,eval_all_epochs):
-def train_model(model, args,item_sim):
+def train_model(model, args,item_sim,k=10):
     train_dataset = SessionDataset(args.train_data)
     model_to_train = model
     batchsize = args.batchsize
@@ -197,36 +198,47 @@ def train_model(model, args,item_sim):
                 pbar.update(loader.done_sessions_counter)
 
         if args.eval_all_epochs:
-            (rec, rec_k), (mrr, mrr_k) = get_metrics(model_to_train, args, train_dataset.itemmap,item_sim)
-            print("\t - Recall@{} epoch {}: {:5f}".format(rec_k, epoch, rec))
-            print("\t - MRR@{}    epoch {}: {:5f}\n".format(mrr_k, epoch, mrr))
+            recall, mrr, our_recall, our_mrr = get_metrics(model_to_train, args, train_dataset.itemmap,item_sim)
+            print("- Recall@{} epoch {}: {:5f}".format(k, epoch, recall))
+            print("- MRR@{}    epoch {}: {:5f}\n".format(k, epoch, mrr))
+            print("- our Recall@{} epoch {}: {:5f}".format(k, epoch, our_recall))
+            print("- our MRR@{}    epoch {}: {:5f}\n".format(k, epoch, our_mrr))
 
     if not args.eval_all_epochs:
-        (rec, rec_k), (mrr, mrr_k) = get_metrics(model_to_train, args, train_dataset.itemmap,item_sim)
-        print("\t - Recall@{} epoch {}: {:5f}".format(rec_k, args.epochs, rec))
-        print("\t - MRR@{}    epoch {}: {:5f}\n".format(mrr_k, args.epochs, mrr))
+        recall, mrr, our_recall,our_mrr = get_metrics(model_to_train, args, train_dataset.itemmap,item_sim)
+        print("- Recall@{} epoch {}: {:5f}".format(k, args.epochs, recall))
+        print("- MRR@{}    epoch {}: {:5f}\n".format(k, args.epochs, mrr))
+        print("- our Recall@{} epoch {}: {:5f}".format(k, epoch, our_recall))
+        print("- our MRR@{}    epoch {}: {:5f}\n".format(k, epoch, our_mrr))
 
 
-def get_top_item(pred):
-    top_same=[]
-    sum_item_score = pd.DataFrame(pd.DataFrame(pred).sum())
-    sum_item_score = sum_item_score.sort_values(by=0,ascending=False)
-    sorted_item_id = list(sum_item_score.index)
-    
-    second_idx = 1
-    top_item_score = sum_item_score.iloc[0][0]
-    top_item_id = sorted_item_id[0]
-    top_same.append(top_item_id)
-    for i in range(1,len(sum_item_score)):
-        if sum_item_score.iloc[i][0]==top_item_score :
-            top_same.append(sorted_item_id[i])
-            second_idx+=1
-        break
-            
-    return top_same ,sorted_item_id[second_idx]
+def get_top_item(id_idx , select_item_index ):     
+    select_item_ids = []
+    for item_idx in select_item_index :
+        try:
+            select_item_id = id_idx[id_idx['item_idx']==item_idx].iloc[0]['ItemId']
+            select_item_ids.append(select_item_id)
+        except:
+            print(item_idx)
+    # print(select_item_id)
+    return select_item_ids
+
+def get_sim_item(id_idx,select_item_id,item_sim):
+    # buy data 
+    similar_item_idx = []
+    similar_item_id = []
+    for one_id in select_item_id : 
+        similarity_item_id = bdsim.pick_sim_items(one_id,item_sim)
+        similar_item_id.append(similar_item_id)
+        try:
+            sim_item_idx = id_idx[id_idx['ItemId']==similarity_item_id].iloc[0]['item_idx']
+            similar_item_idx.append(sim_item_idx)
+        except:
+            continue
+    return similar_item_idx ,similar_item_id
 
 # def get_metrics(model, test_data, batchsize, train_n_items, train_generator_map, recall_k=3, mrr_k=3):
-def get_metrics(model, args,train_generator_map,item_sim, recall_k=3, mrr_k=3,):
+def get_metrics(model, args,train_generator_map,item_sim,k=10):
     train_dataset = SessionDataset(args.train_data)
     test_dataset = SessionDataset(args.test_data, itemmap=train_generator_map)
     test_generator = SessionDataLoader(test_dataset, batch_size=args.batchsize)
@@ -251,35 +263,37 @@ def get_metrics(model, args,train_generator_map,item_sim, recall_k=3, mrr_k=3,):
         input_oh = np.expand_dims(input_oh, axis=1)
 
         pred = model.predict(input_oh, batch_size=args.batchsize)
-        top_idxs,second_idx = get_top_item(pred)
-        if len(top_idxs)==1:
-            top_item_idx = top_idxs[0]
-        else:
-            random_idx = random.randrange(len(top_idxs))
-            top_item_idx = top_idxs[random_idx]
-            
-        id_idx = train_dataset.itemmap
-        top_item_id = id_idx[id_idx['item_idx']==top_item_idx].iloc[0]['ItemId']
-        print(top_item_id)
-        # buy data join 
-        similarity_item_id = bdsim.pick_sim_items(top_item_id,item_sim)
-        sim_item_idx = id_idx[id_idx['ItemId']==similarity_item_id].iloc[0]['item_idx']
-
         
         for row_idx in range(feat.shape[0]):
+            # recall_k == 30개 
             pred_row = pred[row_idx]
             label_row = target_oh[row_idx]
+
+            pred_top_k = pred_row.argsort()[-k:][::-1]
+            # [ 2091  6895 14688 16920 16957 14428  8895 10588 20127 14072]
+            # print(pred_top_k)
+            select_item_index = pred_top_k.tolist()
+
+            select_item_id = get_top_item(train_generator_map, select_item_index)
+            similar_item_idx ,similar_item_id = get_sim_item(train_generator_map,select_item_id,item_sim)
+
+            # 10개 보다 많은 우리 our_idx
+            our_idx = select_item_index + similar_item_idx
+            # print("our K :",len(our_idx))
             
-            our_idx = [top_item_idx,second_idx,sim_item_idx]
-            rec_idx =  pred_row.argsort()[-recall_k:][::-1]
-            mrr_idx =  pred_row.argsort()[-mrr_k:][::-1]
+            # top + sim 에서 랜덤으로 k 개 추출 
+            our_idx_k = random.sample(our_idx,k)
+            our_idx = np.asarray(our_idx_k)
+
+            rec_idx =  pred_row.argsort()[-k:][::-1]
+            mrr_idx =  pred_row.argsort()[-k:][::-1]
             
             tru_idx = label_row.argsort()[-1:][::-1]
-#             print(rec_idx,mrr_idx,tru_idx)
             n += 1
 
             if tru_idx[0] in rec_idx:
                 rec_sum += 1
+
             if tru_idx[0] in our_idx :
                 rec_our_sum +=1
                 
@@ -295,7 +309,12 @@ def get_metrics(model, args,train_generator_map,item_sim, recall_k=3, mrr_k=3,):
     mrr = mrr_sum/n
     our_recall = rec_our_sum/n
     our_mrr = mrr_our_sum/n
-    return (recall, recall_k), (mrr, mrr_k) , (our_recall,recall_k) ,(our_mrr,mrr_k)
+    print("------------ours--------------")
+    print("recall : ",our_recall ," & mrr : ",our_mrr)
+    print("----------baseline-----------")
+    print("recall : ",recall ," & mrr : ",mrr)
+
+    return recall, mrr, our_recall,our_mrr
     
    
 
@@ -306,15 +325,17 @@ if __name__ == '__main__':
     parser.add_argument('--eval-only', type=bool, default=False)
     parser.add_argument('--dev-path', type=str, default='~/data/sample_dataset/rsc15_train_sample_valid.txt')
     parser.add_argument('--test-path', type=str, default='~/data/sample_dataset/rsc15_test_sample.txt')
+    parser.add_argument('--buy-path',type=str,default='~/data/sample_dataset/rsc15_buydata_preprocessed.txt')
     parser.add_argument('--batchsize', type=str, default=512)
     parser.add_argument('--eval-all-epochs', type=bool, default=False)
     parser.add_argument('--save-weights', type=bool, default=False)
-    parser.add_argument('--epochs', type=int, default=10)
+    parser.add_argument('--epochs', type=int, default=2)
     args = parser.parse_args()
 
     args.train_data = pd.read_csv(args.train_path, sep='\t', dtype={'ItemId': np.int64})
     args.dev_data   = pd.read_csv(args.dev_path,   sep='\t', dtype={'ItemId': np.int64})
     args.test_data  = pd.read_csv(args.test_path,  sep='\t', dtype={'ItemId': np.int64})
+    args.buy_data  = pd.read_csv(args.buy_path,  sep='\t', dtype={'ItemId': np.int64})
 
     args.train_n_items = len(args.train_data['ItemId'].unique()) + 1
 
@@ -331,12 +352,15 @@ if __name__ == '__main__':
     else:
         model = create_model(args)
     
-    item_sim = bdsim.settings()
+    item_sim = bdsim.settings(args.buy_data)
+    k=10
 
     if args.eval_only:
         train_dataset = SessionDataset(args.train_data)
-        (rec, rec_k), (mrr, mrr_k) = get_metrics(model, args, train_dataset.itemmap,item_sim)
-        print("\t - Recall@{} epoch {}: {:5f}".format(rec_k, -1, rec))
-        print("\t - MRR@{}    epoch {}: {:5f}\n".format(mrr_k, -1, mrr))
+        recall, mrr, our_recall,our_mrr = get_metrics(model, args, train_dataset.itemmap,item_sim)
+        print("- Recall@{} epoch {}: {:5f}".format(k, -1, recall))
+        print("- MRR@{}    epoch {}: {:5f}\n".format(k, -1, mrr))
+        print("- our Recall@{} epoch {}: {:5f}".format(k, -1, our_recall))
+        print("- our MRR@{}    epoch {}: {:5f}\n".format(k, -1, our_mrr))
     else:
         train_model(model, args,item_sim)
