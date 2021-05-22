@@ -66,7 +66,7 @@ function FeedbackPage(props) {
                         submitted
                             ? <h3>소중한 피드백 감사합니다</h3>
                             : <>
-                                <h2>utopr의 추천 아이템이 마음에 드셨나요?</h2>
+                                <h2>UtoPR의 추천 아이템이 마음에 드셨나요?</h2>
                                 <br/>
                                 <div className="button-list" style={{"width": "400px","display":"flex", "justifyContent":"space-evenly"}}>
                                     <Button
@@ -88,7 +88,7 @@ function FeedbackPage(props) {
                                 <br/>
                                 <br/>
                                 <div className="comments">
-                                    <h2>utopr의 퍼스널 컬러는 진단은 어떠셨나요?</h2>
+                                    <h2>UtoPR의 퍼스널 컬러는 진단은 어떠셨나요?</h2>
                                     <TextArea showCount
                                         maxLength={100}
                                         onChange={onChangeTextArea}
