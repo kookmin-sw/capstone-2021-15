@@ -11,6 +11,7 @@ function ResultComponent(props) {
         "fall": "가을 웜",
         "winter": "겨울 쿨"
     }
+
     const key = Object.keys(props.prob)
     return (
         <div className="resultContainer" style={{height: "600px"}}>
@@ -44,7 +45,6 @@ function ResultComponent(props) {
                 </Card>
             </div>
         </div>
-
     )
 }
 

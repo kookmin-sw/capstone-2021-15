@@ -125,10 +125,8 @@ function DiagnosisPage(props) {
 
                 var season = Object.keys(response.data.prob)[0]
                 console.log(season)
-                var req_data = {
-                    _id: UserInfo['_id'],
-                    season: season
-                }
+                var req_data = UserInfo
+                req_data['season'] = season
                 dispatch(modifyUser(req_data))
                     .then(response => {
                         if (response.payload.modifySuccess) {
@@ -140,7 +138,9 @@ function DiagnosisPage(props) {
                     })
             })
     }
-
+    const goMain = () => {
+        props.history.push('/main');
+    }
     if (!image) {
         return (
             <>
@@ -222,6 +222,8 @@ function DiagnosisPage(props) {
                     <div className="main-container">
                         <ResultComponent userInfo={UserInfo} type={result.type} prob={result.prob}
                                          worst={result.worst}></ResultComponent>
+                        <div onClick={goMain}>상품 둘러보러 가기</div>
+
                     </div>
                     <Footer/>
                 </div>
