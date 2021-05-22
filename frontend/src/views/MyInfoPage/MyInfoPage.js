@@ -73,6 +73,7 @@ function MyInfoPage(props) {
                 interestCategory: props.user.userData.interestCategory,
                 season:props.user.userData.season ? props.user.userData.season : '',
             })
+            console.log(props.user.userData)
         }
     },[props])
     useEffect(()=>{
@@ -129,6 +130,7 @@ function MyInfoPage(props) {
                         </Form.Item>
                         <Form.Item label="퍼스널 컬러" name="season">
                             <Select
+                                defaultValue={PersonalColor}
                                 // defaultValue="season"
                                 // onChange={(value)=>seasonChange(value)}
                                 onChange={seasonChange}

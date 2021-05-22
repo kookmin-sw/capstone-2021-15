@@ -20,6 +20,7 @@ import bgFall from "../../background/fall.png"
 import bgWinter from "../../background/winter.png"
 import DrapeComponent from "../../components/DrapeComponent";
 import ResultComponent from "../../components/ResultComponent";
+import {modifyUser} from "../../_actions/user_actions";
 
 const config = {
     bucketName: process.env.REACT_APP_BUCKET_NAME,
@@ -31,7 +32,7 @@ const config = {
 function DiagnosisPage(props) {
     const [season, setBg] = useState(bgspring);
     const [image, setImg] = useState(null);
-
+    const dispatch = useDispatch();
     const [UserInfo, setUserInfo] = useState({})
     const [IsMount, setIsMount] = useState(true)
 
@@ -125,11 +126,17 @@ function DiagnosisPage(props) {
                 var season = Object.keys(response.data.prob)[0]
                 console.log(season)
                 var req_data = {
+                    _id: UserInfo['_id'],
                     season: season
                 }
-                axios.post('/api/user/modify', req_data)
-                    .then((res) => {
-                        console.log(res)
+                dispatch(modifyUser(req_data))
+                    .then(response => {
+                        if (response.payload.modifySuccess) {
+                            setUserInfo(response.payload.user)
+                            console.log(response.payload.user)
+                        } else {
+                            alert(response.payload.err)
+                        }
                     })
             })
     }
