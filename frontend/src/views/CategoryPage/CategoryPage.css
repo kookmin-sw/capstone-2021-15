@@ -3,7 +3,7 @@
 }
 
 .category_inner {
-    margin-top: 30px;
+    margin: 40px 0 60px;
     width: 1024px;
     display: inline-block !important;
 }
@@ -11,6 +11,9 @@
 .filter {
     text-align: left;
     margin-bottom: 60px !important;
+}
+.filter .ant-btn{
+    border-color: #faf6f3 !important;
 }
 
 .ant-card-head{
@@ -23,6 +26,9 @@
 
 #filter .ant-card-body{
     padding: 14px 24px !important;
+}
+.filter .ant-input-group-addon{
+    background-color: #dcd7db !important;
 }
 
 #pricebtn{
@@ -55,9 +61,6 @@
     margin-top: 15px;
 }
 
-.ant-input-group-addon{
-    background-color: #C4C4C4!important;
-}
 
 .toast{
     border: 0!important;

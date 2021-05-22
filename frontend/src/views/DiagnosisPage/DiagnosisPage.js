@@ -5,7 +5,7 @@ import axios from 'axios'
 import S3 from "react-aws-s3"
 import {uploadFile} from "react-s3";
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Footer from "../../components/FooterC";
 import React, {useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
@@ -21,6 +21,7 @@ import bgWinter from "../../background/winter.png"
 import DrapeComponent from "../../components/DrapeComponent";
 import ResultComponent from "../../components/ResultComponent";
 import {modifyUser} from "../../_actions/user_actions";
+import pcimg from '../../personalcolor.png'
 
 const config = {
     bucketName: process.env.REACT_APP_BUCKET_NAME,
@@ -148,6 +149,7 @@ function DiagnosisPage(props) {
 
                 <div className="App">
                     <div className="box">
+                        <img src={pcimg} style={{width:"400px", marginBottom:"10px", backgroundColor:"white"}}/>
                         <div className="image-input">
                             <div>퍼스널 컬러 진단하기</div>
                             <input type="file" name="image" onChange={onUpload}/>
