@@ -23,8 +23,8 @@ function Header(props) {
             <Row className="row">
                 <Col className="col1" lg={12}>
                     <Link to={`/main`}>
-                        <Button type="link" style={{color: "white", fontSize: "30px"}}>
-                            LOGO
+                        <Button type="link" style={{color: "#a78470", fontSize: "30px"}}>
+                            UtoPR
                         </Button>
                     </Link>
                 </Col>

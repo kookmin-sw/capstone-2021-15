@@ -54,3 +54,9 @@ div .info p {
     font-size: 10px;
 
 }
+
+
+
+.ant-card-body{
+    background-color: #dcd7db !important;
+}
