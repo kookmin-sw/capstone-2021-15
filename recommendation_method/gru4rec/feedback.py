@@ -19,5 +19,5 @@ def count_feedbacks():
     good_feedback=list(col.find({'feedback':'good'}))
 
     if len(bad_feedback) >len(good_feedback):
-        ratio = (len(bad_feedback)-len(good_feedback))/len(bad_feedback)*100
+        ratio = (len(bad_feedback)-len(good_feedback))/len(bad_feedback)
     return ratio
