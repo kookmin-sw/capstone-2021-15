@@ -68,10 +68,16 @@
   <component name="ChangeListManager">
     <list default="true" id="c709be8e-24da-4d15-a59c-a742e0c8e7db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CardComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardComponent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navigation.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/CategoryPage/CategoryPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CategoryPage/CategoryPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/MainPage/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainPage/MainPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MainPage/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainPage/MainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ProductPage/ProductPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ProductPage/ProductPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ProductPage/ProductPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ProductPage/ProductPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

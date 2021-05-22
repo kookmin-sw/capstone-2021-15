@@ -14,9 +14,8 @@
 }
 
 .profile {
-    position: relative; 
-
-    padding: 30px;
+    position: relative;
+    padding: 27px 30px 25px;
 }
 
 .ant-card-body {
@@ -26,13 +25,21 @@
 .main_bottom {
     background-color: #eedcdc;
 }
+.active {
+    border: 0px !important;
+}
+
+.interest_category .ant-card-bordered{
+    border: 0px !important;
+}
+
 
 .interest_category {
     color: white;
     width: 1024px;
     display: inline-block;
     position: relative;
-    padding: 30px;    
+    padding: 15px 30px 30px 30px;
     text-align: left;
 }
 
@@ -49,6 +56,10 @@
 .moreBtn {
     color: white !important;
 }
+.carouselBackground{
+    background-color: #dcd7db;
+}
+
 
 /* @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
