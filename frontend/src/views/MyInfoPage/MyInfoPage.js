@@ -140,7 +140,7 @@ function MyInfoPage(props) {
                         </Form.Item>
                         <div className="diagnosis-field">
                             <span className="diagnosis-text">내 퍼스널 컬러를 궁금하다면?
-                            <Link to="/test" style={{color: '#50C2FF', textDecoration:'none'}}>  진단받기</Link></span>
+                            <Link to="/diagnosis" style={{color: '#50C2FF', textDecoration:'none'}}>  진단받기</Link></span>
                         </div>
                         <br/>
                         <Form.Item {...tailFormItemLayout}>

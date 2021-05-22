@@ -3,8 +3,8 @@
     position: relative;
     border-radius: 2vh;
     margin-top: 15px;
-    width: 36vh;
-    height: 16vh;
+    width: 360px;
+    height: 160px;
     min-width: 135px;
     background: white;
     text-align: center;
@@ -51,8 +51,8 @@
 }
 
 .notice {
-    margin-top:10px;
-    font-size:20px;
+    margin-top: 10px;
+    font-size: 20px;
     font-weight: 600;
 
 }

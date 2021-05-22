@@ -31,6 +31,25 @@ const config = {
 function DiagnosisPage(props) {
     const [season, setBg] = useState(bgspring);
     const [image, setImg] = useState(null);
+
+    const [UserInfo, setUserInfo] = useState({})
+    const [IsMount, setIsMount] = useState(true)
+
+    useEffect(() => {
+        // 처음 렌더링 시 props에 user데이터가 없음
+        // 처음 렌더링은 제외
+        if (IsMount) {
+            setIsMount(false)
+        } else {
+            console.log(props.user)
+            setUserInfo(props.user.userData)
+            // state인 PersonalColor로 인자로 주면 안됨
+            // -> 아마 비동기로 동작해서 순서대로 state에 저장이 안됨
+            // 걍 initial state인 ''임
+            // 만약 PersonalColor로 인자로 주면 그 다음에 set State된 PersonalColor 반영됨
+
+        }
+    }, [props])
     const onSpring = () => {
         setBg(bgspring);
     }
@@ -102,6 +121,16 @@ function DiagnosisPage(props) {
             .then(response => {
                 console.log(response.data)
                 setResult(response.data)
+
+                var season = Object.keys(response.data.prob)[0]
+                console.log(season)
+                var req_data = {
+                    season: season
+                }
+                axios.post('/api/user/modify', req_data)
+                    .then((res) => {
+                        console.log(res)
+                    })
             })
     }
 
@@ -180,7 +209,16 @@ function DiagnosisPage(props) {
         );
     } else {
         return (
-            <ResultComponent type={result.type} prob={result.prob} worst={result.worst}></ResultComponent>
+            <>
+                <Header/>
+                <div className="App">
+                    <div className="main-container">
+                        <ResultComponent userInfo={UserInfo} type={result.type} prob={result.prob}
+                                         worst={result.worst}></ResultComponent>
+                    </div>
+                    <Footer/>
+                </div>
+            </>
         )
     }
 

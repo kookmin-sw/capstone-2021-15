@@ -25,7 +25,7 @@ function ResultComponent(props) {
                 </div>
 
                 <Card title="" bordered={false} style={{width: "880px", paddingTop: "30px"}}>
-                    <h5>{}님의 진단 결과</h5>
+                    <h5>{props.userInfo.nickName}님의 진단 결과</h5>
                     <Row gutter={16} style={{paddingTop: "15px"}}>
                         <Col span={12}>
                             <Statistic title={weather[key[0]]} value={props.prob[key[0]]} suffix="%"/>

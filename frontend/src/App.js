@@ -36,7 +36,7 @@ function App() {
                 <Route exact path="/product/:id" component={Auth(ProductPage, true)}/>
                 <Route exact path="/myinfo" component={Auth(MyInfoPage, true)}/>
                 <Route exact path="/test" component={TestPage}/>
-                <Route exact path="/diagnosis" component={DiagnosisPage}/>
+                <Route exact path="/diagnosis" component={Auth(DiagnosisPage, true)}/>
                 <Route exact path="/feedback" component={Auth(FeedbackPage, true)}/>
             </div>
         </Router>
