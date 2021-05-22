@@ -12,6 +12,7 @@ router.get('/logout', auth, userController.logout); // 로그아웃
 router.post('/face', faceController.diagnosis)
 router.post('/result', faceController.result)
 
+router.post('/modify', auth, userController.modify) // 회원정보 수정
 // router.get('/all',userController.show_all); // 모든 회원 정보 보기
 // router.delete('/delete/:user_id',userController.delete); // 계정 삭제하기 
 

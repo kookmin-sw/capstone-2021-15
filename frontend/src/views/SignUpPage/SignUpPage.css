@@ -1,11 +1,13 @@
 .box{
     display: flex;
-
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* border: 1px solid; */
 
+}
+.ant-form-item-label > label {
+    font-size: 14px !important;
 }
 .app {
     width: 720px;
@@ -33,6 +35,13 @@
     height: 40px;
     margin: 10px;
 }
+
+/*#interest-category {*/
+/*    font-size:1rem;*/
+/*    width: 250px;*/
+/*    height: 40px;*/
+/*    margin: 10px;*/
+/*}*/
 .signup-form-button{
     font-size: 1rem;
     width: 100%;

@@ -3,7 +3,7 @@ node_modules/
 config/dev.js
 ../.editorconfig
 
-
+.env
 .DS_Store
 
 npm-debug.log*
@@ -11,4 +11,4 @@ yarn-debug.kog*
 yarn-error.log*
 
 .vscode
-.env
+package-lock.json

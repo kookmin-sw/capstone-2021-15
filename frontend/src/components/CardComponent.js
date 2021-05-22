@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useEffect , useState } from "react";
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import './CardComponent.css';
+import axios from "axios";
 
+const { Meta } = Card;
 function CardComponent(props) {
-
-    const { Meta } = Card;
-
     const pccs = {
         'p': 'pale',
         'lt': 'light',
@@ -21,43 +20,67 @@ function CardComponent(props) {
         'dkg' : 'dark grayish',
         'dk' : 'dark'
     }
+    const [product, setProduct] = useState({});
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        setUser(props.user)
+        setProduct(props.product)
+    },[props.product, props.user])
 
+
+    const onClickToSaveClickProduct = (product, user) => {
+        let body = {
+            product_data_code: product['data-code'],
+            product_id: product._id,
+            user_id: user._id,
+            user_season: user.season,
+            product_season: product.season
+        }
+        // console.log(body)
+        axios.post('/api/click-product/click-log', body)
+            .then(response => {
+                if(response.data.clickLogSuccess) {
+                    // console.log(response)
+                }
+            })
+    }
+    const onClickToUpdateClickLog = (product) => {
+        axios.post(`/api/product/click-log/product_by_id?id=${product._id}`)
+            .then(response => {
+                if(response.data.ClickLogSuccess) {
+                    // console.log(response)
+                }
+            })
+    }
     return (
-        // <div className="card">
-        //     <div className="image">
-        //         <img src={props.image}></img>
-        //     </div>
-        //     <div className="info">
-        //         <h2>{props.name}</h2>
-        //         <h3>{props.color}</h3>
-        //         <p>{props.categories}</p>
-        //         <p>{props.brand}</p>
-        //     </div>
-        // </div>
         <>
-            <Link to={`/product/${props['data-code']}`}>
-                <Card
-                    size="small"
-                    hoverable
-                    cover={ <img src={props['img-url']} />}
+            {/* <Link to={`/product/${props['data-code']}`}> */}
+                <Card cover={
+                        <Link
+                            onClick={()=>{
+                                onClickToSaveClickProduct(product, user);
+                                onClickToUpdateClickLog(product)
+                            }}
+
+                            to={`/product/${props.product['data-code']}`}>
+                            <img src={props.product['img-url']}/>
+                        </Link>
+                    }
                 >
                     <Meta 
-                        title={props.name+" "+props.title}
+                        title={props.product.name+" "+props.product.title}
                         description={
                             <div>
-                                [ {props.brand} ]
+                                [ {props.product.brand} ]
                                 <br/>
-                                {props.season} {pccs[props.pccs]}
+                                {props.product.season} {pccs[props.product.pccs]}
                                 <br/>
-                                {props.price}원
+                                {props.product.price}원
                             </div>
-                            
                             }
                     />
                 </Card>
-            </Link>
         </>
     )
 }
-
 export default CardComponent;

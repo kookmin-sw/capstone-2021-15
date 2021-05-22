@@ -11,6 +11,7 @@
   "dependencies": {
     "aws-sdk": "^2.900.0",
     "bcrypt": "^5.0.1",
+    "bootstrap": "^5.0.0",
     "concurrently": "^6.0.0",
     "connect-mongodb-session": "^2.4.1",
     "cookie-parser": "^1.4.5",

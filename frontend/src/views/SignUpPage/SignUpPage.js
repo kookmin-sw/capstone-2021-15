@@ -1,13 +1,32 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {Form, Input, Button, Typography} from 'antd';
+import {Form, Input, Button, Typography, Select} from 'antd';
 import { useDispatch } from 'react-redux';
 import { signupUser } from '../../_actions/user_actions'
 import './SignUpPage.css'
 
 const { Title } = Typography;
+const { Option } = Select;
+
+
+const noChoice = "선택 안함";
+
+
+const Categories = [
+    {key:1, value: 'lip'},
+    {key:2, value: 'hair-color'},
+    {key:3, value: 'shadow'},
+    {key:4, value: 'cheek'}
+]
+const Seasons = [
+    {key:1, value: noChoice},
+    {key:2, value: 'spring'},
+    {key:3, value: 'summer'},
+    {key:4, value: 'fall'},
+    {key:5, value: 'winter'}
+]
 
 function SignUpPage(props) {
     const dispatch = useDispatch();
@@ -34,9 +53,11 @@ function SignUpPage(props) {
         <Formik
             initialValues={{
                 nickName: '',
-                // age: '',
                 password: '',
-                confirmPassword: ''
+                confirmPassword: '',
+                interestCategory:'',
+                season:''
+                 // data submit 시 season으로 보낸다
             }}
             validationSchema={Yup.object().shape({
                 // age: Yup.string()
@@ -51,24 +72,25 @@ function SignUpPage(props) {
                     .required('Confirm Password is required')
                 })}
                 onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                let dataToSubmit = {
-                    nickName: values.nickName,
-                    password: values.password,
-                    // age: values.age
-                };
-        
-                dispatch(signupUser(dataToSubmit))
-                    .then(response => {
-                        if (response.payload.success) {
-                            props.history.push("/login");
-                        } else {
-                            alert(response.payload.err)
-                        }
-                    })
-                setSubmitting(false);
-                }, 500);
-            }}
+                    setTimeout(() => {
+                        let dataToSubmit = {
+                            nickName: values.nickName,
+                            password: values.password,
+                            interestCategory: values.interestCategory,
+                            season: values.season === noChoice ? '' : values.season
+                        };
+                        // console.log(dataToSubmit)
+                        dispatch(signupUser(dataToSubmit))
+                            .then(response => {
+                                if (response.payload.success) {
+                                    props.history.push("/login");
+                                } else {
+                                    alert(response.payload.message)
+                                }
+                            })
+                        setSubmitting(false);
+                    }, 500);
+                }}
             >
             {props => {
                 const {
@@ -79,7 +101,14 @@ function SignUpPage(props) {
                     handleChange,
                     handleBlur,
                     handleSubmit,
+                    setFieldValue
                 } = props;
+                const categoryHandleSelectChange = value => {
+                    setFieldValue("interestCategory", [value])
+                }
+                const seasonHandleSelectChange = value => {
+                    setFieldValue("season", value)
+                }
                 return (
                     <div className="app">
                     <Title level={1}>Sign Up</Title>
@@ -101,23 +130,6 @@ function SignUpPage(props) {
                             <div className="input-feedback">{errors.nickName}</div>
                         )}
                     </Form.Item>
-
-                    {/* <Form.Item required label="Age">
-                        <Input
-                            id="age"
-                            placeholder="Enter your Age"
-                            type="number"
-                            value={values.age}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            className={
-                                errors.age && touched.age ? 'text-input error' : 'text-input'
-                            }
-                        />
-                        {errors.age && touched.age && (
-                        <div className="input-feedback">{errors.age}</div>
-                    )}
-                    </Form.Item> */}
                     
                     <Form.Item required label="Password" hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
                         <Input
@@ -151,6 +163,32 @@ function SignUpPage(props) {
                         {errors.confirmPassword && touched.confirmPassword && (
                             <div className="input-feedback">{errors.confirmPassword}</div>
                         )}
+                    </Form.Item>
+
+                    <Form.Item required label="관심 카테고리">
+                        <Select
+                            name="interestCategory"
+                            defaultValue={values.interestCategory}
+                            onChange={categoryHandleSelectChange}
+                            onBlur={handleBlur}
+                            style={{fontSize:'1rem', width:'250px', height:'40px'}}>
+                            {Categories.map(item => (
+                                <Option key={item.key} value={item.value}>{item.value}</Option>
+                            ))}
+                        </Select>
+
+                    </Form.Item>
+                    <Form.Item required label="Personal Color" >
+                        <Select
+                            name="season"
+                            defaultValue={values.season}
+                            onChange={seasonHandleSelectChange}
+                            onBlur={handleBlur}
+                            style={{fontSize:'1rem', width:'250px', height:'40px'}}>
+                            {Seasons.map(item => (
+                                <Option key={item.key} value={item.value}>{item.value}</Option>
+                            ))}
+                        </Select>
                     </Form.Item>
                     <br/>
                     <Form.Item {...tailFormItemLayout}>

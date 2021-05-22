@@ -2,21 +2,37 @@
 const Product = require('../models/product');
 
 module.exports = {
-    // 모든 상품을 가져오되 3개씩 가져올 것
-    read_products: (req, res) => {
-        let limit = req.body.limit ? parseInt(req.body.limit) :100;
+    update_impression: async (req, res) => {
+        await Product.findOneAndUpdate(
+            {_id: req.query.id},
+            {$inc: {impression: 0.5}},
+            (err, product) =>{
+                if(err) return res.json({impressionSuccess:false, err});
+                return res.status(200).send({ impressionSuccess:true })
+            })
+    },
+    update_click_log: async (req, res) => {
+        await Product.findOneAndUpdate(
+            // req.query._id : 해당 상품 아이디
+            {_id: req.query.id},
+            {$inc:{click_log:0.5}},
+            (err, product) => {
+                if(err) return res.json({ClickLogSuccess:false, err});
+                return res.status(200).send({ ClickLogSuccess:true })
+            })
+    },
+    read_products: async (req, res) => {
+        let limit = req.body.limit ? parseInt(req.body.limit) :30;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
 
-        let season = req.body.season ? req.body.season : '';
         // let price = '' ? req.body.season : '';
         // 검색창에 들어오는 단어 처리
         let term = req.body.searchTerm;
         console.log(req.body)
 
-
         if(term){
             console.log(term);
-            Product.find()
+            await Product.find()
             .find({$text: {$search:term}})
             .skip(skip)
             .limit(limit)
@@ -28,9 +44,7 @@ module.exports = {
                 }
             }) 
         } else{
-            Product.find({
-                'season':season
-            })
+            await Product.find()
             .skip(skip)
             .limit(limit)
             .exec((err, productInfo) => {
@@ -39,44 +53,55 @@ module.exports = {
                     if (productInfo.length === 0) return res.send({message: "no products"}) // 아예 아이템이 존재하지 않을 때. (!products) 는 빈 배열[] 을 리턴함
                     return res.status(200).json({ success: true, productInfo, postSize:productInfo.length});
                 }
-            })                    
+            })
         }
     },
     // id로 검색 (1개) 
-    read_product_one: async(req, res) => {
-        await Product.findOne({_id: req.params.product_id},
+    read_product_by_datacode: async(req, res) => {
+        // console.log(req.query)
+        await Product.find({'data-code': req.query.datacode},
             function(err, productInfo) {
                 if(err) return res.status(500).json({ success: false, err });
-                if(!product) return res.status(404).json({ success: false, message: 'product not found'});
+                if(!productInfo) return res.status(404).json({ success: false, message: 'product not found'});
                 return res.json({productInfo, success: true
             });
         })
     },
     // 해당 계절 다 읽어오기
     read_season_products:(req, res) => {
-        let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+        let limit = req.body.limit ? parseInt(req.body.limit) : 30;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
-
-        Product.find({season:req.params.season}) 
-            .limit(limit)
-            .skip(skip)
-            .exec((err, productInfo) => {
-            if(err) return res.status(500).json({ success: false, err });
-            else{
-                if (productInfo.length === 0) return res.send({message: "no products"}) // 아예 아이템이 존재하지 않을 때. (!productInfo) 는 빈 배열[] 을 리턴함
-                return res.json({productInfo, success: true});
-            }
-        })
+        let season = req.params.season!=='' ? req.params.season :'spring'
+        if (season!=='') {
+            Product.find({'season':season})
+                .limit(limit)
+                .skip(skip)
+                .exec((err, productInfo) => {
+                    if(err) return res.status(500).json({ success: false, err });
+                    else{
+                        if (productInfo.length === 0) return res.send({message: "no products"}) // 아예 아이템이 존재하지 않을 때. (!productInfo) 는 빈 배열[] 을 리턴함
+                        return res.json({productInfo, success: true});
+                    }
+                })
+        }
+        else{
+            Product.find()
+                .limit(limit)
+                .skip(skip)
+                .exec((err, productInfo) => {
+                    if(err) return res.status(500).json({ success: false, err });
+                    else{
+                        if (productInfo.length === 0) return res.send({message: "no products"}) // 아예 아이템이 존재하지 않을 때. (!productInfo) 는 빈 배열[] 을 리턴함
+                        return res.json({productInfo, success: true});
+                    }
+                })
+        }
     },
-
-
-    // 이거 어떻게 줄건지 정하기 200331
     read_season_product_one : async(req, res) => {
         await Product.findOne({
             season: req.params.season}, function(err, productInfo){
             if(err) return res.status(500).json({ success: false, err });
-            if(!productInfo) return res.status(404).json({ success: false, message: 'product not found'});
-            return res.json({productInfo, success: true});
+            if(!productInfo) return res.status(404).json({ success: false, message: 'product not found'});return res.json({productInfo, success: true});
         })
     },
     // 아직 tone을 query parameter로 줄지 path parameter로 줄지 ㅜㅠ
@@ -113,10 +138,11 @@ module.exports = {
     },
     // category2: lip 이렇게
     read_category2_products : (req, res) => {
-        let limit = req.body.limit ? parseInt(req.body.limit) : 50;
+        let limit = req.body.limit ? parseInt(req.body.limit) : 30;
         let skip = req.body.skip ? parseInt(req.body.skip) :0;
-
-        Product.find({category2:req.params.category2}) 
+        let season = req.body.season? req.body.season : ''
+        // console.log(req.body)
+        Product.find({category2:req.params.category2, season:season})
             .limit(limit)
             .skip(skip)
             .exec((err, productInfo) => {

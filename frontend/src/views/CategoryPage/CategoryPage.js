@@ -12,9 +12,9 @@ import SearchFeature from './SearchFeature'
 
 function CategoryPage(props) {
     const [Products, setProducts] = useState([])
-    const [Limit, setLimit] = useState(100)
+    const [Limit, setLimit] = useState(50)
     const [Skip, setSkip] = useState(0)
-    const [PostSize, setPostSize] = useState(0)
+    // const [PostSize, setPostSize] = useState(0)
     const [filterPC, setFilterPC] = useState(false);
     const [filterPrice, setFilterPrice] = useState(false);
     // 검색 단어
@@ -27,6 +27,10 @@ function CategoryPage(props) {
 
     const [User, setUser] = useState({})
     const [IsMount, setIsMount] = useState(true)
+    // 카테고리 명
+    const [Category, setCategory] = useState(props.location.pathname.split("/")[2])
+
+
 
     const togglePC = () => {setFilterPC(!filterPC); setFilterPrice(false); setFilterSearch(false);}
     const togglePrice = () => {setFilterPrice(!filterPrice); setFilterPC(false);setFilterSearch(false);}
@@ -48,32 +52,38 @@ function CategoryPage(props) {
         80: '4만원',
         100:'5만원'
     }
-
-    useEffect(()=>{
-        let body = {
-            skip:Skip,
-            limit:Limit,
-            season: PersonalColor,
-            price: Price
-        }
-        getProducts(body);
-        
-    }, [PersonalColor])   
-    
-
-    const loadMoreHandler = () => {
-        let skip = Skip + Limit;
-        let body = {
-            skip: skip,
-            limit: Limit,
-            loadMore: true,
-        }
-        getProducts(body);
-        setSkip(skip);
+    const getProducts = (body) => {
+        // axios.post(`/api/product/category2/${category2}`)
+        axios.post(`/api/product/category2/${Category}`, body)
+            .then(response => {
+                if(response.data.success) {
+                    console.log(response.data.productInfo)
+                    setProducts(response.data.productInfo)
+                } else {
+                    if(response.data.message === "no products") { }
+                    else alert('상품을 가져오는데 실패했습니다')
+                }
+            })
     }
+    useEffect(()=>{
+        if (IsMount) {
+            setIsMount(false)
+        } else {
+            let body = {
+                skip:Skip,
+                limit:Limit,
+                season: PersonalColor,
+            }
+            getProducts(body);
+            // setSkip(skip);
+        }
 
-    const changePCHandler = e => {
+    }, [IsMount, PersonalColor])
+
+
+    const changePCHandler = (e) => {
         setPersonalColor(e.target.value);
+        console.log(e.target.value)
     }
 
     const changePriceHandler = (value) => {
@@ -107,23 +117,10 @@ function CategoryPage(props) {
     //     if (mounted) {
     //         getProducts();
     //     }
-        
+
     //     return () => mounted = false;
     // }, [])
 
-    const getProducts = (body) => {
-        // axios.post(`/api/product/category2/${category2}`)
-        axios.post('/api/product/products', body)
-            .then(response => {
-                if(response.data.success) {
-                    console.log(response.data.productInfo)
-                    setProducts(response.data.productInfo)
-                } else {
-                    if(response.data.message === "no products") { }
-                    else alert('상품을 가져오는데 실패했습니다')
-                }
-            })
-    }
 
     return (
         <div className="App">
@@ -131,53 +128,50 @@ function CategoryPage(props) {
             <Navigation/>
             <div className="main-container">
                 <Row className="category_inner" >
-                    <Card className="filter" title="Filter">
-                        <Button onClick={togglePC}>
-                            Personal Color
-                        </Button>
-                        <Button onClick={togglePrice}>
-                            Price
-                        </Button>
-                        <Button onClick={toggleSearch}>
-                            Search
-                        </Button>
+                    <Card className="filter" id="filter" title="Filter">
+                        <Button.Group>
+                            <Button onClick={togglePC}>
+                                Personal Color
+                            </Button>
+                            <Button onClick={togglePrice}>
+                                Price
+                            </Button>
+                            <Button onClick={toggleSearch}>
+                                브랜드 검색
+                            </Button>
+                        </Button.Group>
                         <Toast onClose={togglePC} show={filterPC}>
                             <Radio.Group options={seasons} onChange={changePCHandler} value={PersonalColor} />
                         </Toast>
-                        <Toast onClose={togglePrice} show={filterPrice} style={{textAlign: "center"}}>
+                        <Toast  id="pslider" onClose={togglePrice} show={filterPrice} style={{textAlign: "center"}}>
+                            {/*tipFormatter setting*/}
                             <Slider range marks={marks} defaultValue={UserPrice} onChange={changePriceHandler}/>
-                            <Button onClick={changeUserPriceHandler}>적용</Button>
+                            <Button id="pricebtn" onClick={changeUserPriceHandler}>적용</Button>
                         </Toast>
                         <Toast onClose={toggleSearch} show={filterSearch} style={{textAlign: "left"}}>
                             {/* {search box} */}
-                            
+
                             <SearchFeature refreshFunction={updateSearchTerm}/>
                         </Toast>
                     </Card>
                     <Row type="flex" gutter={[30, 30]}>
-                    {
-                        Products ? Products.map((product, index) => {
-                            // if (product.season === PersonalColor) {
+                        {
+                            Products ? Products.map((product, index) => {
+                                // if (product.season === PersonalColor) {
 
                                 if (product.price >= UserPrice[0]*500 && product.price <= UserPrice[1]*500) {
                                     return (
                                         <Col  key={index} lg={6} md={12} xs={24} >
-                                            <CardComponent 
-                                                brand={product.brand} 
-                                                name={product.name} 
-                                                title={product.title} 
-                                                pccs={product.pccs} 
-                                                season={product.season} 
-                                                img-url={product['img-url']} 
-                                                data-code={product['data-code']} 
-                                                price={product.price}>
+                                            <CardComponent
+                                                user={props.user.userData}
+                                                product={product}>
                                             </CardComponent>
                                         </Col>
                                     )
                                 }
-                            // }
-                        }) : ''
-                    }
+                                // }
+                            }) : ''
+                        }
                     </Row>
                 </Row>
             </div>
