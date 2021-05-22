@@ -15,8 +15,7 @@
 
 .profile {
     position: relative; 
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+
     padding: 30px;
 }
 
@@ -25,7 +24,7 @@
 }
 
 .main_bottom {
-    background-color: #2F2F2F;
+    background-color: #eedcdc;
 }
 
 .interest_category {
