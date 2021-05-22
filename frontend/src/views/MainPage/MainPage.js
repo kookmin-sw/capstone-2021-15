@@ -170,41 +170,26 @@ function MainPage(props) {
             <div className="main_top">
                 <div className="slider">
                     <Carousel prevLabel="" nextLabel="">
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src={k1}
-                                alt="First slide"
-                            />
-                            <Carousel.Caption>
-                                <h3 style={{color:"white"}}>여기에 뭔가 들어갈거임!</h3>
+                        <Carousel.Item className="carouselBackground" >
+                            <Carousel.Caption >
+                                <h3 style={{color:"black"}}></h3>
                             </Carousel.Caption>
                         </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src={m1}
-                                alt="Second slide"
-                            />
-                            <Carousel.Caption>
-                                <h3 style={{color:"white"}}>여기에 뭔가 들어갈거임!</h3>
+                        <Carousel.Item className="carouselBackground" >
+                            <Carousel.Caption >
+                                <h3 style={{color:"white"}}></h3>
                             </Carousel.Caption>
                         </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src={m2}
-                                alt="Third slide"
-                            />
+                        <Carousel.Item className="carouselBackground">
                             <Carousel.Caption>
-                                <h3>여기에 뭔가 들어갈거임!</h3>
+                                <h3></h3>
                             </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
                 </div>
                 <div className="profile">
                     <div style={{fontSize:"24px"}}>
-                        <span style={{color:"#F0D1D1"}}>{UserInfo.nickName}</span>
+                        <span style={{color:"#bfa1b9"}}>{UserInfo.nickName}</span>
                         <span>님을 위한 맞춤 추천</span>
                     </div>
                     <div style={{fontSize:"16px"}}>#personal_color</div>
