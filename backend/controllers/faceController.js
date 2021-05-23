@@ -18,11 +18,11 @@ module.exports = {
     diagnosis: async (req, res, next) => {
         try {
             const file_name = req.body.name;
-            downloadFile(file_name, './utils/' + file_name)
+            downloadFile(file_name, '/home/ubuntu/capstone-2021-15/backend/utils/' + file_name)
                 .then(() => {
                     var options = {
-                        scriptPath: './utils',
-                        args: ['./utils/' + file_name, './utils/shape_predictor_68_face_landmarks.dat']
+                        scriptPath: '/home/ubuntu/capstone-2021-15/backend/utils',
+                        args: ['/home/ubuntu/capstone-2021-15/backend/utils/' + file_name, '/home/ubuntu/capstone-2021-15/backend/utils/shape_predictor_68_face_landmarks.dat']
                     }
 
                     PythonShell.run('face_detection.py', options, (err, results) => {
@@ -34,7 +34,7 @@ module.exports = {
                         const params = {
                             Bucket: config.BUCKET_NAME,
                             Key: file_name,
-                            Body: fs.createReadStream('./utils/' + file_name),
+                            Body: fs.createReadStream('/home/ubuntu/capstone-2021-15/backend/utils/' + file_name),
                             ContentType: 'image/' + 'png'
                         }
                         s3.upload(params, (err, data) => {

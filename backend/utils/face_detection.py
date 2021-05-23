@@ -49,7 +49,7 @@ def face_remap(shape):
 
 
 def face_detection():
-    image = './' + sys.argv[1]
+    image = sys.argv[1]
     image = cv2.imread(image)
     image = imutils.resize(image, width=500)
 
@@ -84,11 +84,11 @@ def face_detection():
         try:
             out_face = cv2.merge(mv)
 
-            cv2.imwrite('./' + sys.argv[1], out_face)
+            cv2.imwrite(sys.argv[1], out_face)
 
             from PIL import Image
 
-            img = Image.open('./' + sys.argv[1])
+            img = Image.open(sys.argv[1])
             rgba = img.convert("RGBA")
             datas = rgba.getdata()
 
@@ -101,7 +101,7 @@ def face_detection():
                     newData.append(item)  # other colours remain unchanged
 
             rgba.putdata(newData)
-            rgba.save('./' + sys.argv[1], "PNG")
+            rgba.save(sys.argv[1], "PNG")
             print('test')
         except Exception as e:
             print('error', e)
