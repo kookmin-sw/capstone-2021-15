@@ -1,5 +1,5 @@
 .navigation_inner {
-    background-color: #979797 !important;
+    background-color: #faf6f3 !important;
     background-clip: padding-box;
     text-align: center;
     padding: 4px !important;
@@ -9,11 +9,16 @@
     justify-content: center;
 }
 
+.nav-link.disabled {
+    color: darkgray !important;
+}
+
 .nav-link {
     padding-right: 1% !important;
     font-size: 20px !important;
-    color: black!important;
+    color: black;
 }
+
 
 .filter_img {
     height: 16px;
