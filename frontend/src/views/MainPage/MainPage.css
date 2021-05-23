@@ -57,7 +57,8 @@ a:active {
 }
 
 .recommandInfo{
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .interest_category .ant-card-bordered{

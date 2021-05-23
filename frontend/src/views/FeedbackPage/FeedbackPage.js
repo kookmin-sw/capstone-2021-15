@@ -5,6 +5,7 @@ import { HeartOutlined, FrownOutlined, ArrowRightOutlined} from '@ant-design/ico
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
+import "./FeedbackPage.css"
 
 function FeedbackPage(props) {
     const { TextArea } = Input;
@@ -59,16 +60,14 @@ function FeedbackPage(props) {
             <Navigation/>
             <div className="box">
                 <div className="app">
-                    <h1>피드백 남겨주기</h1>
-                    <br/>
-                    <br/>
+                    <h1 style={{marginBottom:"50px"}}>Feedback</h1>
+
                     {
                         submitted
                             ? <h3>소중한 피드백 감사합니다</h3>
                             : <>
-                                <h2>UtoPR의 추천 아이템이 마음에 드셨나요?</h2>
-                                <br/>
-                                <div className="button-list" style={{"width": "400px","display":"flex", "justifyContent":"space-evenly"}}>
+                                <h4>UtoPR의 추천 아이템이 마음에 드셨나요?</h4>
+                                <div className="button-list" style={{"width": "400px","display":"flex", marginTop:"5px", "justifyContent":"space-evenly"}}>
                                     <Button
                                             size='large'
                                             onClick={onClickGoodButton}
@@ -88,7 +87,7 @@ function FeedbackPage(props) {
                                 <br/>
                                 <br/>
                                 <div className="comments">
-                                    <h2>UtoPR의 퍼스널 컬러는 진단은 어떠셨나요?</h2>
+                                    <h4 style={{marginBottom:"5px"}}>UtoPR의 퍼스널 컬러는 진단은 어떠셨나요?</h4>
                                     <TextArea showCount
                                         maxLength={100}
                                         onChange={onChangeTextArea}
@@ -97,10 +96,10 @@ function FeedbackPage(props) {
                                 <br/>
                                 <Button size='large'
                                         onClick={onClickToSubmit}
-                                        icon={<ArrowRightOutlined />}
-                                        style={{"height":"50px","fontSize":"150%"}}
+
+                                        style={{"height":"50px","fontSize":"100%"}}
                                         >
-                                    제출하기</Button>
+                                    ✔제출하기</Button>
                             </>
 
                     }
