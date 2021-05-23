@@ -128,7 +128,8 @@ function MainPage(props) {
                 <Row style={{margin:"5px 15px 3px"}}>
                     <Col lg={12} md={12} xs={12} className="recommandInfo">
                         {categoryName}
-                        <Button className="reloadBtn" type="circle" ghost="true" onClick={reloadHandler}>
+                        <Button className="reloadBtn"
+		 type="circle" ghost="true" onClick={()=>getProducts(PersonalColor, InterestCategory)}>
                             <ReloadOutlined />
                         </Button>
                     </Col>
