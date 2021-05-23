@@ -14,7 +14,7 @@ const ProductPage = (props) => {
         "like" : "28",
         "rank" : "5",
     },];
-    console.log('product-page', props)
+    // console.log('product-page', props)
     const [ product, setProduct ] = useState({})
     // const { id } = match.params;
     
@@ -35,7 +35,7 @@ const ProductPage = (props) => {
     useEffect(()=>{
         axios.post(`/api/product/product_by_datacode?datacode=${productId}`)
             .then(response => {
-                console.log(response.data.productInfo[0])
+                // console.log(response.data.productInfo[0])
                 setProduct(response.data.productInfo[0])
             }).catch(err => console.log(err))
     }, [])

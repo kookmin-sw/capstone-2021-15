@@ -73,11 +73,11 @@ function MyInfoPage(props) {
                 interestCategory: props.user.userData.interestCategory,
                 season:props.user.userData.season ? props.user.userData.season : '',
             })
-            console.log(props.user.userData)
+            // console.log(props.user.userData)
         }
     },[props])
     useEffect(()=>{
-        console.log('test')
+        // console.log('test')
         if (IsSubmitted) {
             form.setFieldsValue({
                 interestCategory: props.user.modifiedUserData.user.interestCategory,
@@ -95,7 +95,7 @@ function MyInfoPage(props) {
                     setIsSubmitted(true)
                     alert('정상적으로 수정되었습니다')
                     setUserInfo(response.payload.user)
-                    console.log(response.payload.user)
+                    // console.log(response.payload.user)
                 } else {
                     alert(response.payload.err)
                 }

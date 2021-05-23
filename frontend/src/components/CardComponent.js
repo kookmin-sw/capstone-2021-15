@@ -31,7 +31,7 @@ function CardComponent(props) {
     const onClickToSaveClickProduct = (product, user) => {
         let body = {
             product_data_code: product['data-code'],
-            product_id: product._id,
+            product_id: typeof product._id === 'object' ? product._id["$oid"] : product._id,
             user_id: user._id,
             user_season: user.season,
             product_season: product.season
@@ -45,7 +45,9 @@ function CardComponent(props) {
             })
     }
     const onClickToUpdateClickLog = (product) => {
-        axios.post(`/api/product/click-log/product_by_id?id=${product._id}`)
+        // console.log(typeof product._id === 'object')
+        let product_id = typeof product._id === 'object' ? product._id["$oid"] : product._id
+        axios.post(`/api/product/click-log/product_by_id?id=${product_id}`)
             .then(response => {
                 if(response.data.ClickLogSuccess) {
                     // console.log(response)
@@ -57,9 +59,10 @@ function CardComponent(props) {
             {/* <Link to={`/product/${props['data-code']}`}> */}
                 <Card cover={
                         <Link
-                            // onClick={()=>{
-                            //     // onClickToSaveClickProduct(product, user);
-                            //     // onClickToUpdateClickLog(product)
+                            onClick={()=>{
+                                onClickToSaveClickProduct(product, user);
+                                onClickToUpdateClickLog(product)
+                            }}
 
                             to={`/product/${props.product['data-code']}`}>
                             <img src={props.product['img-url']}/>
