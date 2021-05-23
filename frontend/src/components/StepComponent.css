@@ -1,0 +1,20 @@
+.diagnosisIntro{
+    display: inline-block;
+    width:  1024px;
+    padding: 30px 0 0 0 ;
+
+
+}
+.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after{
+    background-color: #c5beb8 !important;
+}
+.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-icon{
+    background-color: #c5beb8 !important;
+}
+.ant-steps-item-process .ant-steps-item-icon, .ant-steps-item-finish .ant-steps-item-icon{
+    border-color: #c5beb8 !important;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon{
+    color: #c5beb8 !important;
+}
