@@ -57,7 +57,7 @@ function CategoryPage(props) {
         axios.post(`/api/product/category2/${Category}`, body)
             .then(response => {
                 if(response.data.success) {
-                    console.log(response.data.productInfo)
+                    // console.log(response.data.productInfo)
                     setProducts(response.data.productInfo)
                 } else {
                     if(response.data.message === "no products") { }

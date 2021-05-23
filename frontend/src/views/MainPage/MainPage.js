@@ -49,18 +49,18 @@ function MainPage(props) {
 
         }
     }, [props])
-    console.log(props.user)
+    // console.log(Products)
     // impresssion 쌓으려면 주석을 푸세용
-    // useEffect(()=> {
-    //      function asyncUpdateImpression(products)  {
-    //          products.map((product) => updateImpression(product));
-    //     }
-    //     asyncUpdateImpression(Products)
-    // }, [Products])
+    useEffect(()=> {
+         function asyncUpdateImpression(products)  {
+             products.map(product => updateImpression(product));
+        }
+        asyncUpdateImpression(Products)
+    }, [Products])
     //
     const updateImpression = (product) => {
-        // console.log(body)
-        axios.post(`/api/product/impression/product_by_id?id=${product._id}`)
+        let product_id = product._id["$oid"]
+        axios.post(`/api/product/impression/product_by_id?id=${product_id}`)
             .then(response => {
                 if(response.data.impressionSuccess) {
                     // console.log(response)
@@ -92,7 +92,7 @@ function MainPage(props) {
             `https://50w1qylt07.execute-api.ap-northeast-2.amazonaws.com/api/recommend?psc=${personalColor}&category=${category}`)
             .then(response => {
                 setProducts([...response.data.result])
-                console.log(response.data.result)
+                // console.log(response.data.result)
             })
     }
 
@@ -128,7 +128,12 @@ function MainPage(props) {
                 <Row style={{margin:"5px 15px 3px"}}>
                     <Col lg={12} md={12} xs={12} className="recommandInfo">
                         {categoryName}
-                        <Button className="reloadBtn" type="circle" ghost="true" onClick={reloadHandler}>
+                        <Button className="reloadBtn"
+                                type="circle"
+                                ghost="true"
+                                onClick={()=>
+                                    getProducts(PersonalColor, InterestCategory)
+                                }>
                             <ReloadOutlined />
                         </Button>
                     </Col>
