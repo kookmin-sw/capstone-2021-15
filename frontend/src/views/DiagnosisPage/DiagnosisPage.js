@@ -20,6 +20,7 @@ import bgFall from "../../background/fall.png"
 import bgWinter from "../../background/winter.png"
 import DrapeComponent from "../../components/DrapeComponent";
 import ResultComponent from "../../components/ResultComponent";
+import StepComponent from "../../components/StepComponent";
 import {modifyUser} from "../../_actions/user_actions";
 import pcimg from '../../personalcolor.png'
 
@@ -168,6 +169,7 @@ function DiagnosisPage(props) {
                 <div className="App">
                     <div className="main-container">
                         <div className="diagnosis">
+                            <StepComponent step={1} stepTitle="퍼스널컬러 진단"></StepComponent>
                             <DrapeComponent bgSeason={season} detectedFace={image}></DrapeComponent>
 
                             {/*<ToggleButtonGroup className="diagnosis" type="radio" name="options" defaultValue={1}>*/}
@@ -191,8 +193,12 @@ function DiagnosisPage(props) {
                             {/*        <ToggleButton onClick={onWinter} variant="outline-secondary"> 4 </ToggleButton>*/}
                             {/*    </ToggleButtonGroup>*/}
                             {/*</ButtonToolbar>*/}
+                            <div className="diagnosisInfo">
+                                <p >가장 얼굴이 💡환해지는💡 필터 아래에 순서대로 순위를 적어주세요!</p>
+                                <p>노랗게 뜨거나 창백해보이는 필터는 잘 어울리는 색상이 아니니 주의해주세요😉</p>
+                            </div>
 
-                            <Radio.Group className="diagnosis" defaultValue="spring" buttonStyle="solid" size="large">
+                            <Radio.Group className="diagnosisBtn" defaultValue="spring" buttonStyle="solid" size="large">
                                 <Radio.Button onClick={onSpring} value="spring">1</Radio.Button>
                                 <Radio.Button onClick={onSummer} value="summer">2</Radio.Button>
                                 <Radio.Button onClick={onFall} value="fall">3</Radio.Button>
@@ -204,7 +210,7 @@ function DiagnosisPage(props) {
                                 <input name="fall" value={fall} onChange={onChange}/>
                                 <input name="winter" value={winter} onChange={onChange}/>
                             </div>
-                            <div className="notice">숫자로 순위를 적어주세요</div>
+                            {/*<div className="notice">숫자로 순위를 적어주세요</div>*/}
                             <div onClick={checkResult}>
                                 <div className="result-button">
                                     결과 확인
@@ -221,10 +227,11 @@ function DiagnosisPage(props) {
             <>
                 <Header/>
                 <div className="App">
-                    <div className="main-container">
+                    <div className="main-container" style={{paddingBottom:"200px"}}>
+                        <StepComponent step={2} stepTitle="진단 결과"></StepComponent>
                         <ResultComponent userInfo={UserInfo} type={result.type} prob={result.prob}
                                          worst={result.worst}></ResultComponent>
-                        <div onClick={goMain}>상품 둘러보러 가기</div>
+                        <div onClick={goMain} style={{marginTop:"20px"}}>상품 둘러보러 가기👀</div>
 
                     </div>
                     <Footer/>

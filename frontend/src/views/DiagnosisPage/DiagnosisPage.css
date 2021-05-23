@@ -33,26 +33,62 @@
     height: 100%;
 }
 
+.diagnosisInfo{
+    margin: 7px 0 20px;
+}
+.diagnosisInfo p{
+    margin-bottom: 2px;
+}
+
 .result-button {
     cursor: pointer;
     width: 100px;
     border-radius: 5px;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 40px;
+    margin-bottom: 100px;
     font-weight: bold;
-    background: dodgerblue;
+    background: #ebc0c0;
     color: white;
     padding: 10px 0;
 }
 
+
+.rank{
+    padding: 5px 0 0;
+}
+
 .rank input {
-    width: 41px;
+    width: 40px;
+    height: 35px;
     text-align: center;
 }
 
 .notice {
     margin-top: 10px;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
 
 }
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled){
+    background-color: #c5beb8 !important;
+    border-color: #c5beb8 !important;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before{
+    background-color: #c5beb8 !important;;
+}
+
+label:hover{
+    color: #c5beb8 !important;
+}
+label:active{
+    color: #c5beb8 !important;
+}
+label:link{
+    color: #c5beb8 !important;
+}
+
+
+

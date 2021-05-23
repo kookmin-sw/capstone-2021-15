@@ -19,9 +19,30 @@
     display: flex;
     justify-content: space-around !important;
     width: 970px;
-    padding-top: 15px;
+    padding-top: 5px;
 }
 
 .progressContainer p {
     margin-bottom: 0 !important;
+}
+
+.pcProgress{
+    background-color: #bfa1b9 !important;
+}
+
+
+
+.ant-descriptions-item-content{
+    font-size: 16px !important;
+}
+.ant-descriptions-item-label{
+    font-size: 16px !important;
+}
+
+.ant-descriptions-middle .ant-descriptions-row > th, .ant-descriptions-middle .ant-descriptions-row > td{
+    padding-bottom: 6px !important;
+}
+
+.resultContents .ant-card-body{
+    padding: 50px 24px;
 }
