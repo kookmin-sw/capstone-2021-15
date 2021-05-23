@@ -108,7 +108,7 @@ function MyInfoPage(props) {
             <Navigation/>
             <div className="box">
                 <div className="app">
-                    <h1>나의 정보</h1>
+                    <h1>My Info</h1>
                     <br/>
                     <br/>
                     <br/>
