@@ -319,9 +319,11 @@ def get_metrics(model, args,train_generator_map,item_sim):
             if recall <= our_recall :
                 better+=1
                 
-                ################# score ####################
+                #####################################
+                # UtoPR item data 사용할 경우 
                 # GRU4REC 만을 적용했을 때 보다 좋은 결과일 경우 score ++
                 # rw.reward_to_mongo(our_ids)
+                ######################################
             
     print("------------ours--------------")
     print("recall : ",our_recall ," & mrr : ",our_mrr)
@@ -366,8 +368,11 @@ if __name__ == '__main__':
     model = create_model(args)
     # similarity 계산 
     item_sim = bdsim.settings(args.buy_data)
-    # feedback 적용하여 K ratio 조절하는 부분 
+    ##############################################
+    # UtoPR web log 사용할 때 
+    #feedback 적용하여 K ratio 조절하는 부분 
     # ratio = fb.count_feedbacks()
+    ##############################################
     k=args.k
 
     if args.eval_only:
