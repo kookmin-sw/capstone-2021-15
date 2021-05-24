@@ -1,0 +1,63 @@
+
+.canvas {
+    margin: 10px 0 10px 0;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+
+.canvas img {
+    width: 600px;
+    height: 450px;
+}
+
+.face {
+    top: 35%;
+}
+
+.face img {
+    z-index: 998;
+    max-height: 450px;
+    position: relative;
+    width: 200px;
+    height: 150px;
+    background-color: transparent;
+}
+
+
+/*.cards {*/
+/*    display: -ms-inline-flexbox;*/
+/*    align-content: center;*/
+
+/*    height: 450px;*/
+
+/*}*/
+/*#bg{*/
+/*    width: 600px;*/
+/*    height: 450px;*/
+/*}*/
+
+/*.cardWrapper {*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*.cardWrapper:last-child, .cardWrapper:hover {*/
+/*    overflow: visible;*/
+/*}*/
+/*#face{*/
+/*    z-index: 997;*/
+/*    max-height: 450px;*/
+/*}*/
+
+/*.cardd {*/
+
+/*    height: 6em;*/
+/*    padding: 0.25em;*/
+
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/

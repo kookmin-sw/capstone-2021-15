@@ -14,7 +14,7 @@ const ProductPage = (props) => {
         "like" : "28",
         "rank" : "5",
     },];
-    console.log('product-page', props)
+    // console.log('product-page', props)
     const [ product, setProduct ] = useState({})
     // const { id } = match.params;
     
@@ -35,7 +35,7 @@ const ProductPage = (props) => {
     useEffect(()=>{
         axios.post(`/api/product/product_by_datacode?datacode=${productId}`)
             .then(response => {
-                console.log(response.data.productInfo[0])
+                // console.log(response.data.productInfo[0])
                 setProduct(response.data.productInfo[0])
             }).catch(err => console.log(err))
     }, [])
@@ -91,18 +91,14 @@ const ProductPage = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="product_bottom" style={{backgroundColor: "#2F2F2F"}}>
+                        <div className="product_bottom">
                             <div className="product_info">
                                 <div className="product_personal_color">
-                                    {product.season} {pccs[product.pccs]}</div>
+                                    {product.season} <br/> {pccs[product.pccs]}</div>
                                 <div className="product_like">
-                                    <span>찜하기</span>
-                                    <Button className="likeBtn" type="circle" ghost="true">
-                                        <HeartOutlined />
-                                    </Button>
-                                    <span>{data.like}</span>
+
                                 </div>
-                                <div className="liveRanking"># 실시간 순위 {data.rank}위</div>
+
                                 <Row className="product_detail">
                                     <Col className="left" lg={12} md={12} xs={12}>
                                         <div style={{fontSize: "30px", marginBottom: "15px"}}>색상</div>
@@ -124,8 +120,7 @@ const ProductPage = (props) => {
                                     </Col>
                                 </Row>
                                 <div className="other_contents">
-                                    추천 컨텐츠
-                                    <hr style={{border: "solid 1px white", marginLeft: "-30px"}}></hr>                                
+
                                 </div>
                             </div>
                         </div>

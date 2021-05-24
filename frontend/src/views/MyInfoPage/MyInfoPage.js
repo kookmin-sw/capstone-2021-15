@@ -73,10 +73,11 @@ function MyInfoPage(props) {
                 interestCategory: props.user.userData.interestCategory,
                 season:props.user.userData.season ? props.user.userData.season : '',
             })
+            // console.log(props.user.userData)
         }
     },[props])
     useEffect(()=>{
-        console.log('test')
+        // console.log('test')
         if (IsSubmitted) {
             form.setFieldsValue({
                 interestCategory: props.user.modifiedUserData.user.interestCategory,
@@ -94,7 +95,7 @@ function MyInfoPage(props) {
                     setIsSubmitted(true)
                     alert('정상적으로 수정되었습니다')
                     setUserInfo(response.payload.user)
-                    console.log(response.payload.user)
+                    // console.log(response.payload.user)
                 } else {
                     alert(response.payload.err)
                 }
@@ -107,7 +108,7 @@ function MyInfoPage(props) {
             <Navigation/>
             <div className="box">
                 <div className="app">
-                    <h1>나의 정보</h1>
+                    <h1>My Info</h1>
                     <br/>
                     <br/>
                     <br/>
@@ -129,6 +130,7 @@ function MyInfoPage(props) {
                         </Form.Item>
                         <Form.Item label="퍼스널 컬러" name="season">
                             <Select
+                                defaultValue={PersonalColor}
                                 // defaultValue="season"
                                 // onChange={(value)=>seasonChange(value)}
                                 onChange={seasonChange}
@@ -140,7 +142,7 @@ function MyInfoPage(props) {
                         </Form.Item>
                         <div className="diagnosis-field">
                             <span className="diagnosis-text">내 퍼스널 컬러를 궁금하다면?
-                            <Link to="/test" style={{color: '#50C2FF', textDecoration:'none'}}>  진단받기</Link></span>
+                            <Link to="/diagnosis" style={{color: '#50C2FF', textDecoration:'none'}}>  진단받기</Link></span>
                         </div>
                         <br/>
                         <Form.Item {...tailFormItemLayout}>

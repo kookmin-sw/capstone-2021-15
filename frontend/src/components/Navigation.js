@@ -37,12 +37,12 @@ const Navigation = ( props ) =>  {
         </div> */}
         <div className="navigation_inner">
             <Nav>
-                <Nav.Link href="/category/base">BASE</Nav.Link>
-                <Nav.Link href="/category/lip">LIP</Nav.Link>
-                <Nav.Link href="/category/hair">HAIR</Nav.Link>
-                <Nav.Link href="/category/lens">LENS</Nav.Link>
-                <Nav.Link href="/category/top">TOP</Nav.Link>
-                <Nav.Link href="/category/acc">ACC</Nav.Link>
+                <Nav.Link disabled href="/category/base">BASE</Nav.Link>
+                <Nav.Link style={{color: "black"}}  href="/category/lip">LIP</Nav.Link>
+                <Nav.Link disabled href="/category/hair">HAIR</Nav.Link>
+                <Nav.Link disabled href="/category/lens">LENS</Nav.Link>
+                <Nav.Link disabled href="/category/top">TOP</Nav.Link>
+                <Nav.Link disabled href="/category/acc">ACC</Nav.Link>
                 
             </Nav>
         </div>

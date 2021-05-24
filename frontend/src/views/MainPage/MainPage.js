@@ -9,8 +9,8 @@ import Carousel from 'react-bootstrap/Carousel'
 import { Col, Row, Button } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import './MainPage.css';
-import m1 from '../../m1.jpg'
-import m2 from '../../m2.png'
+import slider1 from '../../slider1.png'
+import slider2 from '../../slider2.png'
 import k1 from '../../k1.png'
 
 
@@ -49,18 +49,18 @@ function MainPage(props) {
 
         }
     }, [props])
-    // console.log(props.user)
+    // console.log(Products)
     // impresssion 쌓으려면 주석을 푸세용
-    // useEffect(()=> {
-    //      function asyncUpdateImpression(products)  {
-    //          products.map((product) => updateImpression(product));
-    //     }
-    //     asyncUpdateImpression(Products)
-    // }, [Products])
+    useEffect(()=> {
+         function asyncUpdateImpression(products)  {
+             products.map(product => updateImpression(product));
+        }
+        asyncUpdateImpression(Products)
+    }, [Products])
     //
     const updateImpression = (product) => {
-        // console.log(body)
-        axios.post(`/api/product/impression/product_by_id?id=${product._id}`)
+        let product_id = product._id["$oid"]
+        axios.post(`/api/product/impression/product_by_id?id=${product_id}`)
             .then(response => {
                 if(response.data.impressionSuccess) {
                     // console.log(response)
@@ -92,7 +92,7 @@ function MainPage(props) {
             `https://50w1qylt07.execute-api.ap-northeast-2.amazonaws.com/api/recommend?psc=${personalColor}&category=${category}`)
             .then(response => {
                 setProducts([...response.data.result])
-                console.log(response.data.result)
+                // console.log(response.data.result)
             })
     }
 
@@ -125,16 +125,22 @@ function MainPage(props) {
         let categoryName = InterestCategory
         return (
             <Row key={index}>
-                <Row>
-                    {categoryName}
-                    <Col lg={12} md={12} xs={12}>
+                <Row style={{margin:"5px 15px 3px"}}>
+                    <Col lg={12} md={12} xs={12} className="recommandInfo">
+                        {categoryName}
                         <Button className="reloadBtn"
                                 type="circle"
                                 ghost="true"
-                                onClick={()=>getProducts(PersonalColor, InterestCategory)}
-                                style={{float:"left"}}>
+                                onClick={()=>
+                                    getProducts(PersonalColor, InterestCategory)
+                                }>
                             <ReloadOutlined />
                         </Button>
+                    </Col>
+                    <Col lg={12} md={12} xs={12} style={{textAlign: "right"}} className="recommandInfo">
+                        <Link to={`/category/${category}`}>
+                            <Button className="moreBtn" type="link" style={{padding:"4px 5px"}}>+더 보기</Button>
+                        </Link>
                     </Col>
                 </Row>
                 <Row type="flex" gutter={[30, 30]} >
@@ -169,44 +175,31 @@ function MainPage(props) {
             <div className="main_top">
                 <div className="slider">
                     <Carousel prevLabel="" nextLabel="">
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src={k1}
-                                alt="First slide"
-                            />
-                            <Carousel.Caption>
-                                <h3 style={{color:"white"}}>여기에 뭔가 들어갈거임!</h3>
+                        <Carousel.Item className="carouselBackground" >
+                            <img src={slider1}/>
+                            <Carousel.Caption >
+                                <a href={"../diagnosis"}>→ 진단하러가기</a>
                             </Carousel.Caption>
                         </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src={m1}
-                                alt="Second slide"
-                            />
-                            <Carousel.Caption>
-                                <h3 style={{color:"white"}}>여기에 뭔가 들어갈거임!</h3>
+                        <Carousel.Item className="carouselBackground" >
+                            <img src={slider2}/>
+                            <Carousel.Caption >
+                                <h3 style={{color:"white"}}></h3>
                             </Carousel.Caption>
                         </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src={m2}
-                                alt="Third slide"
-                            />
+                        <Carousel.Item className="carouselBackground">
                             <Carousel.Caption>
-                                <h3>여기에 뭔가 들어갈거임!</h3>
+                                <h3></h3>
                             </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
                 </div>
                 <div className="profile">
                     <div style={{fontSize:"24px"}}>
-                        <span style={{color:"#F0D1D1"}}>{UserInfo.nickName}</span>
+                        <span style={{color:"#bfa1b9"}}>{UserInfo.nickName}</span>
                         <span>님을 위한 맞춤 추천</span>
                     </div>
-                    <div style={{fontSize:"16px"}}>#personal_color</div>
+                    <div style={{fontSize:"18px"}}>#{UserInfo.season}</div>
                 </div>
             </div>
             <div className="main_bottom">
