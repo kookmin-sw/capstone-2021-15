@@ -289,12 +289,10 @@ def get_metrics(model, args,train_generator_map,item_sim):
             
             # top + sim > k 이므로 랜덤으로 k 개 추출 
             our_idx_k = random.sample(our_idx,k)
-            our_idx = np.asarray(our_idx_k)
+            our_idx = np.array(list(map(np.float, our_idx)))
 
             rec_idx =  pred_row.argsort()[-k:][::-1]
-            rec_idx = rec_idx.tolist()
             mrr_idx =  pred_row.argsort()[-k:][::-1]
-            mrr_idx = mrr_idx.tolist()
             tru_idx = label_row.argsort()[-1:][::-1]
             n += 1
 
@@ -339,7 +337,7 @@ def get_metrics(model, args,train_generator_map,item_sim):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Keras GRU4REC: session-based recommendations')
     parser.add_argument('--train-path', type=str, default='~/data/sample_dataset/rsc15_train_sample_trn.txt')
-    parser.add_argument('--eval-only', type=bool, default=True)
+    parser.add_argument('--eval-only', type=bool, default=False)
     parser.add_argument('--dev-path', type=str, default='~/data/sample_dataset/rsc15_train_sample_valid.txt')
     parser.add_argument('--test-path', type=str, default='~/data/sample_dataset/rsc15_test_sample.txt')
     parser.add_argument('--buy-path',type=str,default='~/data/sample_dataset/rsc15_buydata_preprocessed.txt')
