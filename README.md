@@ -41,7 +41,7 @@
 - 박수빈 : **Recommendation** **system** , Backend <br/>
  <img width="250" alt="박수빈" src="https://user-images.githubusercontent.com/39542978/113392707-8217a380-93d0-11eb-8018-f21f0a7615c0.png">
 
-- 박민정 : Backend, Frontend, Data collection, Application deploy <br/>
+- 박민정 : **Backend**, Frontend, Data collection, Application deploy <br/>
 <img width="250" alt="박민정" src="https://user-images.githubusercontent.com/39542978/113392782-9d82ae80-93d0-11eb-9c23-1720615e3290.png">
 
 - 임이현:  **Product Classification,** Frontend, Personal color diagnosis <br/>
