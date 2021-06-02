@@ -76,5 +76,5 @@ systemd-python==234
 Twisted==17.9.0
 ufw==0.36
 unattended-upgrades==0.1
-urllib3==1.26.4
+urllib3==1.26.5
 zope.interface==4.3.2
