@@ -1,0 +1,19 @@
+.headerContainer{
+    height: 60px;
+    text-align:center;
+    background-color: #f2d8d8;
+    display: flex;
+    justify-content: center;
+}
+
+.row{
+    width: 1024px;
+}
+
+.col1{
+    text-align: left;
+}
+
+.col2{
+    text-align: right;
+}

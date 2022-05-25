@@ -1,0 +1,146 @@
+.main_inner {
+    text-align: center;
+}
+
+.main_top {
+    width: 1024px;
+    display: inline-block;
+    text-align: left;
+}
+
+.carousel-item{
+    width: 1024px!important;
+    height: 400px!important;
+}
+.carousel-item img{
+    width: 1024px!important;
+    height: 400px!important;
+}
+
+.carousel-caption a{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+a:link {
+    color : black;
+    text-decoration: none;
+}
+a:visited {
+    color : black;
+    text-decoration: none;
+}
+a:hover {
+    color : #bfa1b9;
+    text-decoration: none;
+}
+a:active {
+    color : #bfa1b9;
+    text-decoration: none;
+}
+
+
+.profile {
+    position: relative;
+    padding: 20px 30px 22px;
+}
+
+.ant-card-body {
+    background-color: #C4C4C4;
+}
+
+.main_bottom {
+    background-color: #eedcdc;
+}
+.active {
+    border: 0px !important;
+}
+
+.recommandInfo{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.interest_category .ant-card-bordered{
+    border: 0px !important;
+}
+
+
+.interest_category {
+    color: white;
+    width: 1024px;
+    display: inline-block;
+    position: relative;
+    padding: 15px 30px 30px 30px;
+    text-align: left;
+}
+
+.interest_category .ant-row {
+    margin: 15px;
+    font-size: "16px";
+}
+
+.reloadBtn {
+    margin-left: 5px;
+    border-color: transparent !important;
+}
+
+.moreBtn {
+    color: white !important;
+}
+.carouselBackground{
+    background-color: #dcd7db;
+}
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+.main {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    min-width: 100vw;
+    width: 100%;
+    height: 100%;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+.main-container {
+    width: 100%;
+    padding: 0 60px;
+    margin: 0 30px;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+} */

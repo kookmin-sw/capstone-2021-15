@@ -1,0 +1,37 @@
+.btn-circle {
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid gray;
+}
+
+.btn-circle:focus {
+    outline: none;
+}
+
+.btn-circle:hover {
+    border: 1px solid lightcoral;
+}
+
+.active {
+    border: 1px solid lightcoral;
+}
+
+.btn-xl {
+    width: 50px;
+    height: 50px;
+}
+
+.btn-lg {
+    width: 40px;
+    height: 40px;
+}
+
+.btn-md {
+    width: 31px;
+    height: 31px;
+}
+
+.btn-sm {
+    width: 23px;
+    height: 23px;
+}

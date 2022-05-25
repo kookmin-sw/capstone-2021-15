@@ -1,0 +1,26 @@
+.recommand-container {
+    padding: 20px;
+}
+
+.describe {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 30px;
+    margin-left: 15px;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    background-color: red;
+    display: inline-block;
+}
+
+.inner-container {
+    /*min-width: 100vw;*/
+    width: 100%;
+    background: #393737;
+    margin-top: -50px;
+    padding: 40px;
+}
